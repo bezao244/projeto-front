@@ -1,1 +1,19 @@
-<p>private works!</p>
+<h3>Cadastrar Usuário</h3>
+<form [formGroup]="crudForm" class="form">
+    <div class="large">
+        <label for="email">Email</label>
+        <input type="text" formControlName="userName" class="form-control inputs" placeholder="Digite o email" required>
+    </div>
+    <div class="large">
+        <label for="senha">Senha</label>
+        <input type="password" formControlName="pass" class="form-control inputs" placeholder="Digite a senha" required>
+    </div>
+    <select class="form-select" aria-label="Default select example" formControlName="roleId">
+        <option selected>Tipo de Conta</option>
+        <option value="Administrador">Administrador</option>
+        <option value="Avaliador">Avaliador</option>
+        <option value="Terçeirizada">Terçeirizada</option>
+      </select>
+    <input type="submit" value="Login" class="btn btn-primary" style="margin-top: 10px;"
+        (click)="cadastrar()">
+</form>
