@@ -8,7 +8,7 @@ import { PrivateComponent } from './components/private/private.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { LoginComponent } from './components/login/login.component';
 
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http'
 import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
 @NgModule({
@@ -23,7 +23,8 @@ import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [
     {provide: JWT_OPTIONS,useValue: JWT_OPTIONS},

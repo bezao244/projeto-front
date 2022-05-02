@@ -7,22 +7,21 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 })
 export class AuthService {
 
-  private URL = 'http:/localhost:3000';
-
+  private baseUrl =  'http://localhost:3000/';
   constructor(
     private http: HttpClient,
     private jwtHelper: JwtHelperService
     ) { }
 
   singin(user: any){
-    return this.http.post(`${this.URL}/user/singin`, user);
+    return this.http.post(`${this.baseUrl}user/singin`, user);
   }
-  isAuth():boolean{
-    const token = JSON.parse(localStorage.getItem('token')!);
+  // isAuth():boolean{
+  //   const token = JSON.parse(localStorage.getItem('token')!);
     
-    if(this.jwtHelper.isTokenExpired(token) || !localStorage.getItem('token')){
-      return false;
-    }
-    return true;
-  }
+  //   if(this.jwtHelper.isTokenExpired(token) || !localStorage.getItem('token')){
+  //     return false;
+  //   }
+  //   return true;
+  // }
 }

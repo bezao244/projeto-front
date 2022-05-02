@@ -23,12 +23,11 @@ export class LoginComponent implements OnInit {
     });
   }
   login(){
-    this.crudForm.patchValue({
+    var modal = {
       userName: this.crudForm.value.userName,
       pass: this.crudForm.value.pass
-    });
-
-    this.authService.singin(this.crudForm.value.userName).subscribe( (res:any) => {
+    }
+    this.authService.singin(modal).subscribe( (res:any) => {
       localStorage.setItem('token', res.token);
       this.router.navigate(['private']);
     });
