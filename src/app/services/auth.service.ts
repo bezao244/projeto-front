@@ -24,4 +24,8 @@ export class AuthService {
   //   }
   //   return true;
   // }
+
+  create(user: any){
+    return this.http.get(`${this.baseUrl}user/create`, user);
+  }
 }
