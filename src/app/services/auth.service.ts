@@ -26,6 +26,6 @@ export class AuthService {
   // }
 
   create(user: any){
-    return this.http.get(`${this.baseUrl}user/create`, user);
+    return this.http.post(`${this.baseUrl}user/create`, user);
   }
 }
