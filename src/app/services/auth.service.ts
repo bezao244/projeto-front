@@ -16,6 +16,13 @@ export class AuthService {
   singin(user: any){
     return this.http.post(`${this.baseUrl}user/singin`, user);
   }
+  listar(){
+    return this.http.get(`${this.baseUrl}user`);
+  }
+
+  listarPorNome(user: any){
+    return this.http.post(`${this.baseUrl}user/filtrarPorNome`, user);
+  }
   // isAuth():boolean{
   //   const token = JSON.parse(localStorage.getItem('token')!);
     
@@ -26,6 +33,7 @@ export class AuthService {
   // }
 
   create(user: any){
-    return this.http.get(`${this.baseUrl}user/create`, user);
+    console.log(user);
+    return this.http.post(`${this.baseUrl}user/create`, user);
   }
 }

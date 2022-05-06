@@ -1,0 +1,45 @@
+<div class="meio">
+    <div class="card card-body menu">
+      <div class="row">
+        <div class="col-md-8">
+          <h4 class="font-weight-bold py-1 mb-2">
+            <span class="text-muted font-weight-light">Cadastro</span> / Acessos
+          </h4>
+        </div>
+        <div class="col-md-4">
+          <div class="text-right">
+            <button class="btn btn-primary" type="button" (click)="abrirCadastro()">
+              <span class="fa fa-plus-circle"></span>&nbsp;&nbsp;Novo
+            </button>
+          </div>
+        </div>
+      </div>
+      <hr class="border-light" />
+      <form class="form-inline" [formGroup]="pesquisarForm">
+        <div class="form-group mx-sm-0 pr-2 col-md-6">
+          <input type="text" class="form-control" formControlName="userName"  placeholder="Nome ou Conta"
+            style="width: 100%;"/>
+        </div>
+        <button type="button" class="btn btn-primary r-2" (click)="pesquisar()">
+          <span class="fa fa-search"></span> Pesquisar
+        </button>
+      </form>
+      <hr class="border-light">
+      <table class="table table-striped table-bordered table-sm row-border hover">
+        <thead>
+          <tr>
+            <th style="width: 40%">Nome</th>
+            <th style="width: 40%;">Conta</th>
+            <th style="width: 20%;">Nota</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of pessoas">
+            <td> {{item.userName}} </td>
+            <td> {{item.roleId}} </td>
+            <td> {{item.nota}} </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>

@@ -1,1 +1,23 @@
-<p>admin works!</p>
+<div class="conta">
+    <img src="../../../assets/user.png" width="50px" height="50px">
+    <p>Administrador</p>
+    <button class="topo-sair" (click)="logout()">Sair</button>
+</div>
+<div class="sidebar">
+    <div class="menu-sidebar">
+        <a class="links"  (click)="irPara()">
+                <i class="fa fa-user-plus" aria-hidden="true" style="margin-right: 10px;"></i>Cadastrar Acesso
+        </a>
+        <a class="links"  routerLink="home" routerLinkActive="active">
+                <i class="fa fa-trash" aria-hidden="true" style="margin-right: 10px;"></i>Excluir Acesso
+        </a>
+        <a class="links"  routerLink="home" routerLinkActive="active">
+                <i class="fa fa-file-text-o" aria-hidden="true" style="margin-right: 10px;"></i>Cadastrar
+                Nota
+        </a>
+        <a class="links"  routerLink="home" routerLinkActive="active">
+                <i class="fa fa-plus-square-o" aria-hidden="true" style="margin-right: 10px;"></i>Cadastrar Oficio
+        </a>
+    </div>
+    <img src="../../../assets/logo.png" alt="Logo" class="logo">
+</div>

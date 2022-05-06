@@ -6,18 +6,18 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 import { PrivateComponent } from './components/private/private.component';
 import { AdminComponent } from './components/admin/admin.component';
-import { LoginComponent } from './components/login/login.component';
 
 import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http'
 import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
+import { CadAcessoComponent } from './components/cad-acesso/cad-acesso.component';
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     PrivateComponent,
     AdminComponent,
-    LoginComponent
+    CadAcessoComponent
   ],
   imports: [
     BrowserModule,

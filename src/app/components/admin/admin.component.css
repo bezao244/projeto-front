@@ -1,0 +1,86 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap");
+*{
+    margin: 0;
+    font-family: "Open Sans";
+    text-decoration: none;
+}
+body{
+    background-color: whitesmoke;
+    display: flex;
+}
+.sidebar{
+    display: flex;
+    flex-direction: column;
+    height: 90vh;
+    background-color: #1D232A;
+    width: 20%;
+    position: absolute;
+    top: 70px;
+    left: 0;
+    color: whitesmoke;
+    align-items: center;
+}
+.links{
+    margin-bottom: 20px;
+    color: white;
+    font-family: "Nunito";
+    font-size: 1.05rem;
+    padding-left: 10px;
+    font-weight: 600;
+}
+.links:hover{
+    text-decoration: none;
+    color: whitesmoke;
+}
+.logo{
+    position: absolute;
+    bottom: 0;
+    margin-bottom: 20px;
+}
+.menu-sidebar{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 30px;
+}
+.ativo{
+    background-color: white;
+    color: #1D232A;
+    padding: 10px;
+    padding-left: 10px;
+}
+.ativo:hover{
+    color: #464849;
+}
+.conta{
+    width: 100%;
+    top: 0;
+    height: 70px;
+    display: flex;
+    background-color: #1D232A;
+    color: whitesmoke;
+    align-items: center;
+    border-bottom: 1px solid rgb(221, 221, 221);
+}
+.conta p{
+    font-size: 18px;
+    font-weight: 600;
+    margin-left: 5px;
+}
+.topo-sair{
+    color:whitesmoke;
+    font-size: 18px;
+    position: absolute;
+    right: 30px;
+    border: 1px solid whitesmoke;
+    border-radius: 3px;
+    width: 55px;
+    padding: 3px;
+    text-align: center;
+    background-color: #1D232A;
+}
+.topo-sair:hover{
+    transition: 0.2s;
+    color: rgb(177, 177, 177);
+    text-decoration: none;
+}
