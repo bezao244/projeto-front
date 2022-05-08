@@ -20,4 +20,7 @@ export class AdminComponent implements OnInit {
   irPara(){
     this.router.navigate(['cad-acesso']);
   }
+  irParaCadNota(){
+    this.router.navigate(['cad-nota']);
+  }
 }
