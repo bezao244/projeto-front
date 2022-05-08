@@ -1,0 +1,52 @@
+<div class="topo">
+    <img src="../../../assets/enterprise.png" alt="empresa" >
+    <!-- <h2> {{ nomeEmpresa }} </h2> -->
+    <h2>Usiminas</h2>
+    <button class="topo-sair" (click)="logout()">Sair</button>
+</div>
+<div class="container">
+    <div class="card card-body" style="margin-top: 10px;">
+        <div class="filtros">
+            <h2>Filtros</h2>
+            <form  class="form" [formGroup]="filtrarForm">    
+                <div class="label-input">
+                    <label class="labels">Nome</label>
+                    <input type="text" placeholder="Nome do candidadto" class="form-control input-nome">
+                </div>
+                <div class="label-input">
+                    <label class="labels">Oficio</label>
+                    <select id="filtro-oficio" class="form-control input-nome">
+                        <option value="empty">Escolha o oficio</option>
+                        <!-- fazer a logica para exibit os oficios com ngfor -->
+                        <option value="Téc.Soldagem">Técnico em solda</option>
+                        <option value="Téc.Refrigeracão">Técnico em refrigeraão</option>
+                    </select>
+                </div>
+                <div class="label-input">
+                    <label class="labels">Data</label>
+                    <input type="date" id="filtro-data" class="form-control input-nome">
+                </div>
+                <input type="submit" value="Filtrar" class="btn btn-primary btn-tamanho" (click)="filtrar()">
+            </form>
+        </div>
+        <hr class="border-light">
+        <table class="table table-striped table-bordered table-sm row-border hover tabela">
+          <thead>
+            <tr>
+              <th style="width: 30%">Nome</th>
+              <th style="width: 30%;">Oficio</th>
+              <th style="width: 30%;">CPF</th>
+              <th style="width: 10%;">Nota Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr >
+              <td>Bernardo Afonso</td>
+              <td>Téc.Refrigeração</td>
+              <td>01847131614</td>
+              <td>70%</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+</div>

@@ -1,0 +1,77 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.topo{
+    display: flex;
+    width: 100%;
+    background-color: #0d539d;
+    color: whitesmoke;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+}
+.topo-sair{
+    color:whitesmoke;
+    font-size: 18px;
+    position: absolute;
+    right: 30px;
+    border: 1px solid whitesmoke;
+    border-radius: 3px;
+    width: 55px;
+    padding: 3px;
+    text-align: center;
+    background-color: #0d539d;
+}
+.topo-sair:hover{
+    transition: 0.2s;
+    color: rgb(177, 177, 177);
+    text-decoration: none;
+}
+/*estilo para a div de filtro*/
+.labels{
+    font-size: 17px;
+    margin-right: 5px;
+    margin-left: 25px;
+}
+.btn-tamanho{
+    width:100px;
+    margin-left: 15px;
+}
+.container{
+    width: 100%;
+}
+.form{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+.input-nome{
+    width: 200px;
+}
+.label-input{
+    display: flex;
+    align-items: center;
+}
+.filtros{
+    height: 100px;
+    width: 100%;
+    margin-top: 10px;
+}
+
+/*Layout para celulares*/
+@media (max-width: 600px)
+{
+    .tabela{
+        margin-top:100px;
+        width: 300px;
+        font-size:14px;
+    }
+    .label-input{
+        width: 250px;
+        margin-bottom: 5px;
+        justify-content: center;
+    }.form{
+        justify-content: center;
+    }
+}
