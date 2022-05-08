@@ -1,0 +1,21 @@
+<div>
+    <button class="btn btn-danger" (click)="fechar()" >Fechar</button>
+    <form [formGroup]="crudForm" class="form">
+        <div class="large">
+            <label for="email">Email</label>
+            <input type="text" formControlName="userName" class="form-control inputs" placeholder="Digite o email" required>
+        </div>
+        <div class="large">
+            <label for="senha">Senha</label>
+            <input type="password" formControlName="pass" class="form-control inputs" placeholder="Digite a senha" required>
+        </div>
+        <label class="contro-label required">Tipo de Conta</label>
+        <select class="form-control custom-select" formControlName="roleId" required>
+            <option [value]="null">Selecione</option>
+            <option value="Administrador">Administrador</option>
+            <option value="Avaliador">Avaliador</option>
+            <option value="Empresa">Empresa</option>
+        </select>
+        <input type="submit" value="Cadastrar" class="btn btn-primary" style="margin-top: 10px;" (click)="cadastrar()">
+    </form>
+</div>

@@ -9,7 +9,7 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./cad-acesso.component.css']
 })
 export class CadAcessoComponent implements OnInit {
-  
+  msgalert: any = '';
   pessoas: any[] = [];
   pesquisarForm: FormGroup;
 
@@ -22,7 +22,9 @@ export class CadAcessoComponent implements OnInit {
   ngOnInit(): void {
     this.authService.listar().subscribe( (res:any)=>{
       this.pessoas = res;
-      console.log(this.pessoas);
+      if(this.pessoas.length < 1){
+        this.msgalert = 'Nenhum acesso cadastrado!';
+      }
     });
 
     this.pesquisarForm = this.formBuilder.group({
@@ -40,6 +42,9 @@ export class CadAcessoComponent implements OnInit {
     } );
   }
   abrirCadastro(){
-
+    this.router.navigate(['crud-acesso']);
+  }
+  voltar(){
+    this.router.navigate(['admin']);
   }
 }
