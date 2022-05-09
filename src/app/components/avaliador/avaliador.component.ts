@@ -13,6 +13,8 @@ export class AvaliadorComponent implements OnInit {
   candidatos: any[] = [];
   msgalert:any = '';
   filtrarForm: FormGroup;
+  idUsuarioLogado: any;
+  oficio: any[] = [];
 
   constructor(
     private authService: AuthService,
@@ -21,22 +23,29 @@ export class AvaliadorComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    let getId: any = localStorage.getItem('user');
+    this.idUsuarioLogado = parseInt(getId);
+    console.log(this.idUsuarioLogado);
 
-    var infoId = {
-      //idAvaliador: logica
+    var modal ={
+      idAvaliador: this.idUsuarioLogado
     }
 
-    this.authService.listarPorAvaliador(infoId).subscribe( (res:any)=>{
+    this.authService.listarPorAvaliador(modal).subscribe( (res:any)=>{
       this.candidatos = res;
       if(this.candidatos.length < 1){
         this.msgalert = 'Nenhum candidato para avaliar no momento!';
       }
     } );
 
+    this.authService.buscarOficios().subscribe( (res:any)=>{
+      this.oficio = res;
+    } );
+
     this.filtrarForm = this.formBuilder.group({
-      userName: [null],
-      oficio: [null],
-      dataInclusao: [null]
+      nome: [null],
+      cpf: [null],
+      oficio: [null]
     });
   }
 
@@ -46,7 +55,7 @@ export class AvaliadorComponent implements OnInit {
   
   filtrar(){
     var modal = {
-      //idAvaliador: vai precisar tambem
+      idAvaliador: this.idUsuarioLogado
       //logica de montar pelo filtrarForm
     }
     this.authService.filtrarAvaliador(modal).subscribe( (res:any)=>{
@@ -55,6 +64,9 @@ export class AvaliadorComponent implements OnInit {
         this.msgalert = 'Nenhum candidato corresponde com o filtro!';
       }
     } );
+  }
+  logout(){
+    this.router.navigate(['home']);
   }
 
 }

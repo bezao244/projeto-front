@@ -19,6 +19,9 @@ export class AuthService {
   buscarTipoConta(){
     return this.http.get(`${this.baseUrl}user/buscarTipoConta`);
   }
+  buscarOficios(){
+    return this.http.get(`${this.baseUrl}user/buscarOficios`);
+  }
   listar(){
     return this.http.get(`${this.baseUrl}user`);
   }
@@ -58,5 +61,8 @@ export class AuthService {
   }
   createAdmin(user:any){
     return this.http.post(`${this.baseUrl}user/createAdmin`, user);
+  }
+  createAvaliador(user:any){
+    return this.http.post(`${this.baseUrl}user/createAvaliador`, user);
   }
 }

@@ -97,5 +97,29 @@
         </form>
     
     </accordion-group>
+    <accordion-group [isOpen]="true" *ngIf="tipoConta == 'Avaliador'" #dadosAvaliador >
+        <div accordion-heading>
+            <span class="fa fa-list"></span> Dados do Avaliador
+            <i class="ml-2 mt-1 pull-right fa-lg fas"
+            [ngClass]="{'fa-chevron-down': dadosAvaliador?.isOpen, 'fa-chevron-up': !dadosAvaliador?.isOpen}"></i>
+          </div>
+    
+        <form [formGroup]="crudFormAvaliador">
+            <div class="row">
+                <div class="col-md-4">
+                    <label class="control-label required">Nome Completo</label>
+                    <input type="text" formControlName="nome" class="form-control inputs"
+                        placeholder="Digite o nome completo" required>
+                </div>
+                <div class="col-md-4">
+                    <label class="control-label required">CPF</label>
+                    <input type="text" formControlName="cpf" class="form-control inputs"
+                        placeholder="Digite o CPF" required>
+                </div>
+            </div>
+            <div class="collumn" style="text-align: center;"><input type="submit" value="Cadastrar" class="btn btn-primary" style="margin-top: 10px;" (click)="cadastrarAvaliador()"></div>
+        </form>
+    
+    </accordion-group>
     
 </accordion>

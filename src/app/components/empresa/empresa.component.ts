@@ -14,6 +14,7 @@ export class EmpresaComponent implements OnInit {
   msgalert:any = '';
   filtrarForm: FormGroup;
   nomeEmpresa: any = '';
+  idUsuarioLogado: any;
 
   constructor(
     private authService: AuthService,
@@ -22,15 +23,18 @@ export class EmpresaComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    let getId: any = localStorage.getItem('user');
+    this.idUsuarioLogado = parseInt(getId);
+    console.log(this.idUsuarioLogado);
 
-    var infoId = {
-      //idAvaliador: logica
+    var modal ={
+      idAvaliador: this.idUsuarioLogado
     }
 
     //logica para pegar o nome da empresa para ser exibido na navbar
     //this.nomeEmpresa = ;
 
-    this.authService.listarPorEmpresa(infoId).subscribe( (res:any)=>{
+    this.authService.listarPorEmpresa(modal).subscribe( (res:any)=>{
       this.candidatos = res;
       if(this.candidatos.length < 1){
         this.msgalert = 'Nenhum candidato afiliados a essa empresa avaliados!';

@@ -17,12 +17,12 @@ export class CrudAcesspComponent implements OnInit {
   tipoConta:any = '';
   crudFormEmpresa: FormGroup;
   crudFormAdmin: FormGroup;
+  crudFormAvaliador: FormGroup;
 
   constructor(
     private authService: AuthService,
     private formBuilder: FormBuilder,
-    private router:Router,
-    private toastrService: ToastrService
+    private router:Router
   ) { }
 
   ngOnInit(): void {
@@ -51,6 +51,11 @@ export class CrudAcesspComponent implements OnInit {
 
     this.crudFormAdmin = this.formBuilder.group({
       nome: [null]
+    });
+
+    this.crudFormAvaliador = this.formBuilder.group({
+      nome: [null],
+      cpf: [null]
     });
 
   }
@@ -91,6 +96,37 @@ export class CrudAcesspComponent implements OnInit {
           }, 2000); 
         } );
       }
+    } );
+    
+  }
+  cadastrarAvaliador(){
+    var modal ={
+      email: this.crudForm.value.email,
+      senha: this.crudForm.value.senha,
+      tipoPerfil: this.crudForm.value.tipoConta,
+    }
+    this.authService.create(modal).subscribe( (res:any)=>{
+      const idUsuario = res[0].idUsuario;
+      console.log(idUsuario);
+      if(idUsuario != false){
+        var modal = {
+          idUsuario: idUsuario,
+          nome: this.crudFormAvaliador.value.nome,
+          cpf: this.crudFormAvaliador.value.cpf
+        }
+        this.authService.createAvaliador(modal).subscribe( (res:any)=>{
+          console.log(res);
+          Swal.fire({  
+            icon: 'success',  
+            title: 'Cadastro realizado com sucesso!',  
+            showConfirmButton: false,  
+            timer: 2000  
+          });
+          setTimeout(() => {
+            this.router.navigate(['cad-acesso']);
+          }, 2000); 
+        } );
+       }
     } );
     
   }

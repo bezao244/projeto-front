@@ -23,6 +23,7 @@ export class HomeComponent implements OnInit {
       email: [null],
       senha: [null]
     });
+    
   }
   login() {
     var modal = {
@@ -30,8 +31,8 @@ export class HomeComponent implements OnInit {
       senha: this.crudForm.value.senha
     }
     this.authService.singin(modal).subscribe((res: any) => {
-      if (res != false) {
-        var tipoPerfil = res[0].tipoPerfil;
+      if (res.ok != false) {
+        var tipoPerfil = res.tipoPerfil;
         if (tipoPerfil == 'Administrador') {
           this.router.navigate(['admin']);
         } else if (tipoPerfil == 'Empresa') {
@@ -39,6 +40,7 @@ export class HomeComponent implements OnInit {
         } else if (tipoPerfil == 'Avaliador') {
           this.router.navigate(['avaliador']);
         }
+        localStorage.setItem('user', String(res.idUsuario));
       } else {
         this.msgalert = 'Usuário ou senha inválidos!';
       }

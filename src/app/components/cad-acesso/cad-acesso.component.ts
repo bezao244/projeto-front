@@ -13,8 +13,8 @@ export class CadAcessoComponent implements OnInit {
   msgalert: any = '';
   pessoas: any[] = [];
   pesquisarForm: FormGroup;
-
-  constructor(
+  idUsuarioLogado: any;
+    constructor(
     private authService: AuthService,
     private formBuilder: FormBuilder,
     private router:Router
@@ -31,7 +31,9 @@ export class CadAcessoComponent implements OnInit {
     this.pesquisarForm = this.formBuilder.group({
       email: [null]
     });
-
+    let getId: any = localStorage.getItem('user');
+    this.idUsuarioLogado = parseInt(getId);
+    console.log(this.idUsuarioLogado);
   }
 
   pesquisar(){
@@ -49,25 +51,39 @@ export class CadAcessoComponent implements OnInit {
     this.router.navigate(['admin']);
   }
   deletar(id: any){
-    var modal= {
-      idUsuario: id
-    }
-    this.authService.deletar(modal).subscribe( (res: any)=>{
-      if(res ==  true){
-        Swal.fire({  
-          icon: 'success',  
-          title: 'Usuário deletado com sucesso!',  
-          showConfirmButton: false,  
-          timer: 2000  
+    Swal.fire({  
+      icon: 'warning',  
+      title: 'Tem certeza que deseja excluir?',  
+      showCancelButton: true,
+			confirmButtonColor: '#59b479',
+			cancelButtonColor: '#e36e6e',
+			cancelButtonText: 'Cancelar',
+			confirmButtonText: 'Excluir'
+    }).then( (result)=>{
+      if (result.value) {
+        var modal= {
+          idUsuario: id
+        }
+        this.authService.deletar(modal).subscribe( (res: any)=>{
+          if(res ==  true){
+            Swal.fire({  
+              icon: 'success',  
+              title: 'Usuário deletado com sucesso!',  
+              showConfirmButton: false,  
+              timer: 2000  
+            });
+          }
         });
+        this.authService.listar().subscribe( (res:any)=>{
+          this.pessoas = res;
+          if(this.pessoas.length < 1){
+            this.msgalert = 'Nenhum acesso cadastrado!';
+          }
+        });
+      }else{
+        return;
       }
-    });
-    this.authService.listar().subscribe( (res:any)=>{
-      this.pessoas = res;
-      if(this.pessoas.length < 1){
-        this.msgalert = 'Nenhum acesso cadastrado!';
-      }
-    });
+    } );
   }
   limparFiltro(){
     this.authService.listar().subscribe( (res:any)=>{

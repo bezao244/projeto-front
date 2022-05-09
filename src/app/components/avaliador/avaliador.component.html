@@ -1,13 +1,39 @@
 <div class="conta">
     <img src="../../../assets/user.png" width="50px" height="50px">
     <p>Avaliador</p>
-    <button class="topo-sair" onclick="logout()">Sair</button>
+    <button class="topo-sair" (click)="logout()">Sair</button>
 </div>
 <div class="meio">
     <div class="divForm">
         <h1>Filtrar</h1>
         <form id="form-filtro" [formGroup]="filtrarForm">
-            
+            <div class="row">
+                <div class="col-md-12">
+                    <label class="control-label required">Nome</label>
+                    <input type="text" formControlName="nome" class="form-control inputs"
+                        placeholder="Digite o nome" required>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <label class="control-label required">CPF</label>
+                    <input type="password" formControlName="cpf" class="form-control inputs"
+                        placeholder="Digite o CPF" required>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label class="control-label required">Oficios</label>
+                    <div class="input-group">
+                        <select class="custom-select form-control" formControlName="oficio" required>
+                            <option value="null" selected>Selecione</option>
+                            <option *ngFor="let item of oficio" [value]="item.oficio">
+                                {{ item.oficio }}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+            </div>
             <input type="submit" value="Filtrar" id="filtrar" class="btn btn-primary" (click)=" filtrar()">
         </form>
             <span class="fa fa-trash"></span> Remover Filtros
@@ -20,15 +46,17 @@
             <thead>
                 <tr>
                     <th style="width: 35%">Nome</th>
-                    <th style="width: 30%;">Oficio</th>
+                    <th style="width: 10%">CPF</th>
+                    <th style="width: 25%;">Oficio</th>
                     <th style="width: 20%;">Data</th>
-                    <th style="width: 15%;">Opçoês</th>
+                    <th style="width: 10%;">Opçoês</th>
                 </tr>
             </thead>
             <tbody>
                 <tr *ngFor="let item of candidatos">
-                    <td> {{item.userName}} </td>
-                    <td> {{item.roleId}} </td>
+                    <td> {{item.nome}} </td>
+                    <td> {{item.cpf}} </td>
+                    <td> {{item.oficio}} </td>
                     <td> {{item.dataInclusao}} </td>
                     <td style="text-align: center;">
                         <input type="button" value="Avaliar" class="btn btn-primary" (click)="avaliar(item.idCandidato)"> 
