@@ -16,6 +16,9 @@ export class AuthService {
   singin(user: any){
     return this.http.post(`${this.baseUrl}user/singin`, user);
   }
+  buscarTipoConta(){
+    return this.http.get(`${this.baseUrl}user/buscarTipoConta`);
+  }
   listar(){
     return this.http.get(`${this.baseUrl}user`);
   }
@@ -52,5 +55,8 @@ export class AuthService {
   create(user: any){
     console.log(user);
     return this.http.post(`${this.baseUrl}user/create`, user);
+  }
+  createAdmin(user:any){
+    return this.http.post(`${this.baseUrl}user/createAdmin`, user);
   }
 }

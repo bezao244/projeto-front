@@ -15,6 +15,11 @@ import { CadNotaComponent } from './components/cad-nota/cad-nota.component';
 import { CrudAcesspComponent } from './components/cad-acesso/crud-acessp/crud-acessp.component';
 import { AvaliadorComponent } from './components/avaliador/avaliador.component';
 import { EmpresaComponent } from './components/empresa/empresa.component';
+import { AccordionModule } from 'ngx-bootstrap/accordion';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
+import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,12 +37,22 @@ import { EmpresaComponent } from './components/empresa/empresa.component';
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AccordionModule.forRoot(),
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(),
+    ConfirmationPopoverModule.forRoot({
+      cancelButtonType: 'default btn-sm',
+      confirmButtonType: 'primary btn-sm'
+    }),
   ],
   providers: [
     {provide: JWT_OPTIONS,useValue: JWT_OPTIONS},
     JwtHelperService
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  // exports: [
+  //   AccordionModule.forRoot()
+  // ]
 })
 export class AppModule { }
