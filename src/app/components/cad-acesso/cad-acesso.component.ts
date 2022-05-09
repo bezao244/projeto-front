@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-cad-acesso',
@@ -28,14 +29,14 @@ export class CadAcessoComponent implements OnInit {
     });
 
     this.pesquisarForm = this.formBuilder.group({
-      userName: [null]
+      email: [null]
     });
 
   }
 
   pesquisar(){
     var modal = {
-      userName: this.pesquisarForm.value.userName
+      email: this.pesquisarForm.value.email
     }
     this.authService.listarPorNome(modal).subscribe( (res:any)=>{
       this.pessoas = res;
@@ -46,5 +47,37 @@ export class CadAcessoComponent implements OnInit {
   }
   voltar(){
     this.router.navigate(['admin']);
+  }
+  deletar(id: any){
+    var modal= {
+      idUsuario: id
+    }
+    this.authService.deletar(modal).subscribe( (res: any)=>{
+      if(res ==  true){
+        Swal.fire({  
+          icon: 'success',  
+          title: 'Usuário deletado com sucesso!',  
+          showConfirmButton: false,  
+          timer: 2000  
+        });
+      }
+    });
+    this.authService.listar().subscribe( (res:any)=>{
+      this.pessoas = res;
+      if(this.pessoas.length < 1){
+        this.msgalert = 'Nenhum acesso cadastrado!';
+      }
+    });
+  }
+  limparFiltro(){
+    this.authService.listar().subscribe( (res:any)=>{
+      this.pessoas = res;
+      if(this.pessoas.length < 1){
+        this.msgalert = 'Nenhum acesso cadastrado!';
+      }
+    });
+  }
+  editar(id:any){
+    //logica para editar
   }
 }

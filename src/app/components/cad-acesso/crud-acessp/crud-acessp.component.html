@@ -1,21 +1,101 @@
-<div>
-    <button class="btn btn-danger" (click)="fechar()" >Fechar</button>
-    <form [formGroup]="crudForm" class="form">
-        <div class="large">
-            <label for="email">Email</label>
-            <input type="text" formControlName="userName" class="form-control inputs" placeholder="Digite o email" required>
-        </div>
-        <div class="large">
-            <label for="senha">Senha</label>
-            <input type="password" formControlName="pass" class="form-control inputs" placeholder="Digite a senha" required>
-        </div>
-        <label class="contro-label required">Tipo de Conta</label>
-        <select class="form-control custom-select" formControlName="roleId" required>
-            <option [value]="null">Selecione</option>
-            <option value="Administrador">Administrador</option>
-            <option value="Avaliador">Avaliador</option>
-            <option value="Empresa">Empresa</option>
-        </select>
-        <input type="submit" value="Cadastrar" class="btn btn-primary" style="margin-top: 10px;" (click)="cadastrar()">
-    </form>
+<div class="topo">
+    <h2>Cadastro de Usuários</h2>
 </div>
+<accordion [isAnimated]="true" >
+    <accordion-group [isOpen]="true" #dadosIniciais>
+        <div accordion-heading>
+            <span class="fa fa-list"></span> Dados Básicos
+            <i class="ml-2 mt-1 pull-right fa-lg fas"
+            [ngClass]="{'fa-chevron-down': dadosIniciais?.isOpen, 'fa-chevron-up': !dadosIniciais?.isOpen}"></i>
+          </div>
+        <form [formGroup]="crudForm">
+            <div class="row meio">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="control-label required">Tipo de Conta</label>
+                        <div class="input-group">
+                            <select class="custom-select form-control" formControlName="tipoConta" required>
+                                <option value="null" selected>Selecione</option>
+                                <option *ngFor="let item of contas" [value]="item.tipoConta">
+                                    {{ item.tipoConta }}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row meio">
+                    <div class="col-md-4">
+                        <label class="control-label required">Email</label>
+                        <input type="text" formControlName="email" class="form-control inputs"
+                            placeholder="Digite o email" required>
+                    </div>
+                    <div class="col-md-4">
+                        <label class="control-label required">Senha</label>
+                        <input type="password" formControlName="senha" class="form-control inputs"
+                            placeholder="Digite a senha" required>
+                    </div>
+                </div>
+                <div class="collumn" style="text-align: center;"><input type="submit" value="Continuar" class="btn btn-primary" style="margin-top: 10px;" (click)="avancar()"></div>
+            </div>
+        </form>
+    </accordion-group>
+    <accordion-group [isOpen]="true" *ngIf="tipoConta == 'Empresa'" #dadosEmpresa >
+        <div accordion-heading>
+            <span class="fa fa-list"></span> Dados da Empresa
+            <i class="ml-2 mt-1 pull-right fa-lg fas"
+            [ngClass]="{'fa-chevron-down': dadosEmpresa?.isOpen, 'fa-chevron-up': !dadosEmpresa?.isOpen}"></i>
+          </div>
+    
+        <form [formGroup]="crudFormEmpresa">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="control-label required">Tipo de Conta</label>
+                        <div class="input-group">
+                            <select class="custom-select form-control"  required>
+                                <option [value]="null" selected>Selecione</option>
+                                <option *ngFor="let item of contas" [value]="item.tipoConta">
+                                    {{ item.tipoConta }}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <label class="control-label required">Email</label>
+                        <input type="text" formControlName="email" class="form-control inputs"
+                            placeholder="Digite o email" required>
+                    </div>
+                    <div class="col-md-4">
+                        <label class="control-label required">Senha</label>
+                        <input type="password" formControlName="senha" class="form-control inputs"
+                            placeholder="Digite a senha" required>
+                    </div>
+                </div>
+                <div class="collumn" style="text-align: center;"><input type="submit" value="Cadastrar" class="btn btn-primary" style="margin-top: 10px;" (click)="avancar()"></div>
+            </div>
+        </form>
+    
+    </accordion-group>
+    <accordion-group [isOpen]="true" *ngIf="tipoConta == 'Administrador'" #dadosAdmin >
+        <div accordion-heading>
+            <span class="fa fa-list"></span> Dados do Administrador
+            <i class="ml-2 mt-1 pull-right fa-lg fas"
+            [ngClass]="{'fa-chevron-down': dadosAdmin?.isOpen, 'fa-chevron-up': !dadosAdmin?.isOpen}"></i>
+          </div>
+    
+        <form [formGroup]="crudFormAdmin">
+            <div class="row">
+                <div class="col-md-4">
+                    <label class="control-label required">Nome Completo</label>
+                    <input type="text" formControlName="nome" class="form-control inputs"
+                        placeholder="Digite o nome completo" required>
+                </div>
+            </div>
+            <div class="collumn" style="text-align: center;"><input type="submit" value="Cadastrar" class="btn btn-primary" style="margin-top: 10px;" (click)="cadastrarAdmin()"></div>
+        </form>
+    
+    </accordion-group>
+    
+</accordion>

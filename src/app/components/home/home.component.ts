@@ -9,39 +9,41 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-
+  msgalert: any = '';
   crudForm: FormGroup;
 
   constructor(
     private authService: AuthService,
-    private router:Router,
+    private router: Router,
     private formBuilder: FormBuilder,
-    ) { }
+  ) { }
 
   ngOnInit(): void {
     this.crudForm = this.formBuilder.group({
-      userName: [null],
-      pass: [null]
+      email: [null],
+      senha: [null]
     });
   }
-  login(){
+  login() {
     var modal = {
-      userName: this.crudForm.value.userName,
-      pass: this.crudForm.value.pass
+      email: this.crudForm.value.email,
+      senha: this.crudForm.value.senha
     }
-    this.authService.singin(modal).subscribe( (res:any) => {
-      var roleId = res[0].roleId;
-      if(roleId == 'Administrador'){
-        this.router.navigate(['admin']);
-      }else if(roleId == 'Empresa'){
-        //this.router.navigate(['empresa']);
-      }else if(roleId == 'Avaliador'){
-        //this.router.navigate(['avaliador']);
-      }else{
-        console.log('Usuário ou senha inválidos!');
+    this.authService.singin(modal).subscribe((res: any) => {
+      if (res != false) {
+        var tipoPerfil = res[0].tipoPerfil;
+        if (tipoPerfil == 'Administrador') {
+          this.router.navigate(['admin']);
+        } else if (tipoPerfil == 'Empresa') {
+          this.router.navigate(['empresa']);
+        } else if (tipoPerfil == 'Avaliador') {
+          this.router.navigate(['avaliador']);
+        }
+      } else {
+        this.msgalert = 'Usuário ou senha inválidos!';
       }
-      
-    }), (err: any)=>{
+
+    }), (err: any) => {
       console.log(err);
     }
   }

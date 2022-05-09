@@ -1,7 +1,5 @@
-@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap");
 *{
     margin: 0;
-    font-family: "Open Sans";
     text-decoration: none;
 }
 body{
@@ -23,7 +21,6 @@ body{
 .links{
     margin-bottom: 20px;
     color: white;
-    font-family: "Nunito";
     font-size: 1.05rem;
     padding-left: 10px;
     font-weight: 600;
