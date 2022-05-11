@@ -30,9 +30,13 @@ export class EmpresaComponent implements OnInit {
     var modal ={
       idAvaliador: this.idUsuarioLogado
     }
-
-    //logica para pegar o nome da empresa para ser exibido na navbar
-    //this.nomeEmpresa = ;
+    var modalId = {
+      idUsuario: this.idUsuarioLogado
+    }
+    this.authService.buscarNomeEmpresa(modalId).subscribe( (res: any)=>{
+      console.log(res);
+      this.nomeEmpresa = res.nomeEmpresa;
+    } );
 
     this.authService.listarPorEmpresa(modal).subscribe( (res:any)=>{
       this.candidatos = res;
@@ -41,18 +45,18 @@ export class EmpresaComponent implements OnInit {
       }
     } );
 
-    // this.filtrarForm = this.formBuilder.group({
-    //   userName: [null],
-    //   oficio: [null],
-    //   dataInclusao: [null]
-    // });
+    this.filtrarForm = this.formBuilder.group({
+      userName: [null],
+      oficio: [null],
+      dataInclusao: [null]
+    });
 
   }
 
   filtrar(){
     var modal = {
-      //idEmpresa: vai precisar tambem
-      //logica de montar pelo filtrarForm
+      idEmpresa: this.idUsuarioLogado
+      //restante dos campos de filtro
     }
     this.authService.filtrarEmpresa(modal).subscribe( (res:any)=>{
       this.candidatos = res;

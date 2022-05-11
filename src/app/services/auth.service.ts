@@ -22,6 +22,9 @@ export class AuthService {
   buscarOficios(){
     return this.http.get(`${this.baseUrl}user/buscarOficios`);
   }
+  buscarNomeEmpresa(id: any){
+    return this.http.post(`${this.baseUrl}user/buscarNomeEmpresa`, id);
+  }
   listar(){
     return this.http.get(`${this.baseUrl}user`);
   }
@@ -64,5 +67,8 @@ export class AuthService {
   }
   createAvaliador(user:any){
     return this.http.post(`${this.baseUrl}user/createAvaliador`, user);
+  }
+  createEmpresa(user:any){
+    return this.http.post(`${this.baseUrl}user/createEmpresa`, user);
   }
 }

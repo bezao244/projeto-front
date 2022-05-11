@@ -44,9 +44,16 @@ export class CrudAcesspComponent implements OnInit {
     });
 
     this.crudFormEmpresa = this.formBuilder.group({
-      email: [null],
-      senha: [null],
-      tipoConta: [null]
+      nomeEmpresa: [null],
+      cnpj: [null],
+      razaoSocial: [null],
+      dsLogradouro: [null],
+      cep: [null],
+      telResp: [null],
+      telFixo: [null],
+      nomeResp: [null],
+      nmFantasia: [null]
+
     });
 
     this.crudFormAdmin = this.formBuilder.group({

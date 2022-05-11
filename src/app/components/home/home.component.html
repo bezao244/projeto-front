@@ -11,13 +11,13 @@
     <form [formGroup]="crudForm" class="form">
         <div class="large">
             <label for="email">Email</label>
-            <input type="text" formControlName="email" class="form-control inputs" placeholder="Digite o email" required>
+            <input type="text" formControlName="email" class="form-control inputs" placeholder="Digite o email" required style="padding: 5px;" >
         </div>
         <div class="large">
             <label for="senha">Senha</label>
-            <input type="password" formControlName="senha" class="form-control inputs" placeholder="Digite a senha" required>
+            <input type="password" formControlName="senha" class="form-control inputs" placeholder="Digite a senha" required style="padding: 5px;" >
         </div>
-        <input type="submit" value="Login" class="btn btn-primary" id="btn-submit" style="margin-top: 10px;" (click)="login()">
+        <input type="submit" value="Login" class="btn btn-primary" style="margin-top: 10px; padding: 3px;" (click)="login()">
         <a href="#" class="esqueci">Esqueci minha senha</a>
     </form>
   </div>

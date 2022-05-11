@@ -37,6 +37,7 @@
 .btn-tamanho{
     width:100px;
     margin-left: 15px;
+    padding: 3px;
 }
 .container{
     width: 100%;
@@ -48,6 +49,7 @@
 }
 .input-nome{
     width: 200px;
+    padding: 5px;
 }
 .label-input{
     display: flex;
