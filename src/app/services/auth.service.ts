@@ -25,6 +25,9 @@ export class AuthService {
   buscarNomeEmpresa(id: any){
     return this.http.post(`${this.baseUrl}user/buscarNomeEmpresa`, id);
   }
+  buscarDadosCandidato(id: any){
+    return this.http.post(`${this.baseUrl}user/buscarDadosCandidato`, id);
+  }
   listar(){
     return this.http.get(`${this.baseUrl}user`);
   }

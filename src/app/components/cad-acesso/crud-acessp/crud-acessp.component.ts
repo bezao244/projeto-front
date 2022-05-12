@@ -137,4 +137,43 @@ export class CrudAcesspComponent implements OnInit {
     } );
     
   }
+  cadastrarEmpresa(){
+    var modal ={
+      email: this.crudForm.value.email,
+      senha: this.crudForm.value.senha,
+      tipoPerfil: this.crudForm.value.tipoConta,
+    }
+    this.authService.create(modal).subscribe( (res:any)=>{
+      const idUsuario = res[0].idUsuario;
+      console.log(idUsuario);
+      if(idUsuario != false){
+        var modal ={
+          idUsuario: idUsuario,
+          nomeEmpresa: this.crudFormEmpresa.value.nomeEmpresa,
+          cnpj: this.crudFormEmpresa.value.cnpj,
+          razaoSocial: this.crudFormEmpresa.value.razaoSocial,
+          dsLogradouro: this.crudFormEmpresa.value.dsLogradouro,
+          cep: this.crudFormEmpresa.value.cep,
+          telResp: this.crudFormEmpresa.value.telResp,
+          telFixo: this.crudFormEmpresa.value.telFixo,
+          nomeResp: this.crudFormEmpresa.value.nomeResp,
+          nmFantasia: this.crudFormEmpresa.value.nmFantasia
+        }
+        console.log(modal);
+        this.authService.createEmpresa(modal).subscribe( (res:any)=>{
+          console.log(res);
+          Swal.fire({  
+            icon: 'success',  
+            title: 'Cadastro realizado com sucesso!',  
+            showConfirmButton: false,  
+            timer: 2000  
+          });
+          setTimeout(() => {
+            this.router.navigate(['cad-acesso']);
+          }, 2000); 
+        } );
+       }
+    } );
+    
+  }
 }

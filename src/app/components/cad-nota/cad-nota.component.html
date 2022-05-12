@@ -7,23 +7,21 @@
             <span class="text-muted font-weight-light">Cadastro</span> / Notas
           </h4>
         </div>
-        <div class="col-md-4">
-          <div class="text-right">
-            <button class="btn btn-primary" type="button" (click)="abrirCadastro()">
-              <span class="fa fa-plus-circle"></span>&nbsp;&nbsp;Novo
-            </button>
-          </div>
-        </div>
       </div>
       <hr class="border-light" />
       <form class="form-inline" [formGroup]="pesquisarForm">
-        <div class="form-group mx-sm-0 pr-2 col-md-6">
-          <input type="text" class="form-control" formControlName="userName"  placeholder="Nome ou Conta"
-            style="width: 100%;"/>
+        <div style="display: flex;">
+          <div class="form-group mx-sm-0 pr-2 col-md-6">
+            <input type="text" class="form-control" formControlName="nome"  placeholder="Email"
+              style="width: 100%;"/>
+          </div>
+          <button type="button" class="btn btn-primary r-2" (click)="pesquisar()" style="margin-left: 5px;">
+            <span class="fa fa-search"></span> Pesquisar
+          </button>
+          <button type="button" class="btn btn-secondary r-2" (click)="limparFiltro()" style="margin-left: 5px;">
+            <span class="fa fa-trash"></span> Limpar Filtros
+          </button>
         </div>
-        <button type="button" class="btn btn-primary r-2" (click)="pesquisar()">
-          <span class="fa fa-search"></span> Pesquisar
-        </button>
       </form>
       <hr class="border-light">
       <div class="row">
@@ -38,19 +36,36 @@
           <tr>
             <th style="width: 20%;">Código</th>
             <th style="width: 40%">Nome</th>
+            <th style="width: 40%">CPF</th>
+            <th style="width: 40%">Oficio</th>
             <th style="width: 40%;">Adicionar</th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let item of pessoas">
             <td> {{item.idCandidato}} </td>
-            <td> {{item.userName}} </td>
-            <td> 
-                <a class="dropdown-item" (click)="deletar(item.idCandidato)" style="cursor: pointer;"><i
-                    class="fa fa-trash"></i> Excluir</a>
+            <td> {{item.nome}} </td>
+            <td> {{item.cpf}} </td>
+            <td> {{item.oficio}} </td>
+            <td style="text-align: center;"> 
+              <button class="btn btn-primary" (click)="adicionar(item.idCandidato)" style="cursor: pointer;">
+                <i class="fa fa-plus"></i> 
+              </button>
             </td>
           </tr>
         </tbody>
       </table>
     </div>
+  </div>
+  <div *ngIf="abrirCadastroNota" class="cadNota">
+    <h3 *ngFor="let item of candidatoNota">
+      Cadastrar nota de {{item.nome}}
+    </h3>
+    <form [formGroup]="crudFormNota">
+      <div class="col-md-8" style="margin-bottom: 5px;">
+        <label class="control-label required">Nota da Prova Teórica:</label>
+        <input type="number" formControlName="notaFinal" class="form-control inputs"
+            placeholder="Digite a nota" required>
+    </div>
+    </form>
   </div>

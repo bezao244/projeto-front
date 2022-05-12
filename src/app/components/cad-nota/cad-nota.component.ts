@@ -13,6 +13,10 @@ export class CadNotaComponent implements OnInit {
   pessoas: any[] = [];
   pesquisarForm: FormGroup;
   msgalert:any = '';
+  abrirCadastroNota:boolean = false;
+  candidatoNota: any[] =  [];
+  crudFormNota: FormGroup;
+  
   constructor(
     private authService: AuthService,
     private formBuilder: FormBuilder,
@@ -28,34 +32,41 @@ export class CadNotaComponent implements OnInit {
     });
 
     this.pesquisarForm = this.formBuilder.group({
-      userName: [null]
+      nome: [null]
+    });
+    this.crudFormNota = this.formBuilder.group({
+      notaFinal: [null]
     });
 
   }
 
   pesquisar(){
     var modal = {
-      userName: this.pesquisarForm.value.userName
+      nome: this.pesquisarForm.value.nome
     }
     // this.authService.listarSemNota().subscribe( (res:any)=>{
     //   this.pessoas = res;
     // } );
   }
-  deletar(id: any){
-    var modal ={
+  adicionar(id:any){
+    var modal = {
       idCandidato: id
     }
-    this.authService.deletar(modal).subscribe( (res)=>{
-      console.log('Deletado com sucesso!');
-    } )
-    this.authService.listarSemNota().subscribe( (res:any)=>{
-      this.pessoas = res;
-    });
-  }
-  abrirCadastro(){
+    this.authService.buscarDadosCandidato(modal).subscribe( (res: any)=>{
+      this.candidatoNota = res;
+      this.abrirCadastroNota = true;
+    } );
     
   }
   voltar(){
     this.router.navigate(['admin']);
+  }
+  limparFiltro(){
+    this.authService.listarSemNota().subscribe( (res:any)=>{
+      this.pessoas = res;
+      if(this.pessoas.length < 1){
+        this.msgalert = 'Nenhum candidato com nota pendente!';
+      }
+    });
   }
 }
