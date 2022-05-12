@@ -25,6 +25,9 @@ export class AuthService {
   buscarNomeEmpresa(id: any){
     return this.http.post(`${this.baseUrl}user/buscarNomeEmpresa`, id);
   }
+  buscarAvaliadores(){
+    return this.http.get(`${this.baseUrl}user/buscarAvaliadores`);
+  }
   buscarDadosCandidato(id: any){
     return this.http.post(`${this.baseUrl}user/buscarDadosCandidato`, id);
   }
@@ -33,6 +36,9 @@ export class AuthService {
   }
   listarPorNome(user: any){
     return this.http.post(`${this.baseUrl}user/filtrarPorNome`, user);
+  }
+  listarCandidatos(){
+    return this.http.get(`${this.baseUrl}user/listarCandidatos`);
   }
   listarSemNota(){
     return this.http.get(`${this.baseUrl}user/filtrarPorNota`);
@@ -51,6 +57,9 @@ export class AuthService {
   }
   deletar(id:any){
     return this.http.post(`${this.baseUrl}user/deletar`, id);
+  }
+  adicionarNotaCandidato(user: any){
+    return this.http.post(`${this.baseUrl}user/adicionarNotaCandidato`, user);
   }
   // isAuth():boolean{
   //   const token = JSON.parse(localStorage.getItem('token')!);

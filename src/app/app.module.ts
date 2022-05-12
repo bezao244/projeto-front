@@ -19,6 +19,7 @@ import { AccordionModule } from 'ngx-bootstrap/accordion';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
+import { CadCandidatoComponent } from './components/cad-candidato/cad-candidato.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
     CadNotaComponent,
     CrudAcesspComponent,
     AvaliadorComponent,
-    EmpresaComponent
+    EmpresaComponent,
+    CadCandidatoComponent
   ],
   imports: [
     BrowserModule,
