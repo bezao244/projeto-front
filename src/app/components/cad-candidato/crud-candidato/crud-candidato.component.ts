@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
+import { CandidatoService } from 'src/app/services/candidato.service';
 import Swal from 'sweetalert2';
 @Component({
   selector: 'app-crud-candidato',
@@ -16,6 +17,7 @@ export class CrudCandidatoComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
+    private candidatoService : CandidatoService,
     private formBuilder: FormBuilder,
     private router:Router
   ) { }
@@ -41,7 +43,7 @@ export class CrudCandidatoComponent implements OnInit {
       idAvaliador: this.crudFormCandidato.value.idAvaliador,
       oficio: this.crudFormCandidato.value.oficio
     }
-    this.authService.createCandidato(modal).subscribe( (res:any)=>{
+    this.candidatoService.createCandidato(modal).subscribe( (res:any)=>{
       if(res){
         Swal.fire({  
           icon: 'success',  

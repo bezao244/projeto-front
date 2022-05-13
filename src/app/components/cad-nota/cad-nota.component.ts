@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthService } from 'src/app/services/auth.service';
+import { CandidatoService } from 'src/app/services/candidato.service';
 import Swal from 'sweetalert2';
 @Component({
   selector: 'app-cad-nota',
@@ -18,7 +18,7 @@ export class CadNotaComponent implements OnInit {
   crudFormNota: FormGroup;
   
   constructor(
-    private authService: AuthService,
+    private candidatoServive: CandidatoService,
     private formBuilder: FormBuilder,
     private router:Router
   ) { }
@@ -35,7 +35,7 @@ export class CadNotaComponent implements OnInit {
 
   }
   listar(){
-    this.authService.listarSemNota().subscribe( (res:any)=>{
+    this.candidatoServive.listarSemNota().subscribe( (res:any)=>{
       this.pessoas = res;
       if(this.pessoas.length < 1){
         this.msgalert = 'Nenhum candidato com nota pendente!';
@@ -46,15 +46,12 @@ export class CadNotaComponent implements OnInit {
     var modal = {
       nome: this.pesquisarForm.value.nome
     }
-    // this.authService.listarSemNota().subscribe( (res:any)=>{
-    //   this.pessoas = res;
-    // } );
   }
   adicionar(id:any){
     var modal = {
       idCandidato: id
     }
-    this.authService.buscarDadosCandidato(modal).subscribe( (res: any)=>{
+    this.candidatoServive.buscarDadosCandidato(modal).subscribe( (res: any)=>{
       this.candidatoNota = res;
       this.abrirCadastroNota = true;
     } );
@@ -65,7 +62,7 @@ export class CadNotaComponent implements OnInit {
       notaFinal: this.crudFormNota.value.notaFinal,
       idCandidato: id
     }
-    this.authService.adicionarNotaCandidato(modal).subscribe( (res: any)=>{
+    this.candidatoServive.adicionarNotaCandidato(modal).subscribe( (res: any)=>{
       if(res){
         Swal.fire({  
           icon: 'success',  

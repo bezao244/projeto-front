@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthService } from 'src/app/services/auth.service';
+import { CandidatoService } from 'src/app/services/candidato.service';
 import Swal from 'sweetalert2';
 @Component({
   selector: 'app-cad-candidato',
@@ -15,7 +15,7 @@ export class CadCandidatoComponent implements OnInit {
   pesquisarForm: FormGroup;
   
   constructor(
-    private authService: AuthService,
+    private candidatoService: CandidatoService,
     private formBuilder: FormBuilder,
     private router:Router
   ) { }
@@ -24,7 +24,7 @@ export class CadCandidatoComponent implements OnInit {
     this.listar();  
   }
   listar(){
-    this.authService.listarCandidatos().subscribe( (res:any)=>{
+    this.candidatoService.listarCandidatos().subscribe( (res:any)=>{
       this.candidatos = res;
       if(this.candidatos.length < 1){
         this.msgalert = 'Nenhum candidato cadastrado!';
@@ -57,7 +57,7 @@ export class CadCandidatoComponent implements OnInit {
         var modal= {
           idCandidato: id
         }
-        this.authService.deletarCandidato(modal).subscribe( (res: any)=>{
+        this.candidatoService.deletarCandidato(modal).subscribe( (res: any)=>{
           if(res){
             Swal.fire({  
               icon: 'success',  
