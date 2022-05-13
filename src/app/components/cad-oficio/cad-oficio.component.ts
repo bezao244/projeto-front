@@ -81,8 +81,5 @@ export class CadOficioComponent implements OnInit {
       }
     } );
   }
-  limparFiltro(){
-    this.listar();
-  }
 
 }

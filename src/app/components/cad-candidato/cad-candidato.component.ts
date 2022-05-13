@@ -73,7 +73,4 @@ export class CadCandidatoComponent implements OnInit {
       }
     } );
   }
-  limparFiltro(){
-    this.listar();
-  }
 }

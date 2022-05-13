@@ -24,12 +24,7 @@ export class CadNotaComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.authService.listarSemNota().subscribe( (res:any)=>{
-      this.pessoas = res;
-      if(this.pessoas.length < 1){
-        this.msgalert = 'Nenhum candidato com nota pendente!';
-      }
-    });
+    this.listar();
 
     this.pesquisarForm = this.formBuilder.group({
       nome: [null]
@@ -91,13 +86,5 @@ export class CadNotaComponent implements OnInit {
   }
   voltar(){
     this.router.navigate(['admin']);
-  }
-  limparFiltro(){
-    this.authService.listarSemNota().subscribe( (res:any)=>{
-      this.pessoas = res;
-      if(this.pessoas.length < 1){
-        this.msgalert = 'Nenhum candidato com nota pendente!';
-      }
-    });
   }
 }
