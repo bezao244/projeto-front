@@ -6,28 +6,31 @@ import { Injectable } from '@angular/core';
 })
 export class CandidatoService {
 
-  private baseUrl =  'http://localhost:3000/candidato/';
+  private baseUrl = 'http://localhost:3000/candidato/';
   constructor(
     private http: HttpClient,
   ) { }
 
-  buscarDadosCandidato(id: any){
+  buscarDadosCandidato(id: any) {
     return this.http.post(`${this.baseUrl}buscarDadosCandidato`, id);
   }
-  listarCandidatos(){
+  listarCandidatos() {
     return this.http.get(`${this.baseUrl}listarCandidatos`);
   }
-  listarSemNota(){
+  listarSemNota() {
     return this.http.get(`${this.baseUrl}filtrarPorNota`);
   }
-  adicionarNotaCandidato(user: any){
-    return this.http.post(`${this.baseUrl}user/adicionarNotaCandidato`, user);
+  adicionarNotaCandidato(user: any) {
+    return this.http.post(`${this.baseUrl}adicionarNotaCandidato`, user);
   }
-  createCandidato(user:any){
-    return this.http.post(`${this.baseUrl}user/createCandidato`, user);
+  createCandidato(user: any) {
+    return this.http.post(`${this.baseUrl}createCandidato`, user);
   }
-  deletarCandidato(id:any){
-    return this.http.post(`${this.baseUrl}user/deletarCandidato`, id);
+  filtrar(user: any) {
+    return this.http.post(`${this.baseUrl}filtrar`, user);
+  }
+  deletarCandidato(id: any) {
+    return this.http.post(`${this.baseUrl}deletarCandidato`, id);
   }
 
 }

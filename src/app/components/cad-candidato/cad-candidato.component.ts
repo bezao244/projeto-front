@@ -13,64 +13,72 @@ export class CadCandidatoComponent implements OnInit {
   msgalert: any = '';
   candidatos: any[] = [];
   pesquisarForm: FormGroup;
-  
+
   constructor(
     private candidatoService: CandidatoService,
     private formBuilder: FormBuilder,
-    private router:Router
+    private router: Router
   ) { }
 
   ngOnInit(): void {
-    this.listar();  
+    this.listar();
+    this.pesquisarForm = this.formBuilder.group({
+      nome: [null]
+    });
   }
-  listar(){
-    this.candidatoService.listarCandidatos().subscribe( (res:any)=>{
+  listar() {
+    this.candidatoService.listarCandidatos().subscribe((res: any) => {
       this.candidatos = res;
-      if(this.candidatos.length < 1){
+      if (this.candidatos.length < 1) {
         this.msgalert = 'Nenhum candidato cadastrado!';
       }
     });
   }
-  pesquisar(){
-    
+  pesquisar() {
+    var modal = {
+      nome: this.pesquisarForm.value.nome
+    }
+    this.candidatoService.filtrar(modal).subscribe((res: any) => {
+
+    });
   }
-  abrirCadastro(){
+  abrirCadastro() {
     this.router.navigate(['crud-candidato']);
   }
-  voltar(){
+  voltar() {
     this.router.navigate(['admin']);
   }
-  editar(id: any){
+  editar(id: any) {
 
   }
-  deletar(id: any){
-    Swal.fire({  
-      icon: 'warning',  
-      title: 'Tem certeza que deseja excluir?',  
+  deletar(id: any) {
+    Swal.fire({
+      icon: 'warning',
+      title: 'Tem certeza que deseja excluir?',
       showCancelButton: true,
-			confirmButtonColor: '#59b479',
-			cancelButtonColor: '#e36e6e',
-			cancelButtonText: 'Cancelar',
-			confirmButtonText: 'Excluir'
-    }).then( (result)=>{
+      confirmButtonColor: '#59b479',
+      cancelButtonColor: '#e36e6e',
+      cancelButtonText: 'Cancelar',
+      confirmButtonText: 'Excluir'
+    }).then((result) => {
       if (result.value) {
-        var modal= {
+        var modal = {
           idCandidato: id
         }
-        this.candidatoService.deletarCandidato(modal).subscribe( (res: any)=>{
-          if(res){
-            Swal.fire({  
-              icon: 'success',  
-              title: 'Candidato deletado com sucesso!',  
-              showConfirmButton: false,  
-              timer: 2000  
+        this.candidatoService.deletarCandidato(modal).subscribe((res: any) => {
+          if (res) {
+            Swal.fire({
+              icon: 'success',
+              title: 'Candidato deletado com sucesso!',
+              showConfirmButton: false,
+              timer: 2000
             });
           }
         });
         this.listar();
-      }else{
+      } else {
         return;
       }
-    } );
+    });
   }
 }

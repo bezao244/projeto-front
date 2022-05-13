@@ -1,13 +1,13 @@
 <div class="topo">
     <h2>Cadastro de Usuários</h2>
 </div>
-<accordion [isAnimated]="true" >
+<accordion [isAnimated]="true">
     <accordion-group [isOpen]="true" #dadosIniciais>
         <div accordion-heading>
             <span class="fa fa-list"></span> Dados Básicos
             <i class="ml-2 mt-1 pull-right fa-lg fas"
-            [ngClass]="{'fa-chevron-down': dadosIniciais?.isOpen, 'fa-chevron-up': !dadosIniciais?.isOpen}"></i>
-          </div>
+                [ngClass]="{'fa-chevron-down': dadosIniciais?.isOpen, 'fa-chevron-up': !dadosIniciais?.isOpen}"></i>
+        </div>
         <form [formGroup]="crudForm">
             <div class="row meio">
                 <div class="col-md-4">
@@ -35,17 +35,18 @@
                             placeholder="Digite a senha" required>
                     </div>
                 </div>
-                <div class="collumn" style="text-align: center;"><input type="submit" value="Continuar" class="btn btn-primary" style="margin-top: 10px;" (click)="avancar()"></div>
+                <div class="collumn" style="text-align: center;"><input type="submit" value="Continuar"
+                        class="btn btn-primary" style="margin-top: 10px;" (click)="avancar()"></div>
             </div>
         </form>
     </accordion-group>
-    <accordion-group [isOpen]="true" *ngIf="tipoConta == 'Empresa'"  #dadosEmpresa >
+    <accordion-group [isOpen]="true" *ngIf="tipoConta == 'Empresa'" #dadosEmpresa>
         <div accordion-heading>
             <span class="fa fa-list"></span> Dados da Empresa
             <i class="ml-2 mt-1 pull-right fa-lg fas"
-            [ngClass]="{'fa-chevron-down': dadosEmpresa?.isOpen, 'fa-chevron-up': !dadosEmpresa?.isOpen}"></i>
-          </div>
-    
+                [ngClass]="{'fa-chevron-down': dadosEmpresa?.isOpen, 'fa-chevron-up': !dadosEmpresa?.isOpen}"></i>
+        </div>
+
         <form [formGroup]="crudFormEmpresa">
             <div class="row">
                 <div class="col-md-4" style="margin-bottom: 5px;">
@@ -55,8 +56,7 @@
                 </div>
                 <div class="col-md-4" style="margin-bottom: 5px;">
                     <label class="control-label required">CNPJ</label>
-                    <input type="text" formControlName="cnpj" class="form-control inputs"
-                        placeholder="CPNJ" required>
+                    <input type="text" formControlName="cnpj" class="form-control inputs" placeholder="CPNJ" required>
                 </div>
                 <div class="col-md-4" style="margin-bottom: 5px;">
                     <label class="control-label required">Razão Social</label>
@@ -70,8 +70,8 @@
                 </div>
                 <div class="col-md-4" style="margin-bottom: 5px;">
                     <label class="control-label required">CEP</label>
-                    <input type="text" formControlName="cep" class="form-control inputs"
-                        placeholder="Digite o cep" required>
+                    <input type="text" formControlName="cep" class="form-control inputs" placeholder="Digite o cep"
+                        required>
                 </div>
                 <div class="col-md-4" style="margin-bottom: 5px;">
                     <label class="control-label required">Telefone do Responsável</label>
@@ -88,23 +88,24 @@
                     <input type="text" formControlName="nomeResp" class="form-control inputs"
                         placeholder="Digite o nome do responsável" required>
                 </div>
-                <div class="col-md-4" >
+                <div class="col-md-4">
                     <label class="control-label required">Nome Fantasia</label>
                     <input type="text" formControlName="nmFantasia" class="form-control inputs"
                         placeholder="Digite o nome fantasia" required>
                 </div>
-                <div class="collumn" style="text-align: center;"><input type="submit" value="Cadastrar" class="btn btn-primary" style="margin-top: 10px;" (click)="cadastrarEmpresa()"></div>
+                <div class="collumn" style="text-align: center;"><input type="submit" value="Cadastrar"
+                        class="btn btn-primary" style="margin-top: 10px;" (click)="cadastrarEmpresa()"></div>
             </div>
         </form>
-    
+
     </accordion-group>
-    <accordion-group [isOpen]="true" *ngIf="tipoConta == 'Administrador'" #dadosAdmin >
+    <accordion-group [isOpen]="true" *ngIf="tipoConta == 'Administrador'" #dadosAdmin>
         <div accordion-heading>
             <span class="fa fa-list"></span> Dados do Administrador
             <i class="ml-2 mt-1 pull-right fa-lg fas"
-            [ngClass]="{'fa-chevron-down': dadosAdmin?.isOpen, 'fa-chevron-up': !dadosAdmin?.isOpen}"></i>
-          </div>
-    
+                [ngClass]="{'fa-chevron-down': dadosAdmin?.isOpen, 'fa-chevron-up': !dadosAdmin?.isOpen}"></i>
+        </div>
+
         <form [formGroup]="crudFormAdmin">
             <div class="row">
                 <div class="col-md-4">
@@ -113,17 +114,18 @@
                         placeholder="Digite o nome completo" required>
                 </div>
             </div>
-            <div class="collumn" style="text-align: center;"><input type="submit" value="Cadastrar" class="btn btn-primary" style="margin-top: 10px;" (click)="cadastrarAdmin()"></div>
+            <div class="collumn" style="text-align: center;"><input type="submit" value="Cadastrar"
+                    class="btn btn-primary" style="margin-top: 10px;" (click)="cadastrarAdmin()"></div>
         </form>
-    
+
     </accordion-group>
-    <accordion-group [isOpen]="true" *ngIf="tipoConta == 'Avaliador'" #dadosAvaliador >
+    <accordion-group [isOpen]="true" *ngIf="tipoConta == 'Avaliador'" #dadosAvaliador>
         <div accordion-heading>
             <span class="fa fa-list"></span> Dados do Avaliador
             <i class="ml-2 mt-1 pull-right fa-lg fas"
-            [ngClass]="{'fa-chevron-down': dadosAvaliador?.isOpen, 'fa-chevron-up': !dadosAvaliador?.isOpen}"></i>
-          </div>
-    
+                [ngClass]="{'fa-chevron-down': dadosAvaliador?.isOpen, 'fa-chevron-up': !dadosAvaliador?.isOpen}"></i>
+        </div>
+
         <form [formGroup]="crudFormAvaliador">
             <div class="row">
                 <div class="col-md-4">
@@ -133,13 +135,14 @@
                 </div>
                 <div class="col-md-4">
                     <label class="control-label required">CPF</label>
-                    <input type="text" formControlName="cpf" class="form-control inputs"
-                        placeholder="Digite o CPF" required>
+                    <input type="text" formControlName="cpf" class="form-control inputs" placeholder="Digite o CPF"
+                        required>
                 </div>
             </div>
-            <div class="collumn" style="text-align: center;"><input type="submit" value="Cadastrar" class="btn btn-primary" style="margin-top: 10px;" (click)="cadastrarAvaliador()"></div>
+            <div class="collumn" style="text-align: center;"><input type="submit" value="Cadastrar"
+                    class="btn btn-primary" style="margin-top: 10px;" (click)="cadastrarAvaliador()"></div>
         </form>
-    
+
     </accordion-group>
-    
+
 </accordion>

@@ -14,10 +14,10 @@ export class CadAcessoComponent implements OnInit {
   pessoas: any[] = [];
   pesquisarForm: FormGroup;
   idUsuarioLogado: any;
-    constructor(
+  constructor(
     private authService: AuthService,
     private formBuilder: FormBuilder,
-    private router:Router
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -29,59 +29,59 @@ export class CadAcessoComponent implements OnInit {
     this.idUsuarioLogado = parseInt(getId);
     console.log(this.idUsuarioLogado);
   }
-  listar(){
-    this.authService.listar().subscribe( (res:any)=>{
+  listar() {
+    this.authService.listar().subscribe((res: any) => {
       this.pessoas = res;
-      if(this.pessoas.length < 1){
+      if (this.pessoas.length < 1) {
         this.msgalert = 'Nenhum acesso cadastrado!';
       }
     });
   }
-  pesquisar(){
+  pesquisar() {
     var modal = {
       email: this.pesquisarForm.value.email
     }
-    this.authService.listarPorNome(modal).subscribe( (res:any)=>{
+    this.authService.listarPorNome(modal).subscribe((res: any) => {
       this.pessoas = res;
-    } );
+    });
   }
-  abrirCadastro(){
+  abrirCadastro() {
     this.router.navigate(['crud-acesso']);
   }
-  voltar(){
+  voltar() {
     this.router.navigate(['admin']);
   }
-  deletar(id: any){
-    Swal.fire({  
-      icon: 'warning',  
-      title: 'Tem certeza que deseja excluir?',  
+  deletar(id: any) {
+    Swal.fire({
+      icon: 'warning',
+      title: 'Tem certeza que deseja excluir?',
       showCancelButton: true,
-			confirmButtonColor: '#59b479',
-			cancelButtonColor: '#e36e6e',
-			cancelButtonText: 'Cancelar',
-			confirmButtonText: 'Excluir'
-    }).then( (result)=>{
+      confirmButtonColor: '#59b479',
+      cancelButtonColor: '#e36e6e',
+      cancelButtonText: 'Cancelar',
+      confirmButtonText: 'Excluir'
+    }).then((result) => {
       if (result.value) {
-        var modal= {
+        var modal = {
           idUsuario: id
         }
-        this.authService.deletar(modal).subscribe( (res: any)=>{
-          if(res ==  true){
-            Swal.fire({  
-              icon: 'success',  
-              title: 'Usuário deletado com sucesso!',  
-              showConfirmButton: false,  
-              timer: 2000  
+        this.authService.deletar(modal).subscribe((res: any) => {
+          if (res == true) {
+            Swal.fire({
+              icon: 'success',
+              title: 'Usuário deletado com sucesso!',
+              showConfirmButton: false,
+              timer: 2000
             });
+            this.listar();
           }
         });
-        this.listar();
-      }else{
+      } else {
         return;
       }
-    } );
+    });
   }
-  editar(id:any){
+  editar(id: any) {
     //logica para editar
   }
 }
