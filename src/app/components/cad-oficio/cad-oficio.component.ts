@@ -5,53 +5,53 @@ import { AuthService } from 'src/app/services/auth.service';
 import Swal from 'sweetalert2';
 
 @Component({
-  selector: 'app-cad-acesso',
-  templateUrl: './cad-acesso.component.html',
-  styleUrls: ['./cad-acesso.component.css']
+  selector: 'app-cad-oficio',
+  templateUrl: './cad-oficio.component.html',
+  styleUrls: ['./cad-oficio.component.css']
 })
-export class CadAcessoComponent implements OnInit {
+export class CadOficioComponent implements OnInit {
+
   msgalert: any = '';
-  pessoas: any[] = [];
+  oficios: any[] = [];
   pesquisarForm: FormGroup;
-  idUsuarioLogado: any;
-    constructor(
+  
+  constructor(
     private authService: AuthService,
     private formBuilder: FormBuilder,
     private router:Router
   ) { }
 
   ngOnInit(): void {
-    this.listar();
+    this.listar(); 
     this.pesquisarForm = this.formBuilder.group({
-      email: [null]
-    });
-    let getId: any = localStorage.getItem('user');
-    this.idUsuarioLogado = parseInt(getId);
-    console.log(this.idUsuarioLogado);
+      oficio: [null]
+    }); 
   }
   listar(){
-    this.authService.listar().subscribe( (res:any)=>{
-      this.pessoas = res;
-      if(this.pessoas.length < 1){
-        this.msgalert = 'Nenhum acesso cadastrado!';
+    this.authService.buscarOficios().subscribe( (res:any)=>{
+      this.oficios = res;
+      if(this.oficios.length < 1){
+        this.msgalert = 'Nenhum oficio cadastrado!';
       }
     });
   }
   pesquisar(){
     var modal = {
-      email: this.pesquisarForm.value.email
+      oficio: this.pesquisarForm.value.oficio
     }
-    this.authService.listarPorNome(modal).subscribe( (res:any)=>{
-      this.pessoas = res;
-    } );
+    
   }
   abrirCadastro(){
-    this.router.navigate(['crud-acesso']);
+    this.router.navigate(['crud-oficio']);
   }
   voltar(){
     this.router.navigate(['admin']);
   }
+  editar(id: any){
+
+  }
   deletar(id: any){
+    console.log(id);
     Swal.fire({  
       icon: 'warning',  
       title: 'Tem certeza que deseja excluir?',  
@@ -63,13 +63,13 @@ export class CadAcessoComponent implements OnInit {
     }).then( (result)=>{
       if (result.value) {
         var modal= {
-          idUsuario: id
+          idOficio: id
         }
-        this.authService.deletar(modal).subscribe( (res: any)=>{
-          if(res ==  true){
+        this.authService.deletarOficio(modal).subscribe( (res: any)=>{
+          if(res){
             Swal.fire({  
               icon: 'success',  
-              title: 'Usuário deletado com sucesso!',  
+              title: 'Oficio deletado com sucesso!',  
               showConfirmButton: false,  
               timer: 2000  
             });
@@ -81,7 +81,8 @@ export class CadAcessoComponent implements OnInit {
       }
     } );
   }
-  editar(id:any){
-    //logica para editar
+  limparFiltro(){
+    this.listar();
   }
+
 }

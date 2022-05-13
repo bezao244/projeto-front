@@ -20,7 +20,7 @@ export class AuthService {
     return this.http.get(`${this.baseUrl}user/buscarTipoConta`);
   }
   buscarOficios(){
-    return this.http.get(`${this.baseUrl}user/buscarOficios`);
+    return this.http.get(`${this.baseUrl}oficio/buscarOficios`);
   }
   buscarNomeEmpresa(id: any){
     return this.http.post(`${this.baseUrl}user/buscarNomeEmpresa`, id);
@@ -58,6 +58,12 @@ export class AuthService {
   deletar(id:any){
     return this.http.post(`${this.baseUrl}user/deletar`, id);
   }
+  deletarCandidato(id:any){
+    return this.http.post(`${this.baseUrl}user/deletarCandidato`, id);
+  }
+  deletarOficio(id:any){
+    return this.http.post(`${this.baseUrl}oficio/deletarOficio`, id);
+  }
   adicionarNotaCandidato(user: any){
     return this.http.post(`${this.baseUrl}user/adicionarNotaCandidato`, user);
   }
@@ -83,4 +89,11 @@ export class AuthService {
   createEmpresa(user:any){
     return this.http.post(`${this.baseUrl}user/createEmpresa`, user);
   }
+  createCandidato(user:any){
+    return this.http.post(`${this.baseUrl}user/createCandidato`, user);
+  }
+  cadastrarOficio(user:any){
+    return this.http.post(`${this.baseUrl}oficio/cadastrarOficio`, user);
+  }
+  
 }

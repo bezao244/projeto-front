@@ -26,4 +26,7 @@ export class AdminComponent implements OnInit {
   irParaCadCandidato(){
     this.router.navigate(['cad-candidato']);
   }
+  irParaCadOficio(){
+    this.router.navigate(['cad-oficio']);
+  }
 }

@@ -20,6 +20,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
 import { CadCandidatoComponent } from './components/cad-candidato/cad-candidato.component';
+import { CrudCandidatoComponent } from './components/cad-candidato/crud-candidato/crud-candidato.component';
+import { CadOficioComponent } from './components/cad-oficio/cad-oficio.component';
+import { CrudOficioComponent } from './components/cad-oficio/crud-oficio/crud-oficio.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +35,10 @@ import { CadCandidatoComponent } from './components/cad-candidato/cad-candidato.
     CrudAcesspComponent,
     AvaliadorComponent,
     EmpresaComponent,
-    CadCandidatoComponent
+    CadCandidatoComponent,
+    CrudCandidatoComponent,
+    CadOficioComponent,
+    CrudOficioComponent
   ],
   imports: [
     BrowserModule,
