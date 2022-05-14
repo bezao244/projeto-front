@@ -11,6 +11,9 @@ export class AvaliadorService {
     private http: HttpClient,
   ) { }
 
+  buscarIdAvaliador(id: any) {
+    return this.http.post(`${this.baseUrl}buscarIdAvaliador`, id);
+  }
   buscarAvaliadores() {
     return this.http.get(`${this.baseUrl}buscarAvaliadores`);
   }

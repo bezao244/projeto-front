@@ -10,6 +10,9 @@ export class EmpresaService {
     private http: HttpClient,
   ) { }
 
+  listarEmpresa() {
+    return this.http.get(`${this.baseUrl}listarEmpresa`);
+  }
   buscarNomeEmpresa(id: any) {
     return this.http.post(`${this.baseUrl}buscarNomeEmpresa`, id);
   }

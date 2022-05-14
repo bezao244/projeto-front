@@ -17,6 +17,7 @@ export class AvaliadorComponent implements OnInit {
   filtrarForm: FormGroup;
   idUsuarioLogado: any;
   oficio: any[] = [];
+  idAvaliador: number;
 
   constructor(
     private authService: AuthService,
@@ -45,10 +46,16 @@ export class AvaliadorComponent implements OnInit {
   }
   listar() {
     var modal = {
-      idAvaliador: this.idUsuarioLogado
+      idUsuario: this.idUsuarioLogado
+    }
+    this.avaliadorService.buscarIdAvaliador(modal).subscribe((res: any) => {
+      this.idAvaliador = res.idAvaliador;
+    });
+    var modalId = {
+      idAvaliador: this.idAvaliador
     }
 
-    this.avaliadorService.listarPorAvaliador(modal).subscribe((res: any) => {
+    this.avaliadorService.listarPorAvaliador(modalId).subscribe((res: any) => {
       this.candidatos = res;
       if (this.candidatos.length < 1) {
         this.msgalert = 'Nenhum candidato para avaliar no momento!';

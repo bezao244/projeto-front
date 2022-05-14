@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { EmpresaService } from 'src/app/services/empresa.service';
+import { OficioService } from 'src/app/services/oficio.service';
 
 @Component({
   selector: 'app-empresa',
@@ -15,11 +16,14 @@ export class EmpresaComponent implements OnInit {
   msgalert: any = '';
   filtrarForm: FormGroup;
   nomeEmpresa: any = '';
-  idUsuarioLogado: any;
+  idUsuarioLogado: number;
+  oficios: any[] = [];
+  idEmpresa: number;
 
   constructor(
     private authService: AuthService,
     private empresaService: EmpresaService,
+    private oficioService: OficioService,
     private formBuilder: FormBuilder,
     private router: Router
   ) { }
@@ -32,6 +36,10 @@ export class EmpresaComponent implements OnInit {
     this.buscarNomeEmpresa();
     this.listar();
 
+    this.oficioService.buscarOficios().subscribe((res: any) => {
+      this.oficios = res;
+    })
+
     this.filtrarForm = this.formBuilder.group({
       userName: [null],
       oficio: [null],
@@ -39,27 +47,25 @@ export class EmpresaComponent implements OnInit {
     });
 
   }
-  listar() {
-    var modal = {
-      idAvaliador: this.idUsuarioLogado
-    }
-    this.empresaService.listarPorEmpresa(modal).subscribe((res: any) => {
-      this.candidatos = res;
-      if (this.candidatos.length < 1) {
-        this.msgalert = 'Nenhum candidato afiliados a essa empresa avaliados!';
-      }
-    });
-  }
-
   buscarNomeEmpresa() {
     var modalId = {
       idUsuario: this.idUsuarioLogado
     }
     this.empresaService.buscarNomeEmpresa(modalId).subscribe((res: any) => {
-      console.log(res);
+      this.idEmpresa = res.idEmpresa;
       this.nomeEmpresa = res.nomeEmpresa;
     });
-
+  }
+  listar() {
+    var modal = {
+      idUsuario: this.idUsuarioLogado
+    }
+    this.empresaService.listarPorEmpresa(modal).subscribe((res: any) => {
+      this.candidatos = res;
+      if (this.candidatos.length < 1) {
+        this.msgalert = 'Nenhum candidato afiliados a essa empresav !';
+      }
+    });
   }
   filtrar() {
     var modal = {
