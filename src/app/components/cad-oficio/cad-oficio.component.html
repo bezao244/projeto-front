@@ -1,4 +1,5 @@
-<button class="btn btn-primary" (click)="voltar()">Menu</button>
+<app-admin></app-admin>
+<!-- <button class="btn btn-primary" (click)="voltar()">Menu</button> -->
 <div class="meio">
   <div class="card card-body menu">
     <div class="row">
@@ -9,11 +10,7 @@
       </div>
       <div class="col-md-4">
         <div class="text-right">
-          <button
-            class="btn btn-primary"
-            type="button"
-            (click)="abrirCadastro()"
-          >
+          <button class="btn btn-primary" type="button" (click)="abrirCadastro()">
             <span class="fa fa-plus-circle"></span>&nbsp;&nbsp;Novo
           </button>
         </div>
@@ -23,28 +20,13 @@
     <form class="form-inline" [formGroup]="pesquisarForm">
       <div style="display: flex">
         <div class="form-group mx-sm-0 pr-2 col-md-6">
-          <input
-            type="text"
-            class="form-control"
-            formControlName="oficio"
-            placeholder="Oficio ou código"
-            style="width: 100%"
-          />
+          <input type="text" class="form-control" formControlName="oficio" placeholder="Oficio ou código"
+            style="width: 100%" />
         </div>
-        <button
-          type="button"
-          class="btn btn-primary r-2"
-          (click)="pesquisar()"
-          style="margin-left: 5px"
-        >
+        <button type="button" class="btn btn-primary r-2" (click)="pesquisar()" style="margin-left: 5px">
           <span class="fa fa-search"></span> Pesquisar
         </button>
-        <button
-          type="button"
-          class="btn btn-secondary r-2"
-          (click)="listar()"
-          style="margin-left: 5px"
-        >
+        <button type="button" class="btn btn-secondary r-2" (click)="listar()" style="margin-left: 5px">
           <span class="fa fa-trash"></span> Limpar Filtros
         </button>
       </div>
@@ -52,11 +34,7 @@
     <hr class="border-light" />
     <div class="row">
       <div class="col-md-12">
-        <div
-          class="alert alert-danger"
-          role="alert"
-          *ngIf="msgalert.length > 0"
-        >
+        <div class="alert alert-danger" role="alert" *ngIf="msgalert.length > 0">
           <b style="color: red">*</b> {{ msgalert }}
         </div>
       </div>
@@ -74,18 +52,10 @@
           <td>{{ item.idOficio }}</td>
           <td>{{ item.oficio }}</td>
           <td style="text-align: center">
-            <button
-              class="btn btn-danger"
-              (click)="deletar(item.idOficio)"
-              style="cursor: pointer"
-            >
+            <button class="btn btn-danger" (click)="deletar(item.idOficio)" style="cursor: pointer">
               <i class="fa fa-trash"></i>
             </button>
-            <button
-              class="btn btn-secondary"
-              (click)="editar(item.idOficio)"
-              style="cursor: pointer; margin-left: 5px"
-            >
+            <button class="btn btn-secondary" (click)="editar(item.idOficio)" style="cursor: pointer; margin-left: 5px">
               <i class="fa fa-edit"></i>
             </button>
           </td>

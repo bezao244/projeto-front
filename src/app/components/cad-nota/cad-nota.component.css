@@ -1,5 +1,7 @@
 .meio{
-    width: 70%;
+    width: 80%;
+    position: absolute;
+    left: 20%;
 }
 .cadNota{
     position: absolute;

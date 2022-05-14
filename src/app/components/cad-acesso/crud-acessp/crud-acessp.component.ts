@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
+import { AvaliadorService } from 'src/app/services/avaliador.service';
+import { EmpresaService } from 'src/app/services/empresa.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -11,17 +13,19 @@ import Swal from 'sweetalert2';
 })
 export class CrudAcesspComponent implements OnInit {
 
-  contas:any[] = [];
+  contas: any[] = [];
   crudForm: FormGroup;
-  tipoConta:any = '';
+  tipoConta: any = '';
   crudFormEmpresa: FormGroup;
   crudFormAdmin: FormGroup;
   crudFormAvaliador: FormGroup;
 
   constructor(
     private authService: AuthService,
+    private empresaService: EmpresaService,
+    private avaliadorService: AvaliadorService,
     private formBuilder: FormBuilder,
-    private router:Router
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -31,10 +35,10 @@ export class CrudAcesspComponent implements OnInit {
       pass: [null],
       roleId: [null]
     });
-    this.authService.buscarTipoConta().subscribe( (res:any)=>{
+    this.authService.buscarTipoConta().subscribe((res: any) => {
       this.contas = res;
       console.log(res);
-    } );
+    });
 
     this.crudForm = this.formBuilder.group({
       email: [null],
@@ -65,88 +69,88 @@ export class CrudAcesspComponent implements OnInit {
     });
 
   }
-  fechar(){
+  fechar() {
     this.router.navigate(['cad-acesso']);
   }
-  avancar(){
-    if(this.crudForm.value.tipoConta!= 'null' ){
+  avancar() {
+    if (this.crudForm.value.tipoConta != 'null') {
       this.tipoConta = this.crudForm.value.tipoConta;
-    }else{
+    } else {
       console.log('tipo de conta null');
     }
   }
-  cadastrarAdmin(){
-    var modal ={
+  cadastrarAdmin() {
+    var modal = {
       email: this.crudForm.value.email,
       senha: this.crudForm.value.senha,
       tipoPerfil: this.crudForm.value.tipoConta,
     }
-    this.authService.create(modal).subscribe( (res:any)=>{
+    this.authService.create(modal).subscribe((res: any) => {
       const idUsuario = res[0].idUsuario;
       console.log(idUsuario);
-      if(idUsuario != false){
+      if (idUsuario != false) {
         var modal = {
           idUsuario: idUsuario,
           nome: this.crudFormAdmin.value.nome
         }
-        this.authService.createAdmin(modal).subscribe( (res:any)=>{
+        this.authService.createAdmin(modal).subscribe((res: any) => {
           console.log(res);
-          Swal.fire({  
-            icon: 'success',  
-            title: 'Cadastro realizado com sucesso!',  
-            showConfirmButton: false,  
-            timer: 2000  
+          Swal.fire({
+            icon: 'success',
+            title: 'Cadastro realizado com sucesso!',
+            showConfirmButton: false,
+            timer: 2000
           });
           setTimeout(() => {
             this.router.navigate(['cad-acesso']);
-          }, 2000); 
-        } );
+          }, 2000);
+        });
       }
-    } );
-    
+    });
+
   }
-  cadastrarAvaliador(){
-    var modal ={
+  cadastrarAvaliador() {
+    var modal = {
       email: this.crudForm.value.email,
       senha: this.crudForm.value.senha,
       tipoPerfil: this.crudForm.value.tipoConta,
     }
-    this.authService.create(modal).subscribe( (res:any)=>{
+    this.authService.create(modal).subscribe((res: any) => {
       const idUsuario = res[0].idUsuario;
       console.log(idUsuario);
-      if(idUsuario != false){
+      if (idUsuario != false) {
         var modal = {
           idUsuario: idUsuario,
           nome: this.crudFormAvaliador.value.nome,
           cpf: this.crudFormAvaliador.value.cpf
         }
-        this.authService.createAvaliador(modal).subscribe( (res:any)=>{
+        this.avaliadorService.createAvaliador(modal).subscribe((res: any) => {
           console.log(res);
-          Swal.fire({  
-            icon: 'success',  
-            title: 'Cadastro realizado com sucesso!',  
-            showConfirmButton: false,  
-            timer: 2000  
+          Swal.fire({
+            icon: 'success',
+            title: 'Cadastro realizado com sucesso!',
+            showConfirmButton: false,
+            timer: 2000
           });
           setTimeout(() => {
             this.router.navigate(['cad-acesso']);
-          }, 2000); 
-        } );
-       }
-    } );
-    
+          }, 2000);
+        });
+      }
+    });
+
   }
-  cadastrarEmpresa(){
-    var modal ={
+  cadastrarEmpresa() {
+    var modal = {
       email: this.crudForm.value.email,
       senha: this.crudForm.value.senha,
       tipoPerfil: this.crudForm.value.tipoConta,
     }
-    this.authService.create(modal).subscribe( (res:any)=>{
+    this.authService.create(modal).subscribe((res: any) => {
       const idUsuario = res[0].idUsuario;
       console.log(idUsuario);
-      if(idUsuario != false){
-        var modal ={
+      if (idUsuario != false) {
+        var modal = {
           idUsuario: idUsuario,
           nomeEmpresa: this.crudFormEmpresa.value.nomeEmpresa,
           cnpj: this.crudFormEmpresa.value.cnpj,
@@ -159,20 +163,20 @@ export class CrudAcesspComponent implements OnInit {
           nmFantasia: this.crudFormEmpresa.value.nmFantasia
         }
         console.log(modal);
-        this.authService.createEmpresa(modal).subscribe( (res:any)=>{
+        this.empresaService.createEmpresa(modal).subscribe((res: any) => {
           console.log(res);
-          Swal.fire({  
-            icon: 'success',  
-            title: 'Cadastro realizado com sucesso!',  
-            showConfirmButton: false,  
-            timer: 2000  
+          Swal.fire({
+            icon: 'success',
+            title: 'Cadastro realizado com sucesso!',
+            showConfirmButton: false,
+            timer: 2000
           });
           setTimeout(() => {
             this.router.navigate(['cad-acesso']);
-          }, 2000); 
-        } );
-       }
-    } );
-    
+          }, 2000);
+        });
+      }
+    });
+
   }
 }

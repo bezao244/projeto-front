@@ -8,25 +8,27 @@ import { Router } from '@angular/router';
 export class AdminComponent implements OnInit {
 
   constructor(
-    private router:Router
-    ) { }
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
   }
-  logout(){
+  logout() {
     this.router.navigate(['home']);
   }
 
-  irPara(){
+  irPara() {
     this.router.navigate(['cad-acesso']);
   }
-  irParaCadNota(){
+  irParaCadNota() {
     this.router.navigate(['cad-nota']);
   }
-  irParaCadCandidato(){
+  irParaCadCandidato() {
     this.router.navigate(['cad-candidato']);
   }
-  irParaCadOficio(){
+  irParaCadOficio() {
     this.router.navigate(['cad-oficio']);
+  } irParaDashboard() {
+    this.router.navigate(['admin']);
   }
 }

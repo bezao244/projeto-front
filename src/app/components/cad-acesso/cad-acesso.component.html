@@ -1,72 +1,72 @@
-<button class="btn btn-primary" (click)="voltar()" >Menu</button>
+<app-admin></app-admin>
+<!-- <button class="btn btn-primary" (click)="voltar()" >Menu</button> -->
 <div class="meio">
-    <div class="card card-body menu">
-      <div class="row">
-        <div class="col-md-8">
-          <h4 class="font-weight-bold py-1 mb-2">
-            <span class="text-muted font-weight-light">Cadastro</span> / Acessos
-          </h4>
-        </div>
-        <div class="col-md-4">
-          <div class="text-right">
-            <button class="btn btn-primary" type="button" (click)="abrirCadastro()">
-              <span class="fa fa-plus-circle"></span>&nbsp;&nbsp;Novo
-            </button>
-          </div>
+  <div class="card card-body menu">
+    <div class="row">
+      <div class="col-md-8">
+        <h4 class="font-weight-bold py-1 mb-2">
+          <span class="text-muted font-weight-light">Cadastro</span> / Acessos
+        </h4>
+      </div>
+      <div class="col-md-4">
+        <div class="text-right">
+          <button class="btn btn-primary" type="button" (click)="abrirCadastro()">
+            <span class="fa fa-plus-circle"></span>&nbsp;&nbsp;Novo
+          </button>
         </div>
       </div>
-      <hr class="border-light" />
-      <form class="form-inline" [formGroup]="pesquisarForm">
-        <div style="display: flex;">
-          <div class="form-group mx-sm-0 pr-2 col-md-6">
-            <input type="text" class="form-control" formControlName="email"  placeholder="Email"
-              style="width: 100%;"/>
-          </div>
-          <button type="button" class="btn btn-primary r-2" (click)="pesquisar()" style="margin-left: 5px;">
-            <span class="fa fa-search"></span> Pesquisar
-          </button>
-          <button type="button" class="btn btn-secondary r-2" (click)="listar()" style="margin-left: 5px;">
-            <span class="fa fa-trash"></span> Limpar Filtros
-          </button>
-        </div>
-      </form>
-      <hr class="border-light">
-      <div class="row">
-        <div class="col-md-12">
-            <div class="alert alert-danger" role="alert" *ngIf="msgalert.length > 0">
-                <b style="color: red;">*</b> {{msgalert}}
-            </div>
-        </div>
     </div>
-      <table class="table table-striped table-bordered table-sm row-border hover">
-        <thead>
-          <tr>
-            <th style="width: 5%">Código</th>
-            <th style="width: 35%">Nome</th>
-            <th style="width: 20%;">Conta</th>
-            <th style="width: 25%;">Data Inclusao</th>
-            <th style="width: 15%">Açoes</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let item of pessoas">
-            <td> {{item.idUsuario}} </td>
-            <td> {{item.email}} </td>
-            <td> {{item.tipoPerfil}} </td>
-            <td> {{item.dataInclusao}} </td>
-            <td style="text-align: center;">
-              <button class="btn btn-danger" (click)="deletar(item.idUsuario)" style="cursor: pointer;">
-                <i class="fa fa-trash"></i> 
-              </button>
-              <button class="btn btn-secondary" (click)="editar(item.idCandidato)" style="cursor: pointer;
+    <hr class="border-light" />
+    <form class="form-inline" [formGroup]="pesquisarForm">
+      <div style="display: flex;">
+        <div class="form-group mx-sm-0 pr-2 col-md-6">
+          <input type="text" class="form-control" formControlName="email" placeholder="Email" style="width: 100%;" />
+        </div>
+        <button type="button" class="btn btn-primary r-2" (click)="pesquisar()" style="margin-left: 5px;">
+          <span class="fa fa-search"></span> Pesquisar
+        </button>
+        <button type="button" class="btn btn-secondary r-2" (click)="listar()" style="margin-left: 5px;">
+          <span class="fa fa-trash"></span> Limpar Filtros
+        </button>
+      </div>
+    </form>
+    <hr class="border-light">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="alert alert-danger" role="alert" *ngIf="msgalert.length > 0">
+          <b style="color: red;">*</b> {{msgalert}}
+        </div>
+      </div>
+    </div>
+    <table class="table table-striped table-bordered table-sm row-border hover">
+      <thead>
+        <tr>
+          <th style="width: 5%">Código</th>
+          <th style="width: 35%">Nome</th>
+          <th style="width: 20%;">Conta</th>
+          <th style="width: 25%;">Data Inclusao</th>
+          <th style="width: 15%">Açoes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of pessoas">
+          <td> {{item.idUsuario}} </td>
+          <td> {{item.email}} </td>
+          <td> {{item.tipoPerfil}} </td>
+          <td> {{item.dataInclusao}} </td>
+          <td style="text-align: center;">
+            <button class="btn btn-danger" (click)="deletar(item.idUsuario)" style="cursor: pointer;">
+              <i class="fa fa-trash"></i>
+            </button>
+            <button class="btn btn-secondary" (click)="editar(item.idCandidato)" style="cursor: pointer;
               margin-left: 5px;">
-                <i class="fa fa-edit"></i> 
-              </button>
-              <!-- <a class="btn btn-danger" (click)="deletar(item.idCandidato)" style="cursor: pointer;"><i
+              <i class="fa fa-edit"></i>
+            </button>
+            <!-- <a class="btn btn-danger" (click)="deletar(item.idCandidato)" style="cursor: pointer;"><i
                 class="fa fa-trash"></i> Excluir</a> -->
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
+</div>

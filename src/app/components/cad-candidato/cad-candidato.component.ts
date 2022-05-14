@@ -39,7 +39,10 @@ export class CadCandidatoComponent implements OnInit {
       nome: this.pesquisarForm.value.nome
     }
     this.candidatoService.filtrar(modal).subscribe((res: any) => {
-
+      this.candidatos = res;
+      if (this.candidatos.length < 1) {
+        this.msgalert = 'Nenhum candidato encontrado!';
+      }
     });
   }
   abrirCadastro() {
