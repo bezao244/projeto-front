@@ -58,15 +58,36 @@
             <button class="btn btn-danger" (click)="deletar(item.idUsuario)" style="cursor: pointer;">
               <i class="fa fa-trash"></i>
             </button>
-            <button class="btn btn-secondary" (click)="editar(item.idCandidato)" style="cursor: pointer;
+            <button class="btn btn-secondary" (click)="editar(item.idUsuario)" style="cursor: pointer;
               margin-left: 5px;">
               <i class="fa fa-edit"></i>
             </button>
-            <!-- <a class="btn btn-danger" (click)="deletar(item.idCandidato)" style="cursor: pointer;"><i
-                class="fa fa-trash"></i> Excluir</a> -->
           </td>
         </tr>
       </tbody>
     </table>
+  </div>
+</div>
+
+<div *ngIf="abrirEdicao" class="divEdicao">
+  <div class="card card-body">
+    <h3 *ngFor="let item of usuarioEditar">Editar dados de {{ item.email }}</h3>
+    <form [formGroup]="crudFormEditar">
+      <div class="col-md-8" style="margin-bottom: 5px" *ngFor="let item of usuarioEditar">
+        <div class="row">
+          <div class="col-md-4">
+            <label class="control-label required">Nome</label>
+            <input type="text" formControlName="email" class="form-control inputs" [value]="item.email">
+          </div>
+          <div class="col-md-4">
+            <label class="control-label required">Senha</label>
+            <input type="text" formControlName="senha" class="form-control inputs" [value]="item.senha">
+          </div>
+        </div>
+        <button class="btn btn-primary" (click)="editarCandidato(item.idCandidato)" style="cursor: pointer">
+          Salvar
+        </button>
+      </div>
+    </form>
   </div>
 </div>

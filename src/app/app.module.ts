@@ -23,6 +23,7 @@ import { CadCandidatoComponent } from './components/cad-candidato/cad-candidato.
 import { CrudCandidatoComponent } from './components/cad-candidato/crud-candidato/crud-candidato.component';
 import { CadOficioComponent } from './components/cad-oficio/cad-oficio.component';
 import { CrudOficioComponent } from './components/cad-oficio/crud-oficio/crud-oficio.component';
+import { Prova1Component } from './components/provas/prova1/prova1.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { CrudOficioComponent } from './components/cad-oficio/crud-oficio/crud-of
     CadCandidatoComponent,
     CrudCandidatoComponent,
     CadOficioComponent,
-    CrudOficioComponent
+    CrudOficioComponent,
+    Prova1Component
   ],
   imports: [
     BrowserModule,

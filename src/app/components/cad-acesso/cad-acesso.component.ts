@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
+import { CandidatoService } from 'src/app/services/candidato.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -10,13 +11,19 @@ import Swal from 'sweetalert2';
   styleUrls: ['./cad-acesso.component.css']
 })
 export class CadAcessoComponent implements OnInit {
+
   msgalert: any = '';
   pessoas: any[] = [];
   pesquisarForm: FormGroup;
   idUsuarioLogado: any;
+  abrirEdicao: boolean = false;
+  usuarioEditar: any[] = [];
+  crudFormEditar: FormGroup;
+
   constructor(
     private authService: AuthService,
     private formBuilder: FormBuilder,
+    private candidatoService: CandidatoService,
     private router: Router
   ) { }
 
@@ -28,6 +35,11 @@ export class CadAcessoComponent implements OnInit {
     let getId: any = localStorage.getItem('user');
     this.idUsuarioLogado = parseInt(getId);
     console.log(this.idUsuarioLogado);
+
+    this.crudFormEditar = this.formBuilder.group({
+      email: [''],
+      senha: ['']
+    })
   }
   listar() {
     this.authService.listar().subscribe((res: any) => {
@@ -41,9 +53,7 @@ export class CadAcessoComponent implements OnInit {
     var modal = {
       email: this.pesquisarForm.value.email
     }
-    this.authService.listarPorNome(modal).subscribe((res: any) => {
-      this.pessoas = res;
-    });
+
   }
   abrirCadastro() {
     this.router.navigate(['crud-acesso']);
@@ -82,6 +92,17 @@ export class CadAcessoComponent implements OnInit {
     });
   }
   editar(id: any) {
-    //logica para editar
+    var modal = {
+      idUsuario: id
+    }
+    this.authService.buscarDadosUsuario(modal).subscribe((res: any) => {
+      this.usuarioEditar = res;
+      console.log(this.usuarioEditar);
+    });
+    this.abrirEdicao = true;
+  }
+  editarCandidato(id: any) {
+    this.abrirEdicao = false;
+    console.log(this.crudFormEditar.value.email);
   }
 }

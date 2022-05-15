@@ -22,11 +22,9 @@ export class AuthService {
   listar() {
     return this.http.get(`${this.baseUrl}user`);
   }
-  listarPorNome(user: any) {
-    return this.http.post(`${this.baseUrl}user/filtrarPorNome`, user);
+  buscarDadosUsuario(user: any) {
+    return this.http.post(`${this.baseUrl}user/buscarDadosUsuario`, user);
   }
-
-
   deletar(id: any) {
     return this.http.post(`${this.baseUrl}user/deletar`, id);
   }

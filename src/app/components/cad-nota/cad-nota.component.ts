@@ -12,15 +12,15 @@ export class CadNotaComponent implements OnInit {
 
   pessoas: any[] = [];
   pesquisarForm: FormGroup;
-  msgalert:any = '';
-  abrirCadastroNota:boolean = false;
-  candidatoNota: any[] =  [];
+  msgalert: any = '';
+  abrirCadastroNota: boolean = false;
+  candidatoNota: any[] = [];
   crudFormNota: FormGroup;
-  
+
   constructor(
     private candidatoServive: CandidatoService,
     private formBuilder: FormBuilder,
-    private router:Router
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -34,54 +34,54 @@ export class CadNotaComponent implements OnInit {
     });
 
   }
-  listar(){
-    this.candidatoServive.listarSemNota().subscribe( (res:any)=>{
+  listar() {
+    this.candidatoServive.listarSemNota().subscribe((res: any) => {
       this.pessoas = res;
-      if(this.pessoas.length < 1){
+      if (this.pessoas.length < 1) {
         this.msgalert = 'Nenhum candidato com nota pendente!';
       }
     });
   }
-  pesquisar(){
+  pesquisar() {
     var modal = {
       nome: this.pesquisarForm.value.nome
     }
   }
-  adicionar(id:any){
+  adicionar(id: any) {
     var modal = {
       idCandidato: id
     }
-    this.candidatoServive.buscarDadosCandidato(modal).subscribe( (res: any)=>{
+    this.candidatoServive.buscarDadosCandidato(modal).subscribe((res: any) => {
       this.candidatoNota = res;
       this.abrirCadastroNota = true;
-    } );
-    
+    });
+
   }
-  adicionarNota(id: any){
+  adicionarNota(id: any) {
     var modal = {
       notaFinal: this.crudFormNota.value.notaFinal,
       idCandidato: id
     }
-    this.candidatoServive.adicionarNotaCandidato(modal).subscribe( (res: any)=>{
-      if(res){
-        Swal.fire({  
-          icon: 'success',  
-          title: 'Nota adicionada com sucesso!',  
-          showConfirmButton: false,  
-          timer: 2000  
+    this.candidatoServive.adicionarNotaCandidato(modal).subscribe((res: any) => {
+      if (res) {
+        Swal.fire({
+          icon: 'success',
+          title: 'Nota adicionada com sucesso!',
+          showConfirmButton: false,
+          timer: 2000
         });
         this.listar();
         this.abrirCadastroNota = false;
-      }else{
-        Swal.fire({  
-          icon: 'warning',  
-          title: 'Erro ao adicionar nota, tente novamente!',  
+      } else {
+        Swal.fire({
+          icon: 'warning',
+          title: 'Erro ao adicionar nota, tente novamente!',
           showConfirmButton: true
         });
       }
-    } )
+    })
   }
-  voltar(){
+  voltar() {
     this.router.navigate(['admin']);
   }
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { AvaliadorService } from 'src/app/services/avaliador.service';
@@ -31,11 +31,11 @@ export class CrudCandidatoComponent implements OnInit {
 
   ngOnInit(): void {
     this.crudFormCandidato = this.formBuilder.group({
-      nome: [null],
-      cpf: [null],
-      idAvaliador: [null],
-      oficio: [null],
-      idEmpresa: [null]
+      nome: [null, Validators.required],
+      cpf: [null, Validators.required],
+      idAvaliador: [null, Validators.required],
+      oficio: [null, Validators.required],
+      idEmpresa: [null, Validators.required]
     });
     this.avaliadorService.buscarAvaliadores().subscribe((res: any) => {
       this.avaliadores = res;
@@ -48,26 +48,38 @@ export class CrudCandidatoComponent implements OnInit {
     })
   }
   cadastrar() {
-    var modal = {
-      nome: this.crudFormCandidato.value.nome,
-      cpf: this.crudFormCandidato.value.cpf,
-      idAvaliador: this.crudFormCandidato.value.idAvaliador,
-      idEmpresa: this.crudFormCandidato.value.idEmpresa,
-      oficio: this.crudFormCandidato.value.oficio
-    }
-    console.log(modal);
-    this.candidatoService.createCandidato(modal).subscribe((res: any) => {
-      if (res) {
-        Swal.fire({
-          icon: 'success',
-          title: 'Cadastro realizado com sucesso!',
-          showConfirmButton: false,
-          timer: 2000
-        });
-        setTimeout(() => {
-          this.router.navigate(['cad-candidato']);
-        }, 2000);
+    if (this.crudFormCandidato.valid) {
+      var modal = {
+        nome: this.crudFormCandidato.value.nome,
+        cpf: this.crudFormCandidato.value.cpf,
+        idAvaliador: this.crudFormCandidato.value.idAvaliador,
+        idEmpresa: this.crudFormCandidato.value.idEmpresa,
+        oficio: this.crudFormCandidato.value.oficio
       }
-    });
+      console.log(modal);
+      this.candidatoService.createCandidato(modal).subscribe((res: any) => {
+        if (res) {
+          Swal.fire({
+            icon: 'success',
+            title: 'Cadastro realizado com sucesso!',
+            showConfirmButton: false,
+            timer: 2000
+          });
+          setTimeout(() => {
+            this.router.navigate(['cad-candidato']);
+          }, 2000);
+        }
+      });
+    } else {
+      Swal.fire({
+        icon: 'warning',
+        title: 'Preencha todos os campos!',
+        showConfirmButton: true,
+      });
+    }
+
+  }
+  fecharCad() {
+    this.router.navigate(['cad-candidato']);
   }
 }

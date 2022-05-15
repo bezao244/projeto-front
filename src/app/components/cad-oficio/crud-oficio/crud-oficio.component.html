@@ -1,4 +1,7 @@
 <div class="topo">
+    <button class="btn btn-danger fecharCad" (click)="fecharCad()">
+        <span class="fa fa-x"></span>Fechar
+    </button>
     <h2>Cadastro de Oficio</h2>
 </div>
 
@@ -7,14 +10,14 @@
         <div class="row meio">
             <div class="col-md-4">
                 <label class="control-label required">Nome do Oficio: </label>
-                <input type="text" formControlName="oficio" class="form-control inputs"
-                    placeholder="Digite o nome*" required>
+                <input type="text" formControlName="oficio" class="form-control inputs" placeholder="Digite o nome*"
+                    required>
             </div>
         </div>
         <div class=" meio" style="margin-top: 20px;">
             <button type="button" class="btn btn-primary r-2" (click)="cadastrar()">
-                 Cadastrar
-              </button>
+                Cadastrar
+            </button>
         </div>
     </form>
 </div>

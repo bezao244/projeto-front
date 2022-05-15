@@ -3,53 +3,56 @@
     <p>Avaliador</p>
     <button class="topo-sair" (click)="logout()">Sair</button>
 </div>
-<div class="meio">
-    <div class="divForm">
-        <h1>Filtrar</h1>
-        <form id="form-filtro" [formGroup]="filtrarForm">
+<div class="container">
+    <div class="card card-body" style="margin-top: 10px; width: 100%; padding: 15px;">
+        <div class="filtros">
+            <h2>Filtros</h2>
+
+            <form class="form" [formGroup]="filtrarForm">
+                <div class="label-input">
+                    <label class="labels">Nome</label>
+                    <input type="text" placeholder="Nome do candidadto" class="form-control input-nome"
+                        formControlName="nome">
+                </div>
+
+                <div class="label-input">
+                    <label class="labels">Oficio</label>
+                    <select class="custom-select form-control input-nome" formControlName="oficio" required>
+                        <option value="null" selected>Selecione o oficio</option>
+                        <option *ngFor="let item of oficios" [value]="item.oficio">
+                            {{ item.oficio }}
+                        </option>
+                    </select>
+                </div>
+
+                <div class="label-input">
+                    <label class="labels">Data</label>
+                    <input type="date" id="filtro-data" class="form-control input-nome" formControlName="dataInclusao">
+                </div>
+                <input type="submit" value="Filtrar" class="btn btn-primary btn-tamanho" (click)="filtrar()">
+                <button type="button" class="btn btn-secondary r-2" (click)="listar()"
+                    style="margin-left: 5px; padding: 4px;">
+                    <span class="fa fa-trash"></span> Limpar Filtros
+                </button>
+            </form>
             <div class="row">
                 <div class="col-md-12">
-                    <label class="control-label required">Nome</label>
-                    <input type="text" formControlName="nome" class="form-control inputs"
-                        placeholder="Digite o nome" required>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <label class="control-label required">CPF</label>
-                    <input type="password" formControlName="cpf" class="form-control inputs"
-                        placeholder="Digite o CPF" required>
-                </div>
-            </div>
-            <div class="col-md-12">
-                <div class="form-group">
-                    <label class="control-label required">Oficios</label>
-                    <div class="input-group">
-                        <select class="custom-select form-control" formControlName="oficio" required>
-                            <option value="null" selected>Selecione</option>
-                            <option *ngFor="let item of oficio" [value]="item.oficio">
-                                {{ item.oficio }}
-                            </option>
-                        </select>
+                    <div class="alert alert-danger" role="alert" *ngIf="msgalertFiltro.length > 0"
+                        style="padding:3px; margin-top: 5px;">
+                        <b style="color: red">*</b> {{ msgalertFiltro }}
                     </div>
                 </div>
             </div>
-            <input type="submit" value="Filtrar" id="filtrar" class="btn btn-primary" (click)=" filtrar()">
-        </form>
-            <span class="fa fa-trash"></span> Remover Filtros
-    </div>
-    <div class="divTabela">
-        <h4 class="font-weight-bold py-1 mb-2">
-            <span class="text-muted font-weight-light">Candidatos</span>
-        </h4>
-        <table class="table table-striped table-bordered table-sm row-border hover">
+        </div>
+
+        <hr class="border-light">
+        <table class="table table-striped table-bordered table-sm row-border hover tabela">
             <thead>
                 <tr>
                     <th style="width: 35%">Nome</th>
-                    <th style="width: 10%">CPF</th>
+                    <th style="width: 30%;">CPF</th>
                     <th style="width: 25%;">Oficio</th>
-                    <th style="width: 20%;">Data</th>
-                    <th style="width: 10%;">Opçoês</th>
+                    <th style="width: 10%;">Ações</th>
                 </tr>
             </thead>
             <tbody>
@@ -57,12 +60,23 @@
                     <td> {{item.nome}} </td>
                     <td> {{item.cpf}} </td>
                     <td> {{item.oficio}} </td>
-                    <td> {{item.dataInclusao}} </td>
                     <td style="text-align: center;">
-                        <input type="button" value="Avaliar" class="btn btn-primary" (click)="avaliar(item.idCandidato)"> 
+                        <button class="btn btn-primary" style="padding: 4px;" (click)="avaliar(item.idCandidato)">
+                            <span></span>Avaliar
+                        </button>
                     </td>
                 </tr>
             </tbody>
         </table>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="alert alert-danger" role="alert" *ngIf="msgalert.length > 0"
+                    style="padding:3px; margin-top: 5px;">
+                    <b style="color: red">*</b> {{ msgalert }}
+                </div>
+            </div>
+        </div>
     </div>
 </div>
+
+<app-prova1 *ngIf="abrirProva" [idCandidato]="idCandidatoAvaliar"></app-prova1>

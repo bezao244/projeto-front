@@ -2,11 +2,7 @@
     margin: 0;
     padding: 0;
 }
-/*BARRA LATERAL*/
-.meio{
-    display: flex;
-    width: 100%;
-}
+
 .conta{
     width: 100%;
     top: 0;
@@ -39,58 +35,54 @@
     color: rgb(177, 177, 177);
     text-decoration: none;
 }
-#form-filtro{
-    display: flex;
-    flex-direction: column;
-    width: 80%;
+
+/*estilo para a div de filtro*/
+.labels{
+    font-size: 17px;
+    margin-right: 5px;
+    margin-left: 25px;
 }
-.inputs{
+.btn-tamanho{
+    width:100px;
+    margin-left: 15px;
+    padding: 3px;
+}
+.container{
+    width: 100%;
+    margin-left: 7.5%;
+}
+.form{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+.input-nome{
+    width: 200px;
     padding: 5px;
-    margin-bottom: 5px;
-    font-family: 'Open Sans';
 }
-.divForm{
-    width: 25%;
+.label-input{
     display: flex;
-    flex-direction: column;
     align-items: center;
-    border-bottom: 1px solid lightslategrey;
-    padding-bottom: 10px;
-    background-color: #1D232A;
-    color: whitesmoke;
-    height: 90vh;
 }
-#data-filtro{
-    cursor: pointer;
-}
-#oficio-filtro{
-    cursor: pointer;
-}
-#rmvFiltros{
-    background-color: rgb(24, 23, 23);
-    border: 0;
+.filtros{
+    height: 120px;
+    width: 100%;
     margin-top: 10px;
-    cursor: pointer;
 }
-.rmvTit{
-    margin-top: 15px;
-    color: whitesmoke;
-    font-size: 18px;
-}
-/*TABELA DE CANDIDATOS*/
-.divTabela{
-    width: 60%;
-    background-color: whitesmoke;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 10px;
-    margin-top: 10px;
-    margin-left: 5%;
-    height: 500px;
-}
-.divTabela-titulo{
-    color: whitesmoke;
-    text-shadow: 1px 1px 1px black;
-    margin-bottom: 5px;
+
+/*Layout para celulares*/
+@media (max-width: 600px)
+{
+    .tabela{
+        margin-top:100px;
+        width: 300px;
+        font-size:14px;
+    }
+    .label-input{
+        width: 250px;
+        margin-bottom: 5px;
+        justify-content: center;
+    }.form{
+        justify-content: center;
+    }
 }

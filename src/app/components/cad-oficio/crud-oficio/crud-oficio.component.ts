@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { OficioService } from 'src/app/services/oficio.service';
@@ -21,32 +21,44 @@ export class CrudOficioComponent implements OnInit {
 
   ngOnInit(): void {
     this.crudForm = this.formBuilder.group({
-      oficio: [null]
+      oficio: [null, Validators.required]
     });
   }
   cadastrar() {
-    var modal = {
-      oficio: this.crudForm.value.oficio
-    }
-    this.oficioService.cadastrarOficio(modal).subscribe((res: any) => {
-      if (res) {
-        Swal.fire({
-          icon: 'success',
-          title: 'Cadastro realizado com sucesso!',
-          showConfirmButton: false,
-          timer: 2000
-        });
-        setTimeout(() => {
-          this.router.navigate(['cad-oficio']);
-        }, 2000);
-      } else {
-        Swal.fire({
-          icon: 'warning',
-          title: 'Erro ao cadastrar!',
-          text: 'Certifique se não há campos vazios',
-          showConfirmButton: true
-        });
+    if (this.crudForm.valid) {
+      var modal = {
+        oficio: this.crudForm.value.oficio
       }
-    })
+      this.oficioService.cadastrarOficio(modal).subscribe((res: any) => {
+        if (res) {
+          Swal.fire({
+            icon: 'success',
+            title: 'Cadastro realizado com sucesso!',
+            showConfirmButton: false,
+            timer: 2000
+          });
+          setTimeout(() => {
+            this.router.navigate(['cad-oficio']);
+          }, 2000);
+        } else {
+          Swal.fire({
+            icon: 'warning',
+            title: 'Erro ao cadastrar!',
+            text: 'Certifique se não há campos vazios',
+            showConfirmButton: true
+          });
+        }
+      });
+    } else {
+      Swal.fire({
+        icon: 'warning',
+        title: 'Preencha todos os campos!!',
+        showConfirmButton: true
+      });
+    }
+
+  }
+  fecharCad() {
+    this.router.navigate(['cad-oficio']);
   }
 }
