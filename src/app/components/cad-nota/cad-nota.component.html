@@ -31,42 +31,54 @@
         </div>
       </div>
     </div>
-    <table class="table table-striped table-bordered table-sm row-border hover">
-      <thead>
-        <tr>
-          <th style="width: 20%">Código</th>
-          <th style="width: 40%">Nome</th>
-          <th style="width: 40%">CPF</th>
-          <th style="width: 40%">Oficio</th>
-          <th style="width: 40%">Adicionar</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let item of pessoas">
-          <td>{{ item.idCandidato }}</td>
-          <td>{{ item.nome }}</td>
-          <td>{{ item.cpf }}</td>
-          <td>{{ item.oficio }}</td>
-          <td style="text-align: center">
-            <button class="btn btn-primary" (click)="adicionar(item.idCandidato)" style="cursor: pointer">
-              <i class="fa fa-plus"></i>
-            </button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+    <div class="rolar">
+      <table class="table table-striped table-bordered table-sm row-border hover">
+        <thead>
+          <tr>
+            <th style="width: 20%">Código</th>
+            <th style="width: 40%">Nome</th>
+            <th style="width: 40%">CPF</th>
+            <th style="width: 40%">Oficio</th>
+            <th style="width: 40%">Adicionar</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of pessoas">
+            <td>{{ item.idCandidato }}</td>
+            <td>{{ item.nome }}</td>
+            <td>{{ item.cpf }}</td>
+            <td>{{ item.oficio }}</td>
+            <td style="text-align: center">
+              <button class="btn btn-primary" (click)="adicionar(item.idCandidato)" style="cursor: pointer">
+                <i class="fa fa-plus"></i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>
 <div *ngIf="abrirCadastroNota" class="cadNota">
   <h3 *ngFor="let item of candidatoNota">Cadastrar nota de {{ item.nome }}</h3>
   <form [formGroup]="crudFormNota">
-    <div class="col-md-8" style="margin-bottom: 5px" *ngFor="let item of candidatoNota">
+    <div class="col-md-12" style="margin-bottom: 5px" *ngFor="let item of candidatoNota">
+
       <label class="control-label required">Nota da Prova Teórica:</label>
-      <input type="number" formControlName="notaFinal" class="form-control inputs" placeholder="Digite a nota"
-        required />
-      <button class="btn btn-primary" (click)="adicionarNota(item.idCandidato)" style="cursor: pointer">
-        <i class="fa fa-plus"></i>
-      </button>
+      <div class="col-md-12" style="display: flex;">
+        <input type="number" formControlName="notaFinal" class="form-control cold-md-10" placeholder="Digite a nota"
+          required />
+        <button class="btn btn-primary col-md-2" (click)="adicionarNota(item.idCandidato)" style="cursor: pointer">
+          <i class="fa fa-plus"></i>
+        </button>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="alert alert-danger" role="alert" *ngIf="msgalertNota.length > 0">
+            <b style="color: red">*</b> {{ msgalertNota }}
+          </div>
+        </div>
+      </div>
     </div>
   </form>
 </div>

@@ -23,7 +23,8 @@ export class AvaliadorComponent implements OnInit {
   idAvaliador: number;
   abrirProva: boolean = false;
   idCandidatoAvaliar: number;
-
+  abrirConfig: boolean = false;
+  avaliadorLogado: any[] = [];
   constructor(
     private authService: AuthService,
     private oficioService: OficioService,
@@ -90,6 +91,17 @@ export class AvaliadorComponent implements OnInit {
   }
   logout() {
     this.router.navigate(['home']);
+  }
+  abrirInfo() {
+    var modal = {
+      idUsuario: this.idUsuarioLogado
+    }
+    this.avaliadorService.buscarIdAvaliador(modal).subscribe((res: any) => {
+      if (res != false) {
+        this.avaliadorLogado = res;
+      }
+    });
+    this.abrirConfig = true;
   }
 
 }

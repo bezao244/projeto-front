@@ -11,3 +11,7 @@
     height: 600px;
     
 }
+.rolar{
+    height: 360px;
+    overflow: auto;
+}

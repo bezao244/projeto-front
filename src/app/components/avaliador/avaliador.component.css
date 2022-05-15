@@ -35,7 +35,23 @@
     color: rgb(177, 177, 177);
     text-decoration: none;
 }
-
+.topo-config{
+    color:whitesmoke;
+    font-size: 18px;
+    position: absolute;
+    right: 90px;
+    border: 1px solid whitesmoke;
+    border-radius: 3px;
+    width: 55px;
+    padding: 3px;
+    text-align: center;
+    background-color: #1D232A;
+}
+.topo-config:hover{
+    transition: 0.2s;
+    color: rgb(177, 177, 177);
+    text-decoration: none;
+}
 /*estilo para a div de filtro*/
 .labels{
     font-size: 17px;
@@ -68,6 +84,10 @@
     height: 120px;
     width: 100%;
     margin-top: 10px;
+}
+.rolar{
+    height: 350px;
+    overflow: auto;
 }
 
 /*Layout para celulares*/

@@ -39,28 +39,31 @@
         </div>
       </div>
     </div>
-    <table class="table table-striped table-bordered table-sm row-border hover">
-      <thead>
-        <tr>
-          <th style="width: 20%">Código</th>
-          <th style="width: 60%">Oficio</th>
-          <th style="width: 20%">Açoes</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let item of oficios">
-          <td>{{ item.idOficio }}</td>
-          <td>{{ item.oficio }}</td>
-          <td style="text-align: center">
-            <button class="btn btn-danger" (click)="deletar(item.idOficio)" style="cursor: pointer">
-              <i class="fa fa-trash"></i>
-            </button>
-            <button class="btn btn-secondary" (click)="editar(item.idOficio)" style="cursor: pointer; margin-left: 5px">
-              <i class="fa fa-edit"></i>
-            </button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+    <div class="rolar">
+      <table class="table table-striped table-bordered table-sm row-border hover">
+        <thead>
+          <tr>
+            <th style="width: 20%">Código</th>
+            <th style="width: 60%">Oficio</th>
+            <th style="width: 20%">Açoes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of oficios">
+            <td>{{ item.idOficio }}</td>
+            <td>{{ item.oficio }}</td>
+            <td style="text-align: center">
+              <button class="btn btn-danger" (click)="deletar(item.idOficio)" style="cursor: pointer">
+                <i class="fa fa-trash"></i>
+              </button>
+              <button class="btn btn-secondary" (click)="editar(item.idOficio)"
+                style="cursor: pointer; margin-left: 5px">
+                <i class="fa fa-edit"></i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>

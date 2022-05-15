@@ -1,6 +1,9 @@
 <div class="conta">
     <img src="../../../assets/user.png" width="50px" height="50px">
     <p>Avaliador</p>
+    <button class="topo-config" (click)="abrirInfo()">
+        <span class="fa fa-cog"></span>
+    </button>
     <button class="topo-sair" (click)="logout()">Sair</button>
 </div>
 <div class="container">
@@ -46,28 +49,30 @@
         </div>
 
         <hr class="border-light">
-        <table class="table table-striped table-bordered table-sm row-border hover tabela">
-            <thead>
-                <tr>
-                    <th style="width: 35%">Nome</th>
-                    <th style="width: 30%;">CPF</th>
-                    <th style="width: 25%;">Oficio</th>
-                    <th style="width: 10%;">Ações</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let item of candidatos">
-                    <td> {{item.nome}} </td>
-                    <td> {{item.cpf}} </td>
-                    <td> {{item.oficio}} </td>
-                    <td style="text-align: center;">
-                        <button class="btn btn-primary" style="padding: 4px;" (click)="avaliar(item.idCandidato)">
-                            <span></span>Avaliar
-                        </button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+        <div class="rolar">
+            <table class="table table-striped table-bordered table-sm row-border hover tabela">
+                <thead>
+                    <tr>
+                        <th style="width: 35%">Nome</th>
+                        <th style="width: 30%;">CPF</th>
+                        <th style="width: 25%;">Oficio</th>
+                        <th style="width: 10%;">Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of candidatos">
+                        <td> {{item.nome}} </td>
+                        <td> {{item.cpf}} </td>
+                        <td> {{item.oficio}} </td>
+                        <td style="text-align: center;">
+                            <button class="btn btn-primary" style="padding: 4px;" (click)="avaliar(item.idCandidato)">
+                                <span></span>Avaliar
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
         <div class="row">
             <div class="col-md-12">
                 <div class="alert alert-danger" role="alert" *ngIf="msgalert.length > 0"
@@ -80,3 +85,7 @@
 </div>
 
 <app-prova1 *ngIf="abrirProva" [idCandidato]="idCandidatoAvaliar"></app-prova1>
+
+<div *ngIf="abrirConfig">
+    <!-- Mostar as informacoes da conta usuario logado  -->
+</div>

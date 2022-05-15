@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CandidatoService } from 'src/app/services/candidato.service';
 import Swal from 'sweetalert2';
@@ -13,6 +13,7 @@ export class CadNotaComponent implements OnInit {
   pessoas: any[] = [];
   pesquisarForm: FormGroup;
   msgalert: any = '';
+  msgalertNota: any = '';
   abrirCadastroNota: boolean = false;
   candidatoNota: any[] = [];
   crudFormNota: FormGroup;
@@ -30,7 +31,7 @@ export class CadNotaComponent implements OnInit {
       nome: [null]
     });
     this.crudFormNota = this.formBuilder.group({
-      notaFinal: [null]
+      notaFinal: [null, Validators.required]
     });
 
   }
@@ -58,28 +59,37 @@ export class CadNotaComponent implements OnInit {
 
   }
   adicionarNota(id: any) {
-    var modal = {
-      notaFinal: this.crudFormNota.value.notaFinal,
-      idCandidato: id
-    }
-    this.candidatoServive.adicionarNotaCandidato(modal).subscribe((res: any) => {
-      if (res) {
-        Swal.fire({
-          icon: 'success',
-          title: 'Nota adicionada com sucesso!',
-          showConfirmButton: false,
-          timer: 2000
-        });
-        this.listar();
-        this.abrirCadastroNota = false;
+    if (this.crudFormNota.valid) {
+      if (this.crudFormNota.value.notaFinal > 10) {
+        this.msgalertNota = 'Nota somente de 0 a 10!';
       } else {
-        Swal.fire({
-          icon: 'warning',
-          title: 'Erro ao adicionar nota, tente novamente!',
-          showConfirmButton: true
-        });
+        var modal = {
+          notaFinal: this.crudFormNota.value.notaFinal,
+          idCandidato: id
+        }
+        this.candidatoServive.adicionarNotaCandidato(modal).subscribe((res: any) => {
+          if (res) {
+            Swal.fire({
+              icon: 'success',
+              title: 'Nota adicionada com sucesso!',
+              showConfirmButton: false,
+              timer: 2000
+            });
+            this.listar();
+            this.abrirCadastroNota = false;
+          } else {
+            Swal.fire({
+              icon: 'warning',
+              title: 'Erro ao adicionar nota, tente novamente!',
+              showConfirmButton: true
+            });
+          }
+        })
       }
-    })
+
+    } else {
+      this.msgalertNota = 'Preencha o campo de nota!';
+    }
   }
   voltar() {
     this.router.navigate(['admin']);

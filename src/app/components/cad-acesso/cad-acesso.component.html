@@ -38,34 +38,36 @@
         </div>
       </div>
     </div>
-    <table class="table table-striped table-bordered table-sm row-border hover">
-      <thead>
-        <tr>
-          <th style="width: 5%">Código</th>
-          <th style="width: 35%">Nome</th>
-          <th style="width: 20%;">Conta</th>
-          <th style="width: 25%;">Data Inclusao</th>
-          <th style="width: 15%">Açoes</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let item of pessoas">
-          <td> {{item.idUsuario}} </td>
-          <td> {{item.email}} </td>
-          <td> {{item.tipoPerfil}} </td>
-          <td> {{item.dataInclusao}} </td>
-          <td style="text-align: center;">
-            <button class="btn btn-danger" (click)="deletar(item.idUsuario)" style="cursor: pointer;">
-              <i class="fa fa-trash"></i>
-            </button>
-            <button class="btn btn-secondary" (click)="editar(item.idUsuario)" style="cursor: pointer;
-              margin-left: 5px;">
-              <i class="fa fa-edit"></i>
-            </button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+    <div class="rolar">
+      <table class="table table-striped table-bordered table-sm row-border hover">
+        <thead>
+          <tr>
+            <th style="width: 5%">Código</th>
+            <th style="width: 35%">Nome</th>
+            <th style="width: 20%;">Conta</th>
+            <th style="width: 25%;">Data Inclusao</th>
+            <th style="width: 15%">Açoes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of pessoas">
+            <td> {{item.idUsuario}} </td>
+            <td> {{item.email}} </td>
+            <td> {{item.tipoPerfil}} </td>
+            <td> {{item.dataInclusao}} </td>
+            <td style="text-align: center;">
+              <button class="btn btn-danger" (click)="deletar(item.idUsuario)" style="cursor: pointer;">
+                <i class="fa fa-trash"></i>
+              </button>
+              <button class="btn btn-secondary" (click)="editar(item.idUsuario)" style="cursor: pointer;
+                margin-left: 5px;">
+                <i class="fa fa-edit"></i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>
 

@@ -9,7 +9,7 @@
     top: 50%;
     margin-top: -90px;
     background-color: white;
-    width: 350px;
+    width: 450px;
     height: 180px;
     left: 50%;
     margin-left: -175px;
@@ -18,4 +18,8 @@
     flex-direction:column ;
     justify-content: center;
     padding: 10px;
+}
+.rolar{
+    height: 360px;
+    overflow: auto;
 }
