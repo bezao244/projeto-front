@@ -19,6 +19,9 @@ export class AuthService {
   buscarTipoConta() {
     return this.http.get(`${this.baseUrl}user/buscarTipoConta`);
   }
+  filtrar(user: any) {
+    return this.http.post(`${this.baseUrl}user/filtrar`, user);
+  }
   listar() {
     return this.http.get(`${this.baseUrl}user`);
   }

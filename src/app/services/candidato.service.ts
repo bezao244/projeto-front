@@ -29,6 +29,9 @@ export class CandidatoService {
   filtrar(user: any) {
     return this.http.post(`${this.baseUrl}filtrar`, user);
   }
+  filtrarSemNota(user: any) {
+    return this.http.post(`${this.baseUrl}filtrarSemNota`, user);
+  }
   deletarCandidato(id: any) {
     return this.http.post(`${this.baseUrl}deletarCandidato`, id);
   }

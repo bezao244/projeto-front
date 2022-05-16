@@ -12,8 +12,14 @@
     <hr class="border-light" />
     <form class="form-inline" [formGroup]="pesquisarForm">
       <div style="display: flex">
-        <div class="form-group mx-sm-0 pr-2 col-md-6">
-          <input type="text" class="form-control" formControlName="nome" placeholder="Email" style="width: 100%" />
+        <div class="form-group col-md-3">
+          <input type="text" class="form-control" formControlName="nome" placeholder="Digite o nome"
+            style="width: 100%" />
+
+        </div>
+        <div class="form-group col-md-3" style="margin-left: 5px;">
+          <input type="text" class="form-control" formControlName="cpf" placeholder="Digite o CPF"
+            style="width: 100%" />
         </div>
         <button type="button" class="btn btn-primary r-2" (click)="pesquisar()" style="margin-left: 5px">
           <span class="fa fa-search"></span> Pesquisar

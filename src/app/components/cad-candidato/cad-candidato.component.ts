@@ -27,6 +27,7 @@ export class CadCandidatoComponent implements OnInit {
     });
   }
   listar() {
+    this.msgalert = '';
     this.candidatoService.listarCandidatos().subscribe((res: any) => {
       this.candidatos = res;
       if (this.candidatos.length < 1) {

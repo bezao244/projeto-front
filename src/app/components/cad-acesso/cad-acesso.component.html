@@ -20,7 +20,8 @@
     <form class="form-inline" [formGroup]="pesquisarForm">
       <div style="display: flex;">
         <div class="form-group mx-sm-0 pr-2 col-md-6">
-          <input type="text" class="form-control" formControlName="email" placeholder="Email" style="width: 100%;" />
+          <input type="text" class="form-control" formControlName="email" placeholder="Email ou Código"
+            style="width: 100%;" />
         </div>
         <button type="button" class="btn btn-primary r-2" (click)="pesquisar()" style="margin-left: 5px;">
           <span class="fa fa-search"></span> Pesquisar

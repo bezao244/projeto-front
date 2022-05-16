@@ -28,7 +28,8 @@ export class CadNotaComponent implements OnInit {
     this.listar();
 
     this.pesquisarForm = this.formBuilder.group({
-      nome: [null]
+      nome: [null],
+      cpf: [null]
     });
     this.crudFormNota = this.formBuilder.group({
       notaFinal: [null, Validators.required]
@@ -42,11 +43,21 @@ export class CadNotaComponent implements OnInit {
         this.msgalert = 'Nenhum candidato com nota pendente!';
       }
     });
+
   }
   pesquisar() {
     var modal = {
-      nome: this.pesquisarForm.value.nome
+      nome: this.pesquisarForm.value.nome,
+      cpf: this.pesquisarForm.value.cpf
     }
+    console.log(modal);
+    this.candidatoServive.filtrarSemNota(modal).subscribe((res: any) => {
+      console.log(res);
+      this.pessoas = res;
+      if (this.pessoas.length < 1) {
+        this.msgalert = 'Nenhum candidato corresponde com o filtro!';
+      }
+    });
   }
   adicionar(id: any) {
     var modal = {

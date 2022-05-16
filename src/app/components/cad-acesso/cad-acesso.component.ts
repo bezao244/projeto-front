@@ -51,9 +51,19 @@ export class CadAcessoComponent implements OnInit {
   }
   pesquisar() {
     var modal = {
-      email: this.pesquisarForm.value.email
+      parametro: this.pesquisarForm.value.email
     }
+    this.authService.filtrar(modal).subscribe((res: any) => {
+      if (res != false) {
+        this.pessoas = res;
+        if (this.pessoas.length < 1) {
+          this.msgalert = 'Nenhum usuário corresponde com o filtro!';
+        }
+      } else {
+        console.log('erro ao filtrar!');
+      }
 
+    });
   }
   abrirCadastro() {
     this.router.navigate(['crud-acesso']);
