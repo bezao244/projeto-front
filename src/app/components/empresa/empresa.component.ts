@@ -19,6 +19,7 @@ export class EmpresaComponent implements OnInit {
   idUsuarioLogado: number;
   oficios: any[] = [];
   idEmpresa: number;
+  width: any;
 
   constructor(
     private authService: AuthService,
@@ -33,6 +34,9 @@ export class EmpresaComponent implements OnInit {
     this.idUsuarioLogado = parseInt(getId);
     console.log(this.idUsuarioLogado);
 
+    this.width = window.screen.width;
+    console.log('Width da tela', this.width);
+
     this.buscarNomeEmpresa();
     this.listar();
 
@@ -41,7 +45,7 @@ export class EmpresaComponent implements OnInit {
     })
 
     this.filtrarForm = this.formBuilder.group({
-      userName: [null],
+      nome: [null],
       oficio: [null],
       dataInclusao: [null]
     });
@@ -69,8 +73,10 @@ export class EmpresaComponent implements OnInit {
   }
   filtrar() {
     var modal = {
-      idEmpresa: this.idUsuarioLogado
-      //restante dos campos de filtro
+      idEmpresa: this.idUsuarioLogado,
+      nome: this.filtrarForm.value.nome,
+      oficio: this.filtrarForm.value.oficio,
+      dataInclusao: this.filtrarForm.value.dataInclusao
     }
     this.empresaService.filtrarEmpresa(modal).subscribe((res: any) => {
       this.candidatos = res;

@@ -61,20 +61,47 @@
     width: 100%;
     margin-top: 10px;
 }
+.overflow{
+    height: 360px;
+    overflow: auto;
+}
 
 /*Layout para celulares*/
 @media (max-width: 600px)
 {
     .tabela{
         margin-top:100px;
-        width: 300px;
+        width: 100%;
         font-size:14px;
     }
     .label-input{
         width: 250px;
-        margin-bottom: 5px;
+        margin-bottom: 10px;
         justify-content: center;
-    }.form{
-        justify-content: center;
+    }
+    .form{
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .topo{
+        width: 100%;
+    }
+    .container{
+        margin-left: 0;
+        height: 90vh;
+    }
+    .border-light{
+        display: none;
+    }
+    .overflow{
+        height: 360px;
+        overflow: auto;
+    }
+    .filtros{
+    height: 220px;
+    }
+    .tabela-menor{
+        
     }
 }

@@ -1,23 +1,28 @@
-<div class="geral">
-    <img src="../../../assets/logo.png" alt="logo fesfx">
-    <h3>Plataforma Avaliação de Oficio</h3>
-    <div class="row">
-        <div class="col-md-16">
-            <div class="alert alert-danger" role="alert" *ngIf="msgalert.length > 0">
-                <b style="color: red;">*</b> {{msgalert}}
+<div class="emvolta">
+    <div class="geral">
+        <img src="../../../assets/logo.png" alt="logo fesfx">
+        <h3>Plataforma Avaliação de Oficio</h3>
+        <div class="row">
+            <div class="col-md-16">
+                <div class="alert alert-danger" role="alert" *ngIf="msgalert.length > 0">
+                    <b style="color: red;">*</b> {{msgalert}}
+                </div>
             </div>
         </div>
+        <form [formGroup]="crudForm" class="form">
+            <div class="large">
+                <label for="email">Email</label>
+                <input type="text" formControlName="email" class="form-control inputs" placeholder="Digite o email"
+                    required style="padding: 5px;">
+            </div>
+            <div class="large">
+                <label for="senha">Senha</label>
+                <input type="password" formControlName="senha" class="form-control inputs" placeholder="Digite a senha"
+                    required style="padding: 5px;">
+            </div>
+            <input type="submit" value="Login" class="btn btn-primary" style="margin-top: 10px; padding: 3px;"
+                (click)="login()">
+            <a href="#" class="esqueci">Esqueci minha senha</a>
+        </form>
     </div>
-    <form [formGroup]="crudForm" class="form">
-        <div class="large">
-            <label for="email">Email</label>
-            <input type="text" formControlName="email" class="form-control inputs" placeholder="Digite o email" required style="padding: 5px;" >
-        </div>
-        <div class="large">
-            <label for="senha">Senha</label>
-            <input type="password" formControlName="senha" class="form-control inputs" placeholder="Digite a senha" required style="padding: 5px;" >
-        </div>
-        <input type="submit" value="Login" class="btn btn-primary" style="margin-top: 10px; padding: 3px;" (click)="login()">
-        <a href="#" class="esqueci">Esqueci minha senha</a>
-    </form>
-  </div>
+</div>

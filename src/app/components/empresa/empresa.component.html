@@ -10,7 +10,7 @@
       <form class="form" [formGroup]="filtrarForm">
         <div class="label-input">
           <label class="labels">Nome</label>
-          <input type="text" placeholder="Nome do candidadto" class="form-control input-nome">
+          <input type="text" placeholder="Nome do candidadto" class="form-control input-nome" formControlName="nome">
         </div>
 
         <div class="label-input">
@@ -25,13 +25,23 @@
 
         <div class="label-input">
           <label class="labels">Data</label>
-          <input type="date" id="filtro-data" class="form-control input-nome">
+          <input type="date" id="filtro-data" class="form-control input-nome" formControlName="dataInclusao">
         </div>
         <input type="submit" value="Filtrar" class="btn btn-primary btn-tamanho" (click)="filtrar()">
+        <button type="button" class="btn btn-secondary r-2" (click)="listar()" style="margin-left: 5px; padding: 3px;">
+          <span class="fa fa-trash"></span> Limpar Filtros
+        </button>
       </form>
     </div>
     <hr class="border-light">
-    <table class="table table-striped table-bordered table-sm row-border hover tabela">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="alert alert-danger" role="alert" *ngIf="msgalert.length > 0">
+          <b style="color: red;">*</b> {{msgalert}}
+        </div>
+      </div>
+    </div>
+    <table class="table table-striped table-bordered table-sm row-border hover tabela" *ngIf="this.width> 500">
       <thead>
         <tr>
           <th style="width: 30%">Nome</th>
@@ -55,5 +65,30 @@
         </tr>
       </tbody>
     </table>
+    <div class="overflow">
+      <table class="table table-striped table-bordered table-sm row-border hover tabela-menor" *ngIf="this.width< 500">
+        <thead>
+          <tr>
+            <th style="width: 60%">Candidato</th>
+            <th style="width: 10%;">Nota Final</th>
+            <th style="width: 30%;">Relatório</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of candidatos">
+            <td> Nome: <strong> {{item.nome}} </strong> <br>
+              CPF: <strong> {{item.cpf}} </strong> <br>
+              Oficio: <strong> {{item.oficio}} </strong>
+            </td>
+            <td> {{item.notaFinal}} </td>
+            <td style="text-align: center;">
+              <button class="btn btn-secondary " style="padding: 3px;">
+                <span></span>Detalhes
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>
