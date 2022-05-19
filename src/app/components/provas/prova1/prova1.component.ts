@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CandidatoService } from 'src/app/services/candidato.service';
 import Swal from 'sweetalert2';
 @Component({
@@ -25,11 +25,18 @@ export class Prova1Component implements OnInit {
       this.candidatos = res;
     });
     this.notaForm = this.formBuilder.group({
-      nota1: [null]
+      nota1: [null, Validators.required],
+      nota2: [null, Validators.required],
+      nota3: [null, Validators.required]
     })
   }
   salvar() {
-
+    var modal = {
+      nota1: this.notaForm.value.nota1,
+      nota2: this.notaForm.value.nota2,
+      nota3: this.notaForm.value.nota3,
+    }
+    console.log(modal);
   }
   fechar() {
     Swal.fire({

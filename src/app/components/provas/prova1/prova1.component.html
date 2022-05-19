@@ -17,68 +17,84 @@
                 </tr>
             </tbody>
         </table>
-        <table *ngFor="let item of candidatos" class="table table-bordered table-sm row-border hover tabela">
-            <thead>
-                <tr>
-                    <th style="width: 5%;">Item</th>
-                    <th style="width: 50%;">Descrição</th>
-                    <th style="width: 30%;">Competência Avaliada</th>
-                    <th style="width: 5%;">Peso</th>
-                    <th style="width: 5%;">Nota</th>
-                    <th style="width: 5%;">Total</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>1</td>
-                    <td style="font-weight: bold;">EPI"s</td>
-                </tr>
-                <tr>
-                    <td>1.1</td>
-                    <td>Vestir corretamente</td>
-                    <td>Seguranca do trabalho</td>
-                    <td>1</td>
-                    <td> <select class="custom-select form-control" formControlName="nota1" required>
-                            <option value="null" selected>0</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                        </select> </td>
-                    <td> 3 </td>
-                </tr>
-                <tr>
-                    <td>1.2</td>
-                    <td>Vestir corretamente</td>
-                    <td>Seguranca do trabalho</td>
-                    <td>1</td>
-                    <td> 3 </td>
-                    <td> 3 </td>
-                </tr>
-                <tr>
-                    <td>1.3</td>
-                    <td>Vestir corretamente</td>
-                    <td>Seguranca do trabalho</td>
-                    <td>1</td>
-                    <td> 3 </td>
-                    <td> 3 </td>
-                </tr>
-                <tr>
-                    <td colspan="6"></td>
-                </tr>
-                <tr *ngIf="item.oficio == 'Tec.Refrigeração'">
-                    <td>2</td>
-                    <td style="font-weight: bold;">Sola/Trabalho em tubo de cobre</td>
-                </tr>
-                <tr *ngIf="item.oficio == 'Tec.Refrigeração'">
-                    <td>2.1</td>
-                    <td>Vestir corretamente</td>
-                    <td>Seguranca do trabalho</td>
-                    <td>1</td>
-                    <td> 3 </td>
-                    <td> 3 </td>
-                </tr>
-            </tbody>
-        </table>
+        <form [formGroup]="notaForm">
+            <table *ngFor="let item of candidatos" class="table table-bordered table-sm row-border hover tabela">
+                <thead>
+                    <tr>
+                        <th style="width: 5%;">Item</th>
+                        <th style="width: 50%;">Descrição</th>
+                        <th style="width: 30%;">Competência Avaliada</th>
+                        <th style="width: 5%;">Peso</th>
+                        <th style="width: 5%;">Nota</th>
+                        <th style="width: 5%;">Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td style="font-weight: bold;">EPI"s</td>
+                    </tr>
+                    <tr>
+
+                        <td>1.1</td>
+                        <td>Vestir corretamente</td>
+                        <td>Seguranca do trabalho</td>
+                        <td>1</td>
+                        <td> <select class="custom-select form-control" formControlName="nota1" required>
+                                <option value="null" selected>0</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                            </select>
+                        </td>
+                        <td> 3 </td>
+                    </tr>
+                    <tr>
+                        <td>1.2</td>
+                        <td>Vestir corretamente</td>
+                        <td>Seguranca do trabalho</td>
+                        <td>1</td>
+                        <td> <select class="custom-select form-control" formControlName="nota2" required>
+                                <option value="null" selected>0</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                            </select>
+                        </td>
+                        <td> 3 </td>
+                    </tr>
+                    <tr>
+                        <td>1.3</td>
+                        <td>Vestir corretamente</td>
+                        <td>Seguranca do trabalho</td>
+                        <td>1</td>
+                        <td> <select class="custom-select form-control" formControlName="nota3" required>
+                                <option value="null" selected>0</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                            </select>
+                        </td>
+                        <td> 3 </td>
+                    </tr>
+                    <tr>
+                        <td colspan="6"></td>
+                    </tr>
+                    <tr *ngIf="item.oficio == 'Tec.Refrigeração'">
+                        <td>2</td>
+                        <td style="font-weight: bold;">Sola/Trabalho em tubo de cobre</td>
+                    </tr>
+                    <tr *ngIf="item.oficio == 'Tec.Refrigeração'">
+                        <td>2.1</td>
+                        <td>Vestir corretamente</td>
+                        <td>Seguranca do trabalho</td>
+                        <td>1</td>
+                        <td> 3 </td>
+                        <td> 3 </td>
+                    </tr>
+                </tbody>
+            </table>
+        </form>
         <div class="col-md-12">
             <button class="btn btn-danger" (click)="fechar()">
                 Fechar
