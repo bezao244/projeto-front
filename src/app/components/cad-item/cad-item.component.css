@@ -1,0 +1,9 @@
+.meio{
+    width: 80%;
+    position: absolute;
+    left: 20%;
+}
+.rolar{
+    height: 360px;
+    overflow: auto;
+}

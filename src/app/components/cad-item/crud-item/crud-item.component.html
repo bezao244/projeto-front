@@ -1,0 +1,38 @@
+<div class="topo">
+    <button class="btn btn-danger fecharCad" (click)="fecharCad()">
+        <span class="fa fa-x"></span>Fechar
+    </button>
+    <h2>Cadastro de Itens</h2>
+</div>
+
+<div class="card card-body">
+    <form [formGroup]="crudForm">
+        <div class="row meio">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label class="control-label required">Oficio Relacionado</label>
+                    <div class="input-group">
+                        <select class="custom-select form-control" formControlName="oficio" required>
+                            <option value="null" selected>Selecione o oficio</option>
+                            <option *ngFor="let item of oficios" [value]="item.idOficio">
+                                {{ item.oficio }}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="row meio">
+                <div class="col-md-4">
+                    <label class="control-label required">Descrição do item: </label>
+                    <textarea formControlName="descricao" cols="30" rows="3" placeholder="Descrição*"
+                        class="form-control inputs"></textarea>
+                </div>
+            </div>
+        </div>
+        <div class=" meio" style="margin-top: 20px;">
+            <button type="button" class="btn btn-primary r-2" (click)="cadastrar()">
+                Cadastrar
+            </button>
+        </div>
+    </form>
+</div>

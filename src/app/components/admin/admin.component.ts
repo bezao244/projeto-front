@@ -28,7 +28,11 @@ export class AdminComponent implements OnInit {
   }
   irParaCadOficio() {
     this.router.navigate(['cad-oficio']);
-  } irParaDashboard() {
+  }
+  irParaDashboard() {
     this.router.navigate(['admin']);
+  }
+  irParaCadItem() {
+    this.router.navigate(['cad-item']);
   }
 }

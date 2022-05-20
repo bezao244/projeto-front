@@ -1,0 +1,70 @@
+<app-admin></app-admin>
+<div class="meio">
+    <div class="card card-body menu">
+        <div class="row">
+            <div class="col-md-8">
+                <h4 class="font-weight-bold py-1 mb-2">
+                    <span class="text-muted font-weight-light">Cadastro</span> / Oficio
+                </h4>
+            </div>
+            <div class="col-md-4">
+                <div class="text-right">
+                    <button class="btn btn-primary" type="button" (click)="abrirCadastro()">
+                        <span class="fa fa-plus-circle"></span>&nbsp;&nbsp;Novo
+                    </button>
+                </div>
+            </div>
+        </div>
+        <hr class="border-light" />
+        <form class="form-inline" [formGroup]="pesquisarForm">
+            <div style="display: flex">
+                <div class="form-group mx-sm-0 pr-2 col-md-6">
+                    <input type="text" class="form-control" formControlName="oficio" placeholder="Oficio ou código"
+                        style="width: 100%" />
+                </div>
+                <button type="button" class="btn btn-primary r-2" (click)="pesquisar()" style="margin-left: 5px">
+                    <span class="fa fa-search"></span> Pesquisar
+                </button>
+                <button type="button" class="btn btn-secondary r-2" (click)="listar()" style="margin-left: 5px">
+                    <span class="fa fa-trash"></span> Limpar Filtros
+                </button>
+            </div>
+        </form>
+        <hr class="border-light" />
+        <div class="row">
+            <div class="col-md-12">
+                <div class="alert alert-danger" role="alert" *ngIf="msgalert.length > 0">
+                    <b style="color: red">*</b> {{ msgalert }}
+                </div>
+            </div>
+        </div>
+        <div class="rolar">
+            <table class="table table-striped table-bordered table-sm row-border hover">
+                <thead>
+                    <tr>
+                        <th style="width: 10%">Código</th>
+                        <th style="width: 10%">Oficio</th>
+                        <th style="width: 60%">Descrição</th>
+                        <th style="width: 20%">Açoes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of itens">
+                        <td>{{ item.idItem }}</td>
+                        <td>{{ item.idOficio }}</td>
+                        <td style="height: 50px;">{{ item.descricao }}</td>
+                        <td style="text-align: center">
+                            <button class="btn btn-danger" (click)="deletar(item.idItem)" style="cursor: pointer">
+                                <i class="fa fa-trash"></i>
+                            </button>
+                            <button class="btn btn-secondary" (click)="editar(item.idItem)"
+                                style="cursor: pointer; margin-left: 5px">
+                                <i class="fa fa-edit"></i>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
