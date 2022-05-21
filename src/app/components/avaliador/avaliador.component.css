@@ -89,7 +89,12 @@
     height: 350px;
     overflow: auto;
 }
-
+.modal1{
+    position: absolute;
+    top: 2.5%;
+    width: 96%;
+    margin-left: 2%;
+}
 /*Layout para celulares*/
 @media (max-width: 600px)
 {

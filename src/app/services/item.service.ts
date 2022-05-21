@@ -20,4 +20,7 @@ export class ItemService {
   deletar(id: any) {
     return this.http.post(`${this.baseUrl}deletar`, id);
   }
+  buscarQuestoesProva(user: any) {
+    return this.http.post(`${this.baseUrl}buscarQuestoesProva`, user);
+  }
 }

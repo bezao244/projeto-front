@@ -34,7 +34,7 @@ export class CrudCandidatoComponent implements OnInit {
       nome: [null, Validators.required],
       cpf: [null, Validators.required],
       idAvaliador: [null, Validators.required],
-      oficio: [null, Validators.required],
+      idOficio: [null, Validators.required],
       idEmpresa: [null, Validators.required]
     });
     this.avaliadorService.buscarAvaliadores().subscribe((res: any) => {
@@ -54,7 +54,7 @@ export class CrudCandidatoComponent implements OnInit {
         cpf: this.crudFormCandidato.value.cpf,
         idAvaliador: this.crudFormCandidato.value.idAvaliador,
         idEmpresa: this.crudFormCandidato.value.idEmpresa,
-        oficio: this.crudFormCandidato.value.oficio
+        idOficio: this.crudFormCandidato.value.idOficio
       }
       console.log(modal);
       this.candidatoService.createCandidato(modal).subscribe((res: any) => {

@@ -4,6 +4,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { AvaliadorService } from 'src/app/services/avaliador.service';
+import { CandidatoService } from 'src/app/services/candidato.service';
+import { ItemService } from 'src/app/services/item.service';
 import { OficioService } from 'src/app/services/oficio.service';
 import Swal from 'sweetalert2';
 import { Prova1Component } from '../provas/prova1/prova1.component';
@@ -25,12 +27,17 @@ export class AvaliadorComponent implements OnInit {
   idCandidatoAvaliar: number;
   abrirConfig: boolean = false;
   avaliadorLogado: any[] = [];
+  notaForm: FormGroup;
+  candidatoSelecionado: any[] = [];
+  questoesProva: any[] = [];
+  idOficioCandidatoAvaliar: number;
   constructor(
-    private authService: AuthService,
     private oficioService: OficioService,
     private avaliadorService: AvaliadorService,
     private formBuilder: FormBuilder,
-    private router: Router
+    private router: Router,
+    private candidatoService: CandidatoService,
+    private itemService: ItemService
   ) { }
 
   ngOnInit(): void {
@@ -49,6 +56,12 @@ export class AvaliadorComponent implements OnInit {
       oficio: [null],
       dataInclusao: [null]
     });
+
+    this.notaForm = this.formBuilder.group({
+      nota1: [null, Validators.required],
+      nota2: [null, Validators.required],
+      nota3: [null, Validators.required]
+    });
   }
   listar() {
     var modal = {
@@ -65,6 +78,23 @@ export class AvaliadorComponent implements OnInit {
   avaliar(id: number) {
     this.idCandidatoAvaliar = id;
     this.abrirProva = true;
+    var modal = {
+      idCandidato: id
+    }
+    this.candidatoService.buscarDadosCandidato(modal).subscribe((res: any) => {
+      this.candidatoSelecionado = res;
+      this.idOficioCandidatoAvaliar = res[0].idOficio;
+      this.buscarQuestoesProva();
+    });
+
+  }
+  buscarQuestoesProva() {
+    var modalProva = {
+      idOficio: this.idOficioCandidatoAvaliar
+    }
+    this.itemService.buscarQuestoesProva(modalProva).subscribe((res: any) => {
+      this.questoesProva = res;
+    });
   }
 
   filtrar() {
@@ -76,10 +106,8 @@ export class AvaliadorComponent implements OnInit {
         oficio: this.filtrarForm.value.oficio,
         dataInclusao: this.filtrarForm.value.dataInclusao
       }
-      console.log(modal);
       this.avaliadorService.filtrarAvaliador(modal).subscribe((res: any) => {
         this.candidatos = res;
-        console.log(res);
         if (this.candidatos.length < 1) {
           this.msgalert = 'Nenhum candidato corresponde com o filtro!';
         }
@@ -102,6 +130,24 @@ export class AvaliadorComponent implements OnInit {
       }
     });
     this.abrirConfig = true;
+  }
+  salvar() {
+    var modal = {
+      nota1: this.notaForm.value.nota1,
+      nota2: this.notaForm.value.nota2,
+      nota3: this.notaForm.value.nota3,
+    }
+    console.log(modal);
+  }
+  fechar() {
+    // Swal.fire({
+    //   icon: 'warning',
+    //   title: 'Tem certeza que deseja fechar a avaliação?',
+    //   text: ' Os dados não serão salvos!',
+    //   showConfirmButton: true,
+    //   showCancelButton: true
+    // });
+    this.abrirProva = false;
   }
 
 }

@@ -28,7 +28,7 @@ export class Prova1Component implements OnInit {
       nota1: [null, Validators.required],
       nota2: [null, Validators.required],
       nota3: [null, Validators.required]
-    })
+    });
   }
   salvar() {
     var modal = {

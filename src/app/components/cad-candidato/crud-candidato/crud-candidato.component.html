@@ -38,9 +38,9 @@
                 <div class="form-group">
                     <label class="control-label required">Oficio</label>
                     <div class="input-group">
-                        <select class="custom-select form-control" formControlName="oficio" required>
+                        <select class="custom-select form-control" formControlName="idOficio" required>
                             <option value="null" selected>Selecione o oficio</option>
-                            <option *ngFor="let item of oficios" [value]="item.oficio">
+                            <option *ngFor="let item of oficios" [value]="item.idOficio">
                                 {{ item.oficio }}
                             </option>
                         </select>
