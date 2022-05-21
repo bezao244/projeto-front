@@ -31,6 +31,9 @@ export class AvaliadorComponent implements OnInit {
   candidatoSelecionado: any[] = [];
   questoesProva: any[] = [];
   idOficioCandidatoAvaliar: number;
+  somaNotas: number;
+  notasItens: any[] = [];
+
   constructor(
     private oficioService: OficioService,
     private avaliadorService: AvaliadorService,
@@ -60,7 +63,8 @@ export class AvaliadorComponent implements OnInit {
     this.notaForm = this.formBuilder.group({
       nota1: [null, Validators.required],
       nota2: [null, Validators.required],
-      nota3: [null, Validators.required]
+      nota3: [null, Validators.required],
+      notaItem: [null, Validators.required]
     });
   }
   listar() {
@@ -82,6 +86,7 @@ export class AvaliadorComponent implements OnInit {
       idCandidato: id
     }
     this.candidatoService.buscarDadosCandidato(modal).subscribe((res: any) => {
+      console.log(res);
       this.candidatoSelecionado = res;
       this.idOficioCandidatoAvaliar = res[0].idOficio;
       this.buscarQuestoesProva();
@@ -132,12 +137,13 @@ export class AvaliadorComponent implements OnInit {
     this.abrirConfig = true;
   }
   salvar() {
-    var modal = {
-      nota1: this.notaForm.value.nota1,
-      nota2: this.notaForm.value.nota2,
-      nota3: this.notaForm.value.nota3,
-    }
-    console.log(modal);
+    // var modal = {
+    //   nota1: this.notaForm.value.nota1,
+    //   nota2: this.notaForm.value.nota2,
+    //   nota3: this.notaForm.value.nota3,
+    // }
+    // console.log(modal);
+    console.log(this.notasItens);
   }
   fechar() {
     // Swal.fire({
@@ -148,6 +154,11 @@ export class AvaliadorComponent implements OnInit {
     //   showCancelButton: true
     // });
     this.abrirProva = false;
+  }
+  addNotaPorItem(idItem: number) {
+    console.log(idItem);
+    var notaItem = this.notaForm.value.notaItem;
+    this.notasItens.push(notaItem);
   }
 
 }

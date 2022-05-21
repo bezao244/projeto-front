@@ -27,6 +27,15 @@
                     <textarea formControlName="descricao" cols="30" rows="3" placeholder="Descrição*"
                         class="form-control inputs"></textarea>
                 </div>
+                <div class="col-md-4">
+                    <label class="control-label required">Competência do item: </label>
+                    <textarea formControlName="competencia" cols="30" rows="3" placeholder="Competência*"
+                        class="form-control inputs"></textarea>
+                </div>
+                <div class="col-md-2">
+                    <label class="control-label required">Peso do item: </label>
+                    <input type="number" formControlName="peso" class="form-control inputs" placeholder="0 a 3">
+                </div>
             </div>
         </div>
         <div class=" meio" style="margin-top: 20px;">
@@ -35,4 +44,31 @@
             </button>
         </div>
     </form>
+</div>
+
+<div class="tableItens">
+
+    <div class="card card-body">
+        <h2>Itens </h2>
+        <div class="rolar">
+            <table class="table table-striped table-bordered table-sm row-border hover">
+                <thead>
+                    <tr>
+                        <th style="width: 10%">Oficio</th>
+                        <th style="width: 50%">Descrição</th>
+                        <th style="width: 20%;">Competência</th>
+                        <th style="width: 20%">Peso</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of itemCadastrado">
+                        <td>{{ item.idOficio }}</td>
+                        <td style="height: 50px;">{{ item.descricao }}</td>
+                        <td>{{ item.competencia }}</td>
+                        <td> {{item.peso}} </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>

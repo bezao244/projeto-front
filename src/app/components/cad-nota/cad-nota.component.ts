@@ -39,7 +39,7 @@ export class CadNotaComponent implements OnInit {
   listar() {
     this.candidatoServive.listarSemNota().subscribe((res: any) => {
       this.pessoas = res;
-      if (this.pessoas.length < 1) {
+      console.log(res); if (this.pessoas.length < 1) {
         this.msgalert = 'Nenhum candidato com nota pendente!';
       }
     });
@@ -50,9 +50,7 @@ export class CadNotaComponent implements OnInit {
       nome: this.pesquisarForm.value.nome,
       cpf: this.pesquisarForm.value.cpf
     }
-    console.log(modal);
     this.candidatoServive.filtrarSemNota(modal).subscribe((res: any) => {
-      console.log(res);
       this.pessoas = res;
       if (this.pessoas.length < 1) {
         this.msgalert = 'Nenhum candidato corresponde com o filtro!';

@@ -14,6 +14,7 @@ export class CrudItemComponent implements OnInit {
 
   crudForm: FormGroup;
   oficios: any[] = [];
+  itemCadastrado: any[] = [];
 
   constructor(
     private itemService: ItemService,
@@ -25,7 +26,9 @@ export class CrudItemComponent implements OnInit {
   ngOnInit(): void {
     this.crudForm = this.formBuilder.group({
       descricao: [null, Validators.required],
-      oficio: [null, Validators.required]
+      oficio: [null, Validators.required],
+      competencia: [null, Validators.required],
+      peso: [null, Validators.required]
     });
     this.oficioService.buscarOficios().subscribe((res: any) => {
       this.oficios = res;
@@ -36,7 +39,9 @@ export class CrudItemComponent implements OnInit {
   cadastrar() {
     var modal = {
       idOficio: this.crudForm.value.oficio,
-      descricao: this.crudForm.value.descricao
+      descricao: this.crudForm.value.descricao,
+      competencia: this.crudForm.value.competencia,
+      peso: this.crudForm.value.peso
     }
     console.log(modal);
     this.itemService.create(modal).subscribe((res: any) => {
@@ -47,9 +52,8 @@ export class CrudItemComponent implements OnInit {
           showConfirmButton: false,
           timer: 2000
         });
-        setTimeout(() => {
-          this.router.navigate(['cad-item']);
-        }, 2000);
+        this.crudForm.reset();
+        this.itemCadastrado.push(modal);
       } else {
         Swal.fire({
           icon: 'warning',
@@ -62,6 +66,21 @@ export class CrudItemComponent implements OnInit {
   }
   fecharCad() {
     this.router.navigate(['cad-item']);
+  }
+  deletar(id: number) {
+    var modal = {
+      idItem: id
+    }
+    this.itemService.deletar(modal).subscribe((res: any) => {
+      if (res) {
+        Swal.fire({
+          icon: 'success',
+          title: 'Item deletado com sucesso!',
+          showConfirmButton: false,
+          timer: 2000
+        });
+      }
+    })
   }
 
 }

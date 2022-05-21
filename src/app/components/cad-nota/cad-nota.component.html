@@ -41,16 +41,16 @@
       <table class="table table-striped table-bordered table-sm row-border hover">
         <thead>
           <tr>
-            <th style="width: 20%">Código</th>
+            <th style="width: 5%">Código</th>
             <th style="width: 40%">Nome</th>
-            <th style="width: 40%">CPF</th>
-            <th style="width: 40%">Oficio</th>
-            <th style="width: 40%">Adicionar</th>
+            <th style="width: 15%">CPF</th>
+            <th style="width: 35%">Oficio</th>
+            <th style="width: 10%">Adicionar</th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let item of pessoas">
-            <td>{{ item.idCandidato }}</td>
+            <td style="text-align: center;">{{ item.idCandidato }}</td>
             <td>{{ item.nome }}</td>
             <td>{{ item.cpf }}</td>
             <td>{{ item.oficio }}</td>
