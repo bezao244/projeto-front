@@ -67,7 +67,7 @@ export class EmpresaComponent implements OnInit {
     this.empresaService.listarPorEmpresa(modal).subscribe((res: any) => {
       this.candidatos = res;
       if (this.candidatos.length < 1) {
-        this.msgalert = 'Nenhum candidato afiliados a essa empresav !';
+        this.msgalert = 'Nenhum candidato afiliado a essa empresa foi avaliado!';
       }
     });
   }
@@ -89,5 +89,6 @@ export class EmpresaComponent implements OnInit {
   logout() {
     this.router.navigate(['home']);
   }
-
+  abrirRelatorio(id: number) {
+  }
 }

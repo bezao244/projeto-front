@@ -23,4 +23,13 @@ export class ItemService {
   buscarQuestoesProva(user: any) {
     return this.http.post(`${this.baseUrl}buscarQuestoesProva`, user);
   }
+  adicionarNotaPorItem(modal: any) {
+    return this.http.post(`${this.baseUrl}adicionarNotaPorItem`, modal);
+  }
+  adicionarNotaSegTrab(modal: any) {
+    return this.http.post(`${this.baseUrl}adicionarNotaSegTrab`, modal);
+  }
+  setFoiAvaliado(modal: any) {
+    return this.http.post(`${this.baseUrl}setAvaliado`, modal);
+  }
 }

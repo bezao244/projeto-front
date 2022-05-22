@@ -34,7 +34,7 @@
       </form>
     </div>
     <hr class="border-light">
-    <div class="row">
+    <div class="row" style="padding: 3px;">
       <div class="col-md-12">
         <div class="alert alert-danger" role="alert" *ngIf="msgalert.length > 0">
           <b style="color: red;">*</b> {{msgalert}}
@@ -56,7 +56,7 @@
           <td> {{item.nome}} </td>
           <td> {{item.cpf}} </td>
           <td> {{item.oficio}} </td>
-          <td> {{item.notaFinal}} </td>
+          <td> {{item.notaTeorica}} </td>
           <td style="text-align: center;">
             <button class="btn btn-secondary " style="padding: 3px;">
               <span></span>Detalhes
@@ -80,9 +80,9 @@
               CPF: <strong> {{item.cpf}} </strong> <br>
               Oficio: <strong> {{item.oficio}} </strong>
             </td>
-            <td> {{item.notaFinal}} </td>
+            <td> {{item.notaTeorica}} </td>
             <td style="text-align: center;">
-              <button class="btn btn-secondary " style="padding: 3px;">
+              <button class="btn btn-secondary " style="padding: 3px;" (click)="abrirRelatorio(item.idCanidato)">
                 <span></span>Detalhes
               </button>
             </td>

@@ -32,7 +32,7 @@ export class CadNotaComponent implements OnInit {
       cpf: [null]
     });
     this.crudFormNota = this.formBuilder.group({
-      notaFinal: [null, Validators.required]
+      notaTeorica: [null, Validators.required]
     });
 
   }
@@ -69,11 +69,11 @@ export class CadNotaComponent implements OnInit {
   }
   adicionarNota(id: any) {
     if (this.crudFormNota.valid) {
-      if (this.crudFormNota.value.notaFinal > 10) {
+      if (this.crudFormNota.value.notaTeorica > 10) {
         this.msgalertNota = 'Nota somente de 0 a 10!';
       } else {
         var modal = {
-          notaFinal: this.crudFormNota.value.notaFinal,
+          notaTeorica: this.crudFormNota.value.notaTeorica,
           idCandidato: id
         }
         this.candidatoServive.adicionarNotaCandidato(modal).subscribe((res: any) => {

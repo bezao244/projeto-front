@@ -177,7 +177,7 @@
                         <td> {{item.competencia}} </td>
                         <td style="text-align: center;"> {{item.peso}} </td>
                         <td> <select class="custom-select form-control" formControlName="notaItem"
-                                (change)="addNotaPorItem(item.idItem)">
+                                (change)="addNotaPorItem(item.idItem, item.peso)">
                                 <option value="null" selected>0</option>
                                 <option value="1">1</option>
                                 <option value="2">2</option>

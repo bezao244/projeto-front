@@ -1,14 +1,11 @@
-import { not } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthService } from 'src/app/services/auth.service';
 import { AvaliadorService } from 'src/app/services/avaliador.service';
 import { CandidatoService } from 'src/app/services/candidato.service';
 import { ItemService } from 'src/app/services/item.service';
 import { OficioService } from 'src/app/services/oficio.service';
 import Swal from 'sweetalert2';
-import { Prova1Component } from '../provas/prova1/prova1.component';
 @Component({
   selector: 'app-avaliador',
   templateUrl: './avaliador.component.html',
@@ -31,9 +28,9 @@ export class AvaliadorComponent implements OnInit {
   candidatoSelecionado: any[] = [];
   questoesProva: any[] = [];
   idOficioCandidatoAvaliar: number;
-  somaNotas: number;
+  somaNotas: any;
   notasItens: any[] = [];
-
+  contErr: number = 0;
   constructor(
     private oficioService: OficioService,
     private avaliadorService: AvaliadorService,
@@ -86,7 +83,6 @@ export class AvaliadorComponent implements OnInit {
       idCandidato: id
     }
     this.candidatoService.buscarDadosCandidato(modal).subscribe((res: any) => {
-      console.log(res);
       this.candidatoSelecionado = res;
       this.idOficioCandidatoAvaliar = res[0].idOficio;
       this.buscarQuestoesProva();
@@ -136,15 +132,7 @@ export class AvaliadorComponent implements OnInit {
     });
     this.abrirConfig = true;
   }
-  salvar() {
-    // var modal = {
-    //   nota1: this.notaForm.value.nota1,
-    //   nota2: this.notaForm.value.nota2,
-    //   nota3: this.notaForm.value.nota3,
-    // }
-    // console.log(modal);
-    console.log(this.notasItens);
-  }
+
   fechar() {
     // Swal.fire({
     //   icon: 'warning',
@@ -155,10 +143,78 @@ export class AvaliadorComponent implements OnInit {
     // });
     this.abrirProva = false;
   }
-  addNotaPorItem(idItem: number) {
-    console.log(idItem);
-    var notaItem = this.notaForm.value.notaItem;
-    this.notasItens.push(notaItem);
+  addNotaPorItem(idItem: number, peso: number) {
+    var notaItem = parseInt(this.notaForm.value.notaItem) * peso;
+    var modal = {
+      idItem: idItem,
+      notaItem: notaItem,
+      idCandidato: this.idCandidatoAvaliar
+    }
+    this.notasItens.push(modal);
+    this.somaNotas += notaItem;
+  }
+  salvar() {
+    console.log(this.notasItens);
+    if (this.notaForm.valid) {
+      for (let i = 0; i < this.notasItens.length; i++) {
+        this.itemService.adicionarNotaPorItem(this.notasItens[i]).subscribe((res: any) => {
+          if (!res) {
+            Swal.fire({
+              icon: 'warning',
+              title: 'Erro ao salvar avaliação certifique se não deixou nenhum campo em branco!',
+              showConfirmButton: true,
+            });
+            this.contErr++;
+          }
+        });
+
+      } if (this.contErr > 0) {
+        Swal.fire({
+          icon: 'warning',
+          title: 'Erro ao adicionar notas!',
+          showConfirmButton: true
+        });
+      } else {
+        console.log('nenhum erro continucandoS')
+        Swal.fire({
+          icon: 'success',
+          title: 'Notas adicionadas com sucesso!',
+          showConfirmButton: false,
+          timer: 2000
+        });
+        var nota1 = parseInt(this.notaForm.value.nota1);
+        var nota2 = parseInt(this.notaForm.value.nota2);
+        var nota3 = parseInt(this.notaForm.value.nota3);
+        var modalTrab = {
+          notaSegTrab: nota1 + nota2 + nota3,
+          idCandidato: this.idCandidatoAvaliar
+        }
+        console.log(modalTrab);
+        this.itemService.adicionarNotaSegTrab(modalTrab).subscribe((res: any) => {
+          if (res) {
+            console.log('seg trab adc ok');
+          }
+        })
+
+        var modal = {
+          idCandidato: this.idCandidatoAvaliar
+        }
+        this.itemService.setFoiAvaliado(modal).subscribe((res: any) => {
+          if (res) {
+            console.log('foi avaliado true');
+          }
+        })
+        this.abrirProva = false;
+        this.listar();
+      }
+    } else {
+      Swal.fire({
+        icon: 'warning',
+        title: 'Campos de notas vazios!',
+        showConfirmButton: true
+      });
+    }
+
   }
 
 }
