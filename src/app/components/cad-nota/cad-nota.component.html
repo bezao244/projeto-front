@@ -53,7 +53,7 @@
             <td style="text-align: center;">{{ item.idCandidato }}</td>
             <td>{{ item.nome }}</td>
             <td>{{ item.cpf }}</td>
-            <td>{{ item.oficio }}</td>
+            <td>{{ item.dataInclusao }}</td>
             <td style="text-align: center">
               <button class="btn btn-primary" (click)="adicionar(item.idCandidato)" style="cursor: pointer">
                 <i class="fa fa-plus"></i>
@@ -66,12 +66,13 @@
   </div>
 </div>
 <div *ngIf="abrirCadastroNota" class="cadNota">
+
   <h3 *ngFor="let item of candidatoNota">Cadastrar nota de {{ item.nome }}</h3>
   <form [formGroup]="crudFormNota">
     <div class="col-md-12" style="margin-bottom: 5px" *ngFor="let item of candidatoNota">
 
       <label class="control-label required">Nota da Prova Teórica:</label>
-      <div class="col-md-12" style="display: flex;">
+      <div class="col-md-12" style="display: flex; margin-bottom: 2px;">
         <input type="number" formControlName="notaTeorica" class="form-control cold-md-10" placeholder="Digite a nota"
           required />
         <button class="btn btn-primary col-md-2" (click)="adicionarNota(item.idCandidato)" style="cursor: pointer">
@@ -85,6 +86,9 @@
           </div>
         </div>
       </div>
+      <button class="btn btn-danger" style="padding: 3px; width: 100px;" (click)="fecharCadNota()">
+        Fechar
+      </button>
     </div>
   </form>
 </div>

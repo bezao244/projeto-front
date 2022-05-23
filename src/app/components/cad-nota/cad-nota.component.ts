@@ -54,6 +54,8 @@ export class CadNotaComponent implements OnInit {
       this.pessoas = res;
       if (this.pessoas.length < 1) {
         this.msgalert = 'Nenhum candidato corresponde com o filtro!';
+      } else {
+        this.msgalert = '';
       }
     });
   }
@@ -86,6 +88,7 @@ export class CadNotaComponent implements OnInit {
             });
             this.listar();
             this.abrirCadastroNota = false;
+            this.crudFormNota.reset();
           } else {
             Swal.fire({
               icon: 'warning',
@@ -102,5 +105,10 @@ export class CadNotaComponent implements OnInit {
   }
   voltar() {
     this.router.navigate(['admin']);
+  }
+  fecharCadNota() {
+    this.abrirCadastroNota = false;
+    this.msgalertNota = '';
+    this.crudFormNota.reset();
   }
 }

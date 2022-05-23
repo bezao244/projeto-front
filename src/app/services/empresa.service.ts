@@ -25,4 +25,7 @@ export class EmpresaService {
   createEmpresa(user: any) {
     return this.http.post(`${this.baseUrl}createEmpresa`, user);
   }
+  buscarDadosNotaCandidato(id: any) {
+    return this.http.post(`${this.baseUrl}buscarDadosNotaCandidato`, id);
+  }
 }

@@ -1,8 +1,9 @@
-*{
+* {
     margin: 0;
     padding: 0;
 }
-.topo{
+
+.topo {
     display: flex;
     width: 100%;
     background-color: #0d539d;
@@ -11,8 +12,9 @@
     display: flex;
     align-items: center;
 }
-.topo-sair{
-    color:whitesmoke;
+
+.topo-sair {
+    color: whitesmoke;
     font-size: 18px;
     position: absolute;
     right: 30px;
@@ -23,85 +25,116 @@
     text-align: center;
     background-color: #0d539d;
 }
-.topo-sair:hover{
+
+.topo-sair:hover {
     transition: 0.2s;
     color: rgb(177, 177, 177);
     text-decoration: none;
 }
+
 /*estilo para a div de filtro*/
-.labels{
+.labels {
     font-size: 17px;
     margin-right: 5px;
     margin-left: 25px;
 }
-.btn-tamanho{
-    width:100px;
+
+.btn-tamanho {
+    width: 100px;
     margin-left: 15px;
     padding: 3px;
 }
-.container{
+
+.container {
     width: 100%;
     margin-left: 7.5%;
+    height: 600px;
 }
-.form{
+
+.form {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
 }
-.input-nome{
+
+.input-nome {
     width: 200px;
     padding: 5px;
 }
-.label-input{
+
+.label-input {
     display: flex;
     align-items: center;
 }
-.filtros{
+
+.filtros {
     height: 120px;
     width: 100%;
     margin-top: 10px;
 }
-.overflow{
+
+.overflow {
     height: 360px;
     overflow: auto;
 }
 
+.tabela {
+    height: 260px;
+    overflow: auto;
+}
+
+.detalhes {
+    position: absolute;
+    top: 10%;
+    left: 10%;
+    width: 80%;
+    height: 60%;
+    background-color: whitesmoke;
+    padding: 8px;
+    border-radius: 5px;
+}
+
 /*Layout para celulares*/
-@media (max-width: 600px)
-{
-    .tabela{
-        margin-top:100px;
+@media (max-width: 600px) {
+    .tabela {
+        margin-top: 100px;
         width: 100%;
-        font-size:14px;
+        font-size: 14px;
     }
-    .label-input{
+
+    .label-input {
         width: 250px;
         margin-bottom: 10px;
         justify-content: center;
     }
-    .form{
+
+    .form {
         width: 100%;
         display: flex;
         flex-wrap: wrap;
     }
-    .topo{
+
+    .topo {
         width: 100%;
     }
-    .container{
+
+    .container {
         margin-left: 0;
         height: 90vh;
     }
-    .border-light{
+
+    .border-light {
         display: none;
     }
-    .overflow{
+
+    .overflow {
         height: 360px;
         overflow: auto;
     }
-    .filtros{
-    height: 220px;
+
+    .filtros {
+        height: 220px;
     }
-    .tabela-menor{
-        
-    }
+
+    .tabela-menor {}
 }

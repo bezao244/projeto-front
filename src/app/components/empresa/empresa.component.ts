@@ -20,6 +20,8 @@ export class EmpresaComponent implements OnInit {
   oficios: any[] = [];
   idEmpresa: number;
   width: any;
+  abrirDetalhes: boolean = false;
+  detalhescandidato: any[] = [];
 
   constructor(
     private authService: AuthService,
@@ -89,6 +91,23 @@ export class EmpresaComponent implements OnInit {
   logout() {
     this.router.navigate(['home']);
   }
+
   abrirRelatorio(id: number) {
+    var modal = {
+      idCandidato: id
+    }
+    this.empresaService.buscarDadosNotaCandidato(modal).subscribe((res: any) => {
+      console.log(res);
+      if (res) {
+        this.detalhescandidato = res;
+      } else {
+        console.log('impossivel encontrar notas desse candidato');
+      }
+    });
+    this.abrirDetalhes = true;
+  }
+
+  fecharDetalhes() {
+    this.abrirDetalhes = false;
   }
 }

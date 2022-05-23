@@ -58,7 +58,7 @@
           <td> {{item.oficio}} </td>
           <td> {{item.notaTeorica}} </td>
           <td style="text-align: center;">
-            <button class="btn btn-secondary " style="padding: 3px;">
+            <button class="btn btn-secondary " style="padding: 3px;" (click)="abrirRelatorio(item.idCandidato)">
               <span></span>Detalhes
             </button>
           </td>
@@ -91,4 +91,21 @@
       </table>
     </div>
   </div>
+</div>
+
+<div class="detalhes" *ngIf="abrirDetalhes">
+  <div class="card card-body" style="width: 100%; padding: 5px; height: 100%; display: flex;
+  flex-direction: column;">
+    <table>
+      <h3>Relatório de notas de NomeCandidato </h3>
+      <tr *ngFor="let item of detalhescandidato">
+        <td> Desempenho satisfatório em {{item.descricao}} </td>
+        <td style="margin-left: 10px"> Nota: {{item.notaItem}} </td>
+      </tr>
+      <button class="btn btn-danger" (click)="fecharDetalhes()" style="padding: 5px;">
+        Fechar
+      </button>
+    </table>
+  </div>
+
 </div>
