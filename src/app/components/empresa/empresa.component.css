@@ -79,7 +79,7 @@
 }
 
 .tabela {
-    height: 260px;
+    max-height: 200px;
     overflow: auto;
 }
 

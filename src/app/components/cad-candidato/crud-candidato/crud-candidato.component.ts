@@ -18,7 +18,7 @@ export class CrudCandidatoComponent implements OnInit {
   avaliadores: any[] = [];
   oficios: any[] = [];
   empresas: any[] = [];
-
+  cpfTitularValido: boolean = true;
   constructor(
     private authService: AuthService,
     private candidatoService: CandidatoService,
@@ -49,27 +49,32 @@ export class CrudCandidatoComponent implements OnInit {
   }
   cadastrar() {
     if (this.crudFormCandidato.valid) {
-      var modal = {
-        nome: this.crudFormCandidato.value.nome,
-        cpf: this.crudFormCandidato.value.cpf,
-        idAvaliador: this.crudFormCandidato.value.idAvaliador,
-        idEmpresa: this.crudFormCandidato.value.idEmpresa,
-        idOficio: this.crudFormCandidato.value.idOficio
-      }
-      console.log(modal);
-      this.candidatoService.createCandidato(modal).subscribe((res: any) => {
-        if (res) {
-          Swal.fire({
-            icon: 'success',
-            title: 'Cadastro realizado com sucesso!',
-            showConfirmButton: false,
-            timer: 2000
-          });
-          setTimeout(() => {
-            this.router.navigate(['cad-candidato']);
-          }, 2000);
+      if (this.crudFormCandidato.value.cpf.length < 11) {
+        this.cpfTitularValido = false;
+      } else {
+        var modal = {
+          nome: this.crudFormCandidato.value.nome,
+          cpf: this.crudFormCandidato.value.cpf,
+          idAvaliador: this.crudFormCandidato.value.idAvaliador,
+          idEmpresa: this.crudFormCandidato.value.idEmpresa,
+          idOficio: this.crudFormCandidato.value.idOficio
         }
-      });
+        console.log(modal);
+        this.candidatoService.createCandidato(modal).subscribe((res: any) => {
+          if (res) {
+            Swal.fire({
+              icon: 'success',
+              title: 'Cadastro realizado com sucesso!',
+              showConfirmButton: false,
+              timer: 2000
+            });
+            setTimeout(() => {
+              this.router.navigate(['cad-candidato']);
+            }, 2000);
+          }
+        });
+      }
+
     } else {
       Swal.fire({
         icon: 'warning',

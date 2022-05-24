@@ -23,7 +23,7 @@ export class HomeComponent implements OnInit {
       email: [null],
       senha: [null]
     });
-    
+
   }
   login() {
     var modal = {
@@ -49,5 +49,4 @@ export class HomeComponent implements OnInit {
       console.log(err);
     }
   }
-
 }

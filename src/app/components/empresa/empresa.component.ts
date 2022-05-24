@@ -71,6 +71,7 @@ export class EmpresaComponent implements OnInit {
       if (this.candidatos.length < 1) {
         this.msgalert = 'Nenhum candidato afiliado a essa empresa foi avaliado!';
       }
+      this.msgalert = '';
     });
   }
   filtrar() {

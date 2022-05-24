@@ -1,9 +1,9 @@
-*{
+* {
     margin: 0;
     padding: 0;
 }
 
-.conta{
+.conta {
     width: 100%;
     top: 0;
     height: 70px;
@@ -13,13 +13,15 @@
     align-items: center;
     border-bottom: 1px solid rgb(221, 221, 221);
 }
-.conta p{
+
+.conta p {
     font-size: 18px;
     font-weight: 600;
     margin-left: 5px;
 }
-.topo-sair{
-    color:whitesmoke;
+
+.topo-sair {
+    color: whitesmoke;
     font-size: 18px;
     position: absolute;
     right: 30px;
@@ -30,13 +32,15 @@
     text-align: center;
     background-color: #1D232A;
 }
-.topo-sair:hover{
+
+.topo-sair:hover {
     transition: 0.2s;
     color: rgb(177, 177, 177);
     text-decoration: none;
 }
-.topo-config{
-    color:whitesmoke;
+
+.topo-config {
+    color: whitesmoke;
     font-size: 18px;
     position: absolute;
     right: 90px;
@@ -47,67 +51,80 @@
     text-align: center;
     background-color: #1D232A;
 }
-.topo-config:hover{
+
+.topo-config:hover {
     transition: 0.2s;
     color: rgb(177, 177, 177);
     text-decoration: none;
 }
+
 /*estilo para a div de filtro*/
-.labels{
+.labels {
     font-size: 17px;
     margin-right: 5px;
     margin-left: 25px;
 }
-.btn-tamanho{
-    width:100px;
+
+.btn-tamanho {
+    width: 100px;
     margin-left: 15px;
     padding: 3px;
 }
-.container{
+
+.container {
     width: 100%;
     margin-left: 7.5%;
 }
-.form{
+
+.form {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
 }
-.input-nome{
+
+.input-nome {
     width: 200px;
     padding: 5px;
 }
-.label-input{
+
+.label-input {
     display: flex;
     align-items: center;
 }
-.filtros{
+
+.filtros {
     height: 120px;
     width: 100%;
     margin-top: 10px;
 }
-.rolar{
+
+.rolar {
     height: 350px;
     overflow: auto;
 }
-.modal1{
+
+.modal1 {
     position: absolute;
-    top: 2.5%;
-    width: 96%;
+    top: 5%;
+    width: 90%;
     margin-left: 2%;
 }
+
 /*Layout para celulares*/
-@media (max-width: 600px)
-{
-    .tabela{
-        margin-top:100px;
+@media (max-width: 600px) {
+    .tabela {
+        margin-top: 100px;
         width: 300px;
-        font-size:14px;
+        font-size: 14px;
     }
-    .label-input{
+
+    .label-input {
         width: 250px;
         margin-bottom: 5px;
         justify-content: center;
-    }.form{
+    }
+
+    .form {
         justify-content: center;
     }
 }

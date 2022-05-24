@@ -14,11 +14,13 @@
                     placeholder="Digite o nome completo" required>
             </div>
             <div class="col-md-4">
-                <label class="control-label required">CPF</label>
-                <input type="number" formControlName="cpf" class="form-control inputs" placeholder="Digite o cpf"
-                    required>
+                <label class="control-label required">CPF
+                </label>
+                <input type="text" formControlName="cpf" class="form-control inputs" placeholder="Digite o cpf"
+                    maxlength="11">
+                <small class="form-text text-muted" *ngIf="!cpfTitularValido"
+                    style="color: red !important; font-weight: bold">CPF digitado não é válido!</small>
             </div>
-
         </div>
         <div class="row meio">
             <div class="col-md-4">

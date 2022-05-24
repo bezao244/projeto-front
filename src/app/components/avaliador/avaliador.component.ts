@@ -73,6 +73,7 @@ export class AvaliadorComponent implements OnInit {
       if (this.candidatos.length < 1) {
         this.msgalert = 'Nenhum candidato para avaliar no momento!';
       }
+      this.msgalert = '';
     });
   }
 
@@ -134,14 +135,19 @@ export class AvaliadorComponent implements OnInit {
   }
 
   fechar() {
-    // Swal.fire({
-    //   icon: 'warning',
-    //   title: 'Tem certeza que deseja fechar a avaliação?',
-    //   text: ' Os dados não serão salvos!',
-    //   showConfirmButton: true,
-    //   showCancelButton: true
-    // });
-    this.abrirProva = false;
+    Swal.fire({
+      icon: 'warning',
+      title: 'Tem certeza que deseja fechar?',
+      showCancelButton: true,
+      confirmButtonColor: '#59b479',
+      cancelButtonColor: '#e36e6e',
+      cancelButtonText: 'Cancelar',
+      confirmButtonText: 'Fechar'
+    }).then((result) => {
+      if (result.value) {
+        this.abrirProva = false;
+      }
+    });
   }
   addNotaPorItem(idItem: number, peso: number) {
     var notaItem = parseInt(this.notaForm.value.notaItem) * peso;
