@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AvaliadorService } from 'src/app/services/avaliador.service';
 import { CandidatoService } from 'src/app/services/candidato.service';
 import { ItemService } from 'src/app/services/item.service';
@@ -31,6 +31,7 @@ export class AvaliadorComponent implements OnInit {
   somaNotas: any;
   notasItens: any[] = [];
   contErr: number = 0;
+
   constructor(
     private oficioService: OficioService,
     private avaliadorService: AvaliadorService,
@@ -123,15 +124,7 @@ export class AvaliadorComponent implements OnInit {
     this.router.navigate(['home']);
   }
   abrirInfo() {
-    var modal = {
-      idUsuario: this.idUsuarioLogado
-    }
-    this.avaliadorService.buscarIdAvaliador(modal).subscribe((res: any) => {
-      if (res != false) {
-        this.avaliadorLogado = res;
-      }
-    });
-    this.abrirConfig = true;
+    this.router.navigate([`visualizarInfo/${this.idUsuarioLogado}`]);
   }
 
   fechar() {

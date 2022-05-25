@@ -1,0 +1,17 @@
+<div class="card mb-3 box-shadow-none">
+    <div class="card-body">
+        <h4 class="card-title" style="color: #263763;"><img style="max-width: 25px; width: 25px; margin-bottom:5px"
+                src="https://i.imgur.com/w91GNDA.png"> Dados da Conta</h4>
+        <div class="col-md-12" *ngFor="let item of usuario">
+            <div *ngIf="tipoConta == 'Avaliador'">
+                <div class="resumo-item-cols">
+                    <div class="key"><span class="font-montserrat all-caps small">Nome</span></div>
+                    <div class="value">{{item.nome}}</div>
+                </div>
+                <div class="resumo-item-cols">
+                    <div class="key"><span class="font-montserrat all-caps small">CPF</span></div>
+                    <div class="value">{{item.cpf}}</div>
+                </div>
+            </div>
+        </div>
+    </div>

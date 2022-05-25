@@ -1,24 +1,22 @@
-*{
+* {
     margin: 0;
     padding: 0;
     font-family: sans-serif;
 }
 
-.geral{
+.geral {
     display: flex;
-    flex-direction: column ;
+    flex-direction: column;
     align-items: center;
     width: 450px;
     height: 370px;
     background-color: whitesmoke;
     justify-content: space-evenly;
-    border: 1px solid whitesmoke;
+    border: 1px solid rgb(119, 119, 119);
     border-radius: 5px;
-    /* position: absolute;
-    left: 34%;
-    top: 21%; */
 }
-.emvolta{
+
+.emvolta {
     height: 100vh;
     width: 100%;
     display: flex;
@@ -26,46 +24,49 @@
     align-items: center;
     justify-content: center;
 }
-.form{
+
+.form {
     display: flex;
-    flex-direction: column ;
+    flex-direction: column;
 
 }
-.esqueci{
+
+.esqueci {
     text-decoration: none;
     color: black;
 }
-.esqueci:hover{
+
+.esqueci:hover {
     transition: 0.3s;
     color: red;
     text-decoration: none;
 }
-.geral-tit{
-   letter-spacing: 1px;
+
+.geral-tit {
+    letter-spacing: 1px;
 }
 
-.large{
-   width: 400px;
-   margin-bottom: 5px;
-}
-.oculto{
-    display:none;
+.large {
+    width: 400px;
+    margin-bottom: 5px;
 }
 
-@media (max-width: 600px)
-{
-.geral{
-    width: 350px;
-    height: 400px;
-    /* position: absolute;
-    top: 10%;
-    left: 5.5%; */
+.oculto {
+    display: none;
 }
-.large{
-    width: 300px;
-}
-.geral h3{
-    font-size:22px;
-}
+
+@media (max-width: 600px) {
+    .geral {
+        width: 350px;
+        height: 400px;
+    }
+
+    .large {
+        width: 300px;
+    }
+
+    .geral h3 {
+        font-size: 22px;
+    }
 
 }

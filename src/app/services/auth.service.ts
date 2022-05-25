@@ -38,6 +38,15 @@ export class AuthService {
   createAdmin(user: any) {
     return this.http.post(`${this.baseUrl}user/createAdmin`, user);
   }
+  buscarDadosAvaliador(id: any) {
+    return this.http.post(`${this.baseUrl}user/buscarDadosAvaliador`, id);
+  }
+  buscarDadosEmpresa(id: any) {
+    return this.http.post(`${this.baseUrl}user/buscarDadosEmpresa`, id);
+  }
+  buscarDadosAdiminstrador(id: any) {
+    return this.http.post(`${this.baseUrl}user/buscarDadosAdiminstrador`, id);
+  }
 
   // isAuth():boolean{
   //   const token = JSON.parse(localStorage.getItem('token')!);

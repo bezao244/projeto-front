@@ -26,6 +26,7 @@ import { CrudOficioComponent } from './components/cad-oficio/crud-oficio/crud-of
 import { Prova1Component } from './components/provas/prova1/prova1.component';
 import { CadItemComponent } from './components/cad-item/cad-item.component';
 import { CrudItemComponent } from './components/cad-item/crud-item/crud-item.component';
+import { VisualizarInfoComponent } from './components/visualizar-info/visualizar-info.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { CrudItemComponent } from './components/cad-item/crud-item/crud-item.com
     CrudOficioComponent,
     Prova1Component,
     CadItemComponent,
-    CrudItemComponent
+    CrudItemComponent,
+    VisualizarInfoComponent
   ],
   imports: [
     BrowserModule,

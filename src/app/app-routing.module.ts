@@ -14,6 +14,7 @@ import { CrudOficioComponent } from './components/cad-oficio/crud-oficio/crud-of
 import { EmpresaComponent } from './components/empresa/empresa.component';
 import { HomeComponent } from './components/home/home.component';
 import { PrivateComponent } from './components/private/private.component';
+import { VisualizarInfoComponent } from './components/visualizar-info/visualizar-info.component';
 import { AuthGuard } from './guards/auth.guard';
 import { RoleGuard } from './guards/role.guard';
 
@@ -34,6 +35,7 @@ const routes: Routes = [
   { path: 'crud-item', component: CrudItemComponent },
   { path: 'avaliador', component: AvaliadorComponent },
   { path: 'empresa', component: EmpresaComponent },
+  { path: 'visualizarInfo/:idUsuario', component: VisualizarInfoComponent },
 ];
 
 @NgModule({
