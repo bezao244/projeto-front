@@ -1,0 +1,76 @@
+<div class="meio">
+    <div class="card card-body menu">
+        <div class="media-body ml-10" style="margin-bottom: 15px;">
+            <h3>Seja Bem Vindo, {{nomeUsuario}}</h3>
+            <div class="text-muted text-tiny mt-1"><small class="font-weight-normal"> </small></div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 col-xl-6">
+                    <div class="card bg-c-blue order-card">
+                        <div class="card-block">
+                            <h6 class="m-b-20">Usuários Cadastrados</h6>
+                            <h2 class="text-right"><i class="fa fa-users f-left"></i><span>486</span></h2>
+                            <p>Últimos</p>
+                            <table class="table table-striped table-bordered table-sm row-border hover">
+                                <thead>
+                                    <tr style="color: white; border: grey;">
+                                        <th style="width: 5%">Código</th>
+                                        <th style="width: 40%">Nome</th>
+                                        <th style="width: 15%">CPF</th>
+                                        <th style="width: 35%">Oficio</th>
+                                        <th style="width: 10%">Adicionar</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- <tr *ngFor="let item of pessoas">
+                                    <td style="text-align: center;">{{ item.idCandidato }}</td>
+                                    <td>{{ item.nome }}</td>
+                                    <td>{{ item.cpf }}</td>
+                                    <td>{{ item.oficio }}</td>
+                                    <td style="text-align: center">
+                                      <button class="btn btn-primary" (click)="adicionar(item.idCandidato)" style="cursor: pointer">
+                                        <i class="fa fa-plus"></i>
+                                      </button>
+                                    </td>
+                                  </tr> -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 col-xl-6">
+                    <div class="card bg-c-green order-card">
+                        <div class="card-block">
+                            <h6 class="m-b-20">Candidatos Cadastrados</h6>
+                            <h2 class="text-right"><i class="fa fa-users f-left"></i><span>486</span></h2>
+                            <p>Últimos</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 col-xl-3">
+                    <div class="card bg-c-yellow order-card">
+                        <div class="card-block">
+                            <h6 class="m-b-20">Avaliadores Ativos</h6>
+                            <h2 class="text-right"><i class="fa fa-refresh f-left"></i><span>486</span></h2>
+                            <p class="m-b-0">Completed Orders<span class="f-right">351</span></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 col-xl-3">
+                    <div class="card bg-c-pink order-card">
+                        <div class="card-block">
+                            <h6 class="m-b-20">Orders Received</h6>
+                            <h2 class="text-right"><i class="fa fa-credit-card f-left"></i><span>486</span></h2>
+                            <p class="m-b-0">Completed Orders<span class="f-right">351</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

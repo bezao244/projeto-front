@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 import { CandidatoService } from 'src/app/services/candidato.service';
 import Swal from 'sweetalert2';
+import { EditarDadosComponent } from '../editar-dados/editar-dados.component';
 @Component({
   selector: 'app-cad-candidato',
   templateUrl: './cad-candidato.component.html',
@@ -17,7 +19,8 @@ export class CadCandidatoComponent implements OnInit {
   constructor(
     private candidatoService: CandidatoService,
     private formBuilder: FormBuilder,
-    private router: Router
+    private router: Router,
+    private modalService: NgbModal,
   ) { }
 
   ngOnInit(): void {
@@ -53,7 +56,16 @@ export class CadCandidatoComponent implements OnInit {
     this.router.navigate(['admin']);
   }
   editar(id: any) {
-
+    let options: NgbModalOptions = {
+      centered: false,
+      size: 'lg',
+      backdrop: 'static',
+      keyboard: false,
+      backdropClass: "modal-backdrop"
+    };
+    const modalRef = this.modalService.open(EditarDadosComponent, options);
+    modalRef.componentInstance.id = id;
+    modalRef.componentInstance.tipoEditar = 'Candidato';
   }
   deletar(id: any) {
     Swal.fire({

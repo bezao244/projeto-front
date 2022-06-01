@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 import { AuthService } from 'src/app/services/auth.service';
 import { CandidatoService } from 'src/app/services/candidato.service';
 import Swal from 'sweetalert2';
+import { EditarDadosComponent } from '../editar-dados/editar-dados.component';
 
 @Component({
   selector: 'app-cad-acesso',
@@ -16,15 +18,12 @@ export class CadAcessoComponent implements OnInit {
   pessoas: any[] = [];
   pesquisarForm: FormGroup;
   idUsuarioLogado: any;
-  abrirEdicao: boolean = false;
-  usuarioEditar: any[] = [];
-  crudFormEditar: FormGroup;
 
   constructor(
     private authService: AuthService,
     private formBuilder: FormBuilder,
-    private candidatoService: CandidatoService,
-    private router: Router
+    private router: Router,
+    private modalService: NgbModal,
   ) { }
 
   ngOnInit(): void {
@@ -35,11 +34,6 @@ export class CadAcessoComponent implements OnInit {
     let getId: any = localStorage.getItem('user');
     this.idUsuarioLogado = parseInt(getId);
     console.log(this.idUsuarioLogado);
-
-    this.crudFormEditar = this.formBuilder.group({
-      email: [''],
-      senha: ['']
-    })
   }
   listar() {
     this.authService.listar().subscribe((res: any) => {
@@ -102,17 +96,15 @@ export class CadAcessoComponent implements OnInit {
     });
   }
   editar(id: any) {
-    var modal = {
-      idUsuario: id
-    }
-    this.authService.buscarDadosUsuario(modal).subscribe((res: any) => {
-      this.usuarioEditar = res;
-      console.log(this.usuarioEditar);
-    });
-    this.abrirEdicao = true;
-  }
-  editarCandidato(id: any) {
-    this.abrirEdicao = false;
-    console.log(this.crudFormEditar.value.email);
+    let options: NgbModalOptions = {
+      centered: false,
+      size: 'lg',
+      backdrop: 'static',
+      keyboard: false,
+      backdropClass: "modal-backdrop"
+    };
+    const modalRef = this.modalService.open(EditarDadosComponent, options);
+    modalRef.componentInstance.id = id;
+    modalRef.componentInstance.tipoEditar = 'Usuario';
   }
 }

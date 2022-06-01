@@ -44,10 +44,10 @@
         <thead>
           <tr>
             <th style="width: 5%">Código</th>
-            <th style="width: 35%">Nome</th>
+            <th style="width: 35%">Email</th>
             <th style="width: 20%;">Conta</th>
-            <th style="width: 25%;">Data Inclusao</th>
-            <th style="width: 15%">Açoes</th>
+            <th style="width: 25%;">Data Inclusão</th>
+            <th style="width: 15%">Açoês</th>
           </tr>
         </thead>
         <tbody>
@@ -69,28 +69,5 @@
         </tbody>
       </table>
     </div>
-  </div>
-</div>
-
-<div *ngIf="abrirEdicao" class="divEdicao">
-  <div class="card card-body">
-    <h3 *ngFor="let item of usuarioEditar">Editar dados de {{ item.email }}</h3>
-    <form [formGroup]="crudFormEditar">
-      <div class="col-md-8" style="margin-bottom: 5px" *ngFor="let item of usuarioEditar">
-        <div class="row">
-          <div class="col-md-4">
-            <label class="control-label required">Nome</label>
-            <input type="text" formControlName="email" class="form-control inputs" [value]="item.email">
-          </div>
-          <div class="col-md-4">
-            <label class="control-label required">Senha</label>
-            <input type="text" formControlName="senha" class="form-control inputs" [value]="item.senha">
-          </div>
-        </div>
-        <button class="btn btn-primary" (click)="editarCandidato(item.idCandidato)" style="cursor: pointer">
-          Salvar
-        </button>
-      </div>
-    </form>
   </div>
 </div>

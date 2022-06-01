@@ -1,0 +1,95 @@
+<div class="modal-header" style="background:#f5f5f5">
+    <h6 class="modal-title pull-left" style="color:#000000">
+        <i class="fa fa-files-o"></i> Editar Dados
+    </h6>
+    <button type="button" (click)="close()" class="close pull-right" data-dismiss="modal" aria-label="Close"
+        style="color:#000000">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body" [formGroup]="crudFormUsuario" *ngIf="tipoEditar=='Usuario'">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label class="contro-label">Email</label>
+                <input type="text" id="nome" formControlName="email" class="form-control" />
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label class="contro-label">Senha</label>
+                <input type="text" id="nome" formControlName="senha" class="form-control" />
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal-body" [formGroup]="crudFormCandidato" *ngIf="tipoEditar=='Candidato'">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label class="contro-label">Nome</label>
+                <input type="text" id="nome" formControlName="nome" class="form-control" />
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label class="contro-label">CPF</label>
+                <input type="text" id="nome" formControlName="cpf" class="form-control" />
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label class="control-label required">Avaliador</label>
+                <div class="input-group">
+                    <select class="custom-select form-control" formControlName="idAvaliador" required>
+                        <option value="null" selected>Selecione o avaliador</option>
+                        <option *ngFor="let item of avaliadores" [value]="item.idAvaliador">
+                            {{ item.nome }}
+                        </option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label class="control-label required">Empresa</label>
+                <div class="input-group">
+                    <select class="custom-select form-control" formControlName="idEmpresa" required>
+                        <option *ngFor="let item of empresa" [value]="item.idEmpresa">
+                            {{ item.nomeEmpresa }}
+                        </option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label class="control-label required">Oficio</label>
+                <div class="input-group">
+                    <select class="custom-select form-control" formControlName="idOficio" required>
+                        <option *ngFor="let item of oficio" [value]="item.idOficio">
+                            {{ item.oficio }}
+                        </option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <div class="text-left" style="float:left">
+        <button type="button" class="btn btn-secondary" (click)="close()">
+            <span class="fa fa-times-circle"></span> Fechar
+        </button>
+    </div>
+    <div class="text-right" style="float:right" *ngIf="tipoEditar == 'Usuario'">
+        <button type="button" class="btn btn-primary" (click)="salvarUsuario()">
+            <span class="fa fa-save"></span> Salvar
+        </button>
+    </div>
+    <div class="text-right" style="float:right" *ngIf="tipoEditar == 'Candidato'">
+        <button type="button" class="btn btn-primary" (click)="salvarCandidato()">
+            <span class="fa fa-save"></span> Salvar
+        </button>
+    </div>
+</div>

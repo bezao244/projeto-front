@@ -27,6 +27,8 @@ import { Prova1Component } from './components/provas/prova1/prova1.component';
 import { CadItemComponent } from './components/cad-item/cad-item.component';
 import { CrudItemComponent } from './components/cad-item/crud-item/crud-item.component';
 import { VisualizarInfoComponent } from './components/visualizar-info/visualizar-info.component';
+import { EditarDadosComponent } from './components/editar-dados/editar-dados.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +48,9 @@ import { VisualizarInfoComponent } from './components/visualizar-info/visualizar
     Prova1Component,
     CadItemComponent,
     CrudItemComponent,
-    VisualizarInfoComponent
+    VisualizarInfoComponent,
+    EditarDadosComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,

@@ -47,6 +47,9 @@ export class AuthService {
   buscarDadosAdiminstrador(id: any) {
     return this.http.post(`${this.baseUrl}user/buscarDadosAdiminstrador`, id);
   }
+  editar(modal: any) {
+    return this.http.post(`${this.baseUrl}user/editar`, modal);
+  }
 
   // isAuth():boolean{
   //   const token = JSON.parse(localStorage.getItem('token')!);
